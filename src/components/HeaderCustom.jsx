@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-02 21:36:36
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-11 22:14:52
+ * @ Modified time: 2019-09-18 17:54:08
  * @ 文件解释: 导航条头部使用者介绍
  */
 
@@ -10,16 +10,16 @@ import React, { Component } from 'react';
 import screenfull from 'screenfull';
 import avater from '../style/imgs/Qiong.jpeg';
 import SiderCustom from './SiderCustom';
-import { Menu, Icon, Layout, Popover } from 'antd';
+import { Menu, Icon, Layout, Popover, Input, Tooltip } from 'antd';
 import { withRouter } from 'react-router-dom';
-import { PwaInstaller } from './widget';
-import { PublicModal } from './publicComponents/_Modal';
 import { ModalComponents } from './Common/ModalComponents';
 import { SVGICON } from './svg/svgIcon';
 
 const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
+const MenuItem = Menu.Item;
+const { Search } = Input; 
 
 class HeaderCustom extends Component {
   state = {
@@ -66,17 +66,8 @@ class HeaderCustom extends Component {
     this.setState({ visible });
   };
   render() {
-    // 传递给公共对话框的参数
-    const modalConfig = {
-      title: '修改头像',
-      content: 'Hello world',
-      controlModal: this.state.modalOpen,
-      contentType: 'upload',
-    };
-    // const responsive = {data: {}}, path} = this.props;
     return (
       <React.Fragment>
-        <PublicModal modalConfig={modalConfig} />
         {/* 加载模态框公共组件 */}
         <ModalComponents
           Modaltitle="提示"
@@ -91,11 +82,7 @@ class HeaderCustom extends Component {
           ModalonOk={this.handleModalOk}
           width="700"
         >
-          <span
-            style={{
-              fontSize: '20px',
-            }}
-          >
+          <span style={{ fontSize: '20px' }} >
             <SVGICON
               style={{
                 fontSize: '25px',
@@ -110,7 +97,6 @@ class HeaderCustom extends Component {
           {this.props._isMobile
             ? <Popover
                 content={
-                  // <SiderCustom path={path} popoverHide={this.popoverHide} />
                   <SiderCustom popoverHide={this.popoverHide} />
                 }
                 trigger="click"
@@ -131,12 +117,25 @@ class HeaderCustom extends Component {
             style={{ lineHeight: '64px', float: 'right' }}
             onClick={this.menuClick}
           >
-            <Menu.Item key="pwa">
-              <PwaInstaller />
-            </Menu.Item>
-            <Menu.Item key="full" onClick={this.screenFull}>
+            {/* 项目搜索 */}
+            <MenuItem>
+              <Search placeholder="搜索项目" style={{ width: 200 }} />
+            </MenuItem>
+            {/* 添加项目 */}
+            <MenuItem>
+              <Tooltip title="新增项目">
+                <SVGICON type="icon-tianjiaxiangmu" className="header_addProject" />
+              </Tooltip>
+            </MenuItem>
+            {/* 问题相关 */}
+            <MenuItem>
+              <Tooltip title="问题处理">
+                <SVGICON type="icon-wenti" className="header_problem" />
+              </Tooltip>
+            </MenuItem>
+            <MenuItem key="full" onClick={this.screenFull}>
               <Icon type="arrows-alt" onClick={this.screenFull} />
-            </Menu.Item>
+            </MenuItem>
             <SubMenu
               title={
                 <span className="avatar">
@@ -146,12 +145,12 @@ class HeaderCustom extends Component {
               }
             >
               <MenuItemGroup title="用户中心">
-                <Menu.Item key="setting:1">
+                <MenuItem key="setting:1">
                   你好 - {this.props.user}
-                </Menu.Item>
-                <Menu.Item key="logout">
+                </MenuItem>
+                <MenuItem key="logout">
                   <span onClick={this.logout}>退出登录</span>
-                </Menu.Item>
+                </MenuItem>
               </MenuItemGroup>
             </SubMenu>
           </Menu>

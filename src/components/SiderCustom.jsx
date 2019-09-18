@@ -11,7 +11,7 @@ import {Layout} from 'antd';
 import {withRouter} from 'react-router-dom';
 import routes from '../routes/config';
 import SiderMenu from './SiderMenu';
-import '../style/sidercustorm.less';
+import '../style/components/sidercustorm.less';
 
 const {Sider} = Layout;
 

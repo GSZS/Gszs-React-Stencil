@@ -8,10 +8,9 @@
 
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import '../../style/dashboard.less';
+import '../../style/components/dashboard.less';
 import { Card } from 'antd';
 import { SVGICON } from '../svg/svgIcon';
-import UpoloadComponentContainer from '../../containers/uploadComponentContainer';
 import BreadcrumbCustom from '../BreadcrumbCustom'
 
 const propTypes = {

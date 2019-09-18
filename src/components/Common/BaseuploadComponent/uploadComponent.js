@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-04 22:08:25
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-11 10:26:46
+ * @ Modified time: 2019-09-18 21:19:43
  * @ 文件解释: 表单上传公共组件
  */
 
@@ -18,7 +18,7 @@ import {
   Radio
 } from 'antd';
 import FormItem from 'antd/lib/form/FormItem';
-import '../../../style/singlevideo.less';
+import '../../../style/components/common/uploadComponent.less';
 import { EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';

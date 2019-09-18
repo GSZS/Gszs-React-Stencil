@@ -15,7 +15,7 @@ import tools from '../../utils/tools';
 import cookies from 'react-cookies';
 import {aes_128_cbc_key, aes_128_cbc_iv} from '../../constants';
 import {cryptoTools} from '../../utils/utils';
-import '../../style/login.less';
+import '../../style/components/login.less';
 
 const FormItem = Form.Item;
 
