@@ -58,21 +58,3 @@ export const post = ({url, data, msg = '接口异常', headers}) =>
     .catch (msg => {
       message.warn (msg);
     });
-
-/**
- * @description 并行发送多个 Post/Get 请求
- * @param {[request1 , request2]} 多个请求地址
- */
-export const postAllRequest = (...requestUrl) => {
-  axios.all (requestUrl).then (
-    axios.spread ((...result) => {
-      result.map (res => {
-        if (res && res.status === 200) {
-          message.success (res.message);
-        } else {
-          message.error (res.error);
-        }
-      });
-    })
-  );
-};

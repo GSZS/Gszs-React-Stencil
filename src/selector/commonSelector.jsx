@@ -28,6 +28,13 @@ export const judgementGetRoleTotal = state => state.RoleReducer.RoleStateTotal;
 export const judgementGetAuthTotal = state => state.AuthReducer.AuthStateTotal;
 export const judgementGetMenuTotal = state => state.MenuReducer.MenuStateTotal;
 
+// 项目类
+export const judgementGetaddProject = state => state.addProjectReducer.addProjectData;
+
+// 问题类
+
+// 帮助类
+
 /**
  * @description 登陆选择器
  */

@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-14 15:10:43
+ * @ Modified time: 2019-09-18 23:30:27
  * @ 文件解释: 首页
  */
 
@@ -31,9 +31,7 @@ const Dashboard = props => {
           />,
           <span key="_uploadSliderSpan">首页</span>,
         ]}
-      >
-      </Card>
-
+      />
     </Fragment>
   )
 

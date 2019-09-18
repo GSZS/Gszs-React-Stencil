@@ -8,8 +8,8 @@
  */
 
 
-// const baseip = 'http://192.168.43.228:3000';       // 线上地址1
-const baseip = 'http://192.168.101.116:5001';     // express服务地址 http
+// const baseip = 'http://192.168.43.228:3000'; // 线上地址1
+const baseip = 'http://192.168.101.116:5001'; // express服务地址 http
 
 /**
  * 登录接口
