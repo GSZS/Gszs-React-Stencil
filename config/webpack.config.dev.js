@@ -14,7 +14,7 @@ const paths = require('./paths');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const publicPath = '/'; // 为路径增加前缀
 const publicUrl = '';
@@ -299,9 +299,9 @@ module.exports = {
 			template: paths.appHtml,
 		}),
 		//指定端口可视化查看打包的体积
-    new BundleAnalyzerPlugin({ 
-			analyzerPort: 8081 
-		}),
+    // new BundleAnalyzerPlugin({ 
+		// 	analyzerPort: 8081 
+		// }),
 		// Makes some environment variables available in index.html.
 		// The public URL is available as %PUBLIC_URL% in index.html, e.g.:
 		// <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
