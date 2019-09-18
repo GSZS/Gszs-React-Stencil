@@ -8,3 +8,6 @@
 
 
 export const _dashboard = '_dashboard'; // 用于首页获取初始值
+
+export const _helpConstants = '_helpConstants';   // 帮助我常量
+

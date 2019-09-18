@@ -11,11 +11,9 @@ import {message} from 'antd';
 
 /**
  * @description 搜索Action
- * @param {func}   搜索接口函数
- * @param {value}  用户名
- * @param {status} 状态 0-禁用 , 1-正常使用, 2-全部显示(默认是这个)
+ * @param {Function} func  搜索接口函数
  */
-export const SearchAction = (func, value, status = 2) => {
+export const SearchAction = func => {
   return async dispatch => {
     dispatch({
       type: searchConstants._startSearchData

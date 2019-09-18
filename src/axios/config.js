@@ -2,13 +2,14 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-13 16:04:05
+ * @ Modified time: 2019-09-18 15:32:17
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-18 14:36:52
  */
 
 
-const baseip = 'http://192.168.43.228:3000';       // 线上地址1
+// const baseip = 'http://192.168.43.228:3000';       // 线上地址1
+const baseip = 'http://192.168.101.116:5001';     // express服务地址 http
 
 /**
  * 登录接口
@@ -132,4 +133,3 @@ export const _roleItemAdd = baseip + '/web/roleItem/add'
 
 // bbc top news
 export const NEWS_BBC = 'https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=429904aa01f54a39a278a406acf50070';
-

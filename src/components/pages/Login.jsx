@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-07-01 15:49:46
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-14 11:19:25
+ * @ Modified time: 2019-09-18 14:47:55
  * @ 文件解释: 登录页面
  */
 
@@ -73,7 +73,7 @@ class Login extends React.Component {
             <div className="login-logo">
               <span className="login-name">
                 <img src={LogoImg} alt="logo" />
-                <span>Gszs-React-Admin</span>
+                <span>Gszs-项目管理系统</span>
               </span>
               {/* <PwaInstaller /> */}
             </div>
