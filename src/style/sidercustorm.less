@@ -1,0 +1,43 @@
+/**
+ * @ 作者: Gszs
+ * @ 创建时间: 2019-05-16 15:09:52
+ * @ 修改人: Gszs
+ * @ 最新修改时间: 2019-06-07 16:17:55
+ * @ 文件解释: 侧边栏样式
+ */
+
+
+
+._logo{
+	text-align: center;
+	// 覆盖Antd自带的logo样式 
+	:global {
+		.ant-layout .logo{
+			background: 'transparent';
+			height: initial;
+		}
+	}
+	span{
+		display: inline-block;
+		line-height: 32px;
+		font-weight: bold;
+		width: 100%;
+		font-size: 23px;
+		.logo-Image{
+			width: 50px;
+    	height: 50px;
+			display: inline-block;
+			padding: 3%;
+		}
+		.logo-Content{
+			font-size: 20px;
+			color: white;
+			vertical-align: sub;
+			letter-spacing: 1px;
+		}
+	}
+}
+
+.siderItem{
+	padding: 20px 0;
+}

@@ -1,0 +1,18 @@
+/**
+ * @ Author: Gszs
+ * @ Create Time: 2019-08-10 14:28:32
+ * @ Modified by: Gszs
+ * @ Modified time: 2019-08-10 14:32:54
+ * @ 文件解释: 扩展iconfone图标
+ */
+
+@import './style/font/iconfont.css';
+/* 设置使用字体的优先级 anticon-user 高 */
+:global(.anticon) {  /* :global() 是为了覆盖全局class .anticon 的样式 */
+  &:before {
+    font-family: "anticon", "anticon" !important;
+    /* 默认样式是这样
+        font-family: "anticon" !important;
+    */
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "main.css": "./static/css/main.7e328bf9.chunk.css",
+  "main.js": "./static/js/main.1315ed58.chunk.js",
+  "main.js.map": "./static/js/main.1315ed58.chunk.js.map",
+  "runtime~main.js": "./static/js/runtime~main.84d12349.js",
+  "runtime~main.js.map": "./static/js/runtime~main.84d12349.js.map",
+  "static/css/2.cda67534.chunk.css": "./static/css/2.cda67534.chunk.css",
+  "static/js/2.f89dd6bb.chunk.js": "./static/js/2.f89dd6bb.chunk.js",
+  "static/js/2.f89dd6bb.chunk.js.map": "./static/js/2.f89dd6bb.chunk.js.map",
+  "index.html": "./index.html",
+  "precache-manifest.3f708d2ec27849b713d7b67f2b986176.js": "./precache-manifest.3f708d2ec27849b713d7b67f2b986176.js",
+  "service-worker.js": "./service-worker.js",
+  "static/css/2.cda67534.chunk.css.map": "./static/css/2.cda67534.chunk.css.map",
+  "static/css/main.7e328bf9.chunk.css.map": "./static/css/main.7e328bf9.chunk.css.map",
+  "static/media/Qiong.jpeg": "./static/media/Qiong.fd7aad4c.jpeg",
+  "static/media/beauty.jpg": "./static/media/beauty.defb9858.jpg",
+  "static/media/darkReact.png": "./static/media/darkReact.6c9ce81b.png",
+  "static/media/logo.png": "./static/media/logo.99476ef3.png"
+}
