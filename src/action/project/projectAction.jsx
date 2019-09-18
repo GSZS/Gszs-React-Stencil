@@ -2,18 +2,19 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-18 16:19:07
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-18 16:19:08
+ * @ Modified time: 2019-09-19 00:00:08
  * @ 文件解释: 项目类Action
  */
 
-import * as projectConstants from '../constants/projectConstants';
+import * as projectConstants from '../../constants/projectConstants';
 import { message } from 'antd';
 
 /**
  * @description 项目类Action
  * @param {Function} func 
+ * @param {Function} callback 回调函数
  */
-export const ProjectAction = func => {
+export const ProjectAction = (func, callback) => {
   return async dispatch => {
     dispatch({
       type: projectConstants._startAddProject
@@ -26,6 +27,7 @@ export const ProjectAction = func => {
           payload: res
         })
         message.success('新增项目成功!')
+        callback();
       } else {
         message.error(res.message)
       }

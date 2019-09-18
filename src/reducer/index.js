@@ -11,7 +11,7 @@ import { isMobileReducer, logDataReducer } from './settingReducer';
 import { searchReducer } from './searchReducer';
 import { getTableReducer, delTableReducer, getTableByIdReducer, getAllCityIdReducer } from './controlTableDataReducer';
 import { UserReducer, RoleReducer, MenuReducer, AuthReducer } from './authReducer';
-import { addProjectReducer } from './project/ProjectReducer';
+// import { addProjectReducer } from './project/ProjectReducer';
 
 const appReducer = combineReducers({
 	LoginReducer,
@@ -26,7 +26,7 @@ const appReducer = combineReducers({
 	MenuReducer,
 	AuthReducer,
 	searchReducer,
-	addProjectReducer
+	// addProjectReducer
 });
 
 // 处理退出清除所有state

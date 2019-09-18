@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-02 21:36:36
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-18 21:43:11
+ * @ Modified time: 2019-09-19 00:05:27
  * @ 文件解释: 导航条头部使用者介绍
  */
 
@@ -57,6 +57,11 @@ class HeaderCustom extends Component {
     });
     this.props.logout((()=>{this.props.history.push('/login')}));
   };
+
+  // 新增项目跳转
+  AddProject = () => {
+    this.props.history.push('/app/project/add_project'); 
+  }
 
   popoverHide = () => {
     this.setState({
@@ -125,7 +130,7 @@ class HeaderCustom extends Component {
             {/* 添加项目 */}
             <MenuItem>
               <Tooltip title="新增项目">
-                <SVGICON type="icon-tianjiaxiangmu" className="header_addProject" />
+                <SVGICON type="icon-tianjiaxiangmu" className="header_addProject" onClick={this.AddProject} />
               </Tooltip>
             </MenuItem>
             {/* 问题相关 */}
