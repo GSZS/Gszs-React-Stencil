@@ -19,18 +19,11 @@ import { connect } from 'react-redux';
 import BaseFormComponent from '../components/Common/BaseuploadComponent/uploadComponent';
 import { addTableAction } from '../action/controlTableDataAction';
 import { localStoreAction } from '../action/settingAction';
-import { getAllCityIdSelector } from '../selector/controlTableDataSelector';
 
 const UpoloadComponentContainer = props => <BaseFormComponent {...props} />
 
-const mapStateToProps = state => {
-  return {
-    _getAllCityId : getAllCityIdSelector(state)
-  }
-}
-
 export default connect(
-  mapStateToProps, {
+  null, {
     addTableAction,
     localStoreAction
   }

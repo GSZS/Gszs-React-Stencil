@@ -32,4 +32,8 @@ export default {
 		//     ],
 		// }
 	],
+	// 平行路由
+	others: [
+		{ key: '/app/project/add_project', component: 'Dashboard' }
+	]
 }

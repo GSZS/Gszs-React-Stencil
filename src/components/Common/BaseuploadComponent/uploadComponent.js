@@ -269,40 +269,20 @@ const BaseFormComponent = props => {
             </FormItem>
           );
           formItemList.push(input_textarea);
-        } else if (item.type === 'select') {
-          // Select类别
-          const input_select = (
-            <FormItem key={field} label={label}>
-              {getFieldDecorator(field)(
-                <Select placeholder={placeholder}>
-                  {props._getAllCityId.map((item, index) => {
-                    return (
-                      <Option value={item.id} key={index}>
-                        {item.name}
-                      </Option>
-                    );
-                  })}
-                </Select>
-              )}
-            </FormItem>
-          );
-          formItemList.push(input_select);
-
-          // 富文本框
         } else if (item.type === 'radio') {
-          const radioInput = (
-            <FormItem label={label}>
-              {getFieldDecorator(field)(
-                <Radio.Group>
-                  {
-                    radioContent.map((item, key) => {
-                      return <Radio value={item.value} key={key}> {item.item} </Radio>
-                    })
-                  }
-                </Radio.Group>,
-              )}
-            </FormItem>
-          )
+            const radioInput = (
+              <FormItem label={label}>
+                {getFieldDecorator(field)(
+                  <Radio.Group>
+                    {
+                      radioContent.map((item, key) => {
+                        return <Radio value={item.value} key={key}> {item.item} </Radio>
+                      })
+                    }
+                  </Radio.Group>,
+                )}
+              </FormItem>
+            )
           formItemList.push(radioInput);
         } else if (item.type === 'richText') {
           const richText = (<FormItem key={field} label={label} >

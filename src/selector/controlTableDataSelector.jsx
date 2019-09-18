@@ -37,11 +37,3 @@ export const getTableTotalSelector = createSelector(
   judgementGetTableTotal,
   getTotal => getTotal
 )
-
-/**
- * @description 获取所有镇村id
- */
-export const getAllCityIdSelector = createSelector(
-  judgementGetAllCityId,
-  getAllCityId => getAllCityId
-)

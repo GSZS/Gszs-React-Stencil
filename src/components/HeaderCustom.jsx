@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-02 21:36:36
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-18 17:54:08
+ * @ Modified time: 2019-09-18 21:43:11
  * @ 文件解释: 导航条头部使用者介绍
  */
 
@@ -14,6 +14,7 @@ import { Menu, Icon, Layout, Popover, Input, Tooltip } from 'antd';
 import { withRouter } from 'react-router-dom';
 import { ModalComponents } from './Common/ModalComponents';
 import { SVGICON } from './svg/svgIcon';
+import '../style/components/headerCustom.less';
 
 const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
