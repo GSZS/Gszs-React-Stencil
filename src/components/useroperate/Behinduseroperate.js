@@ -1,13 +1,13 @@
 /**
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-03 09:57:06
- * @ 修改人: Gszs
- * @ 最新修改时间: 2019-06-24 10:26:39
+ * @ Modified by: Gszs
+ * @ Modified time: 2019-09-19 09:58:16
  * @ 文件解释: 后台用户管理
  */
 
 import React,{Component, Fragment} from 'react';
-import ControlComponent from '../Common/BaseControlComponent/ControlComponent';
+import ControlComponent from '../Common/ControlComponent';
 import {FINDFRONTUSER, DELETEUSER, UPDATEUSER} from '../../axios/index';
 import {G_transformTime} from '../../utils/utils';
 import UserControlComponent from '../Common/UserControlComponent/UserControlComponent';

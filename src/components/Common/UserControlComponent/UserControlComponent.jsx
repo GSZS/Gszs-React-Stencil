@@ -5,23 +5,10 @@
  * @ 最新修改时间: 2019-06-21 14:36:55
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-05 17:28:57
-
- /**
-  * 使用方法:
-  * ❗ 这个组件是用于处理 新增用户/ 冻结用户/ 解冻用户/
-  *                    重置用户密码/ 新增角色/ 修改角色权限
-  *                    解冻话题/ 帖子详细信息
-  * 
-  * 1 : {config} 获取按钮配置
-  * 2 : {routerPath} 路由history
-  * 3 : {rowKeysArr} 获取表格行选中的key
-  * 4 : {_reloadPage} 刷新页面
-  * 5 : {selectOperatorType} 操作类型 '0'-后端 , '1'-前端
-  */
+*/
 
 import React, {useState, Fragment} from 'react';
 import {Button, Modal, Form, message} from 'antd';
-import './UserControlComponent.less';
 import {
   ADDOPERATEUSER,
   LOCKUSER,
@@ -38,7 +25,6 @@ import RelieveFreezeComponent from './RelieveFreezeComponents'; // 解冻用户
 import ReloadUserPwd from './ReloadUserPwd'; // 重置用户密码
 import AddUserRoleComponent from './addUserRole'; // 新增角色
 import UpdateRoleComponent from './updateUserRole'; // 修改角色权限
-import DiscussDetail from './discussDetail'; // 帖子详细信息
 import {G_getAuthId} from '../../../utils/utils'
 
 const UserControlComponent = props => {
@@ -67,11 +53,7 @@ const UserControlComponent = props => {
     { // 修改角色权限
       queryUserRole: false,
       _queryConfirmLoading: false,
-    },
-    { // 帖子详细信息
-      discussDetail: false,
-      _discussDetailLoading: false,
-    },
+    }
   ]);
 
   // 控制模态框title
@@ -108,12 +90,7 @@ const UserControlComponent = props => {
       // 修改角色权限
       setVisible ([{queryUserRole: true}]);
       setTitle (_title);
-    },
-    discussDetail (_title) {
-      // 帖子详细信息
-      setVisible ([{discussDetail: true}]);
-      setTitle (_title);
-    },
+    }
   };
 
   let formValue = React.createRef (); // 通过ref使的数据流从父组件 -> 子组件
@@ -371,10 +348,6 @@ const UserControlComponent = props => {
         ref={formValue}
         selectOperatorType={props.selectOperatorType}
       />
-    );
-  } else if (title === '帖子详细信息') {
-    modalComponent = (
-      <DiscussDetail selectRowKeys={props.rowKeysArr} ref={formValue} />
     );
   }
 

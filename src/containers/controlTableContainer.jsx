@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import EditableTable from '../components/Common/BaseControlComponent/ControlComponent';
+import EditableTable from '../components/Common/ControlComponent';
 import {connect } from 'react-redux';
 import { getTableDataSelector, getTableTotalSelector } from '../selector/controlTableDataSelector';
 import { getTableAction, delTableAction } from '../action/controlTableDataAction';

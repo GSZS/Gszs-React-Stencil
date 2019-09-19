@@ -2,21 +2,13 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-19 21:58:15
  * @ Modified by: Gszs
- * @ Modified time: 2019-08-05 11:05:50
+ * @ Modified time: 2019-09-19 09:59:50
  * @ 文件解释: 低级表格组件(不处理主动分发请求的操作的公共表格展示组件)
  */
 
-/** ❗缘之空-悠&穹
- * 此公共组件使用方法
- * 1 : 从父组件获取渲染数据的接口地址 {interfaceUrl}
- * 2 : 从父组件获取表格头设置 {columns}
- * 3 : 从父组件获取面包屑导航设置 {crumbsConfig}
- */
-
-
 import React, {useState, useEffect} from 'react';
 import {Table} from 'antd';
-import BreadcrumbCustom from '../../BreadcrumbCustom'
+import BreadcrumbCustom from '../BreadcrumbCustom'
 import {Pagination} from 'antd'
 
 const LoserControlColumns = props => {

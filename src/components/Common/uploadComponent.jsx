@@ -2,8 +2,8 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-04 22:08:25
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-18 21:19:43
- * @ 文件解释: 表单上传公共组件
+ * @ Modified time: 2019-09-19 14:18:51
+ * @ 文件解释: 表单上传公共组件(涵盖富文本,markdown)
  */
 
 import React, { useState, useEffect } from 'react';
@@ -18,7 +18,7 @@ import {
   Radio
 } from 'antd';
 import FormItem from 'antd/lib/form/FormItem';
-import '../../../style/components/common/uploadComponent.less';
+import '../../style/components/common/uploadComponent.less';
 import { EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
@@ -34,44 +34,27 @@ const BaseFormComponent = props => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [editorContent, setEditorContent] = useState(undefined)
 
-  // 设置上传时显示默认图片 - 特殊处理首页需要默认显2张二维码
-  if (props.componentName === 'defaultDisplayPicture') {
-    var [fileList, setfileList] = useState([
-      {
-        uid: '1',
-        url: '' // 默认显示图片
-      },
-      {
-        uid: '2',
-        url: '' // 默认显示图片
-      }
-    ]);
-  }
-  else {
-    var [fileList, setfileList] = useState([])
-  }
+  const [fileList, setfileList] = useState([])
 
   const { TextArea } = Input;
 
-  // 改变默认图片的初始值 - 只对需要默认显示图片的上传
-  if (props.componentName === 'defaultDisplayPicture') {
-    useEffect(() => {
-      setfileList([
-        {
-          uid: '1',
-          url: props.enterQr
-        },
-        {
-          uid: '2',
-          url: props.enterWxQr
-        }
-      ])
-    }, [props.enterQr, props.enterWxQr])
-  }
-
   // 表单配置
   const formList = props.FormConfig;
-  const Option = Select.Option;
+
+  // 判断是否要开启横向表格布局
+  const checkFormItemLayout = () => {
+    const formItemLayout = {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 4 },
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 20 },
+      },
+    };
+    if (props.formItemLayout) return formItemLayout
+  }
 
   // 配置上传
   const uploadConfig = {
@@ -159,47 +142,30 @@ const BaseFormComponent = props => {
     setEditorContent(editorContent)
   };
 
-  // 显示上传的视频
+  // 显示上传的文件
   const handleChange = ({ fileList }) => { setfileList(fileList) }
 
   // 上传提交
   const handleSubmit = e => {
-
     e.preventDefault();
-
     props.form.validateFields((err, values) => {
-      // 富文本内容不为空
-      if (draftToHtml(editorContent) || !err) {
+      if (!err) {
         let formData = {};
+        // 处理没有文件的情况
         if (fileList.length === 0) {
-          Object.keys(values).map((cv, index) => {
-            // index = 0非富文本, index = 1富文本
-            if (index === 0) {
-              formData[cv] = values[cv]
-            } else {
-              formData[cv] = draftToHtml(editorContent)
-            }
+          Object.keys(values).map(cv => {
+            formData[cv] = values[cv]
           })
-          formData['picId'] = window.localStorage.getItem('picId');
         } else {
           let formData = new FormData();
-          fileList.forEach((file, index) => {
+          fileList.forEach(file => {
             // 特殊处理默认显示图片,enterpriseQr , enterpriseWxqr
-            const enterArr = ['enterpriseQr', 'enterpriseWxqr'];
-            if (props.componentName === 'defaultDisplayPicture') {
-              formData.append(enterArr[index], file)
-            } else {
-              formData.append('file', file);
-            }
+            formData.append('file', file);
           });
         }
         // 处理页面不需要跳转直接刷新当前页面的情况
-        if (props.componentName === 'defaultDisplayPicture') {
-          props._reload();
-        } else {
-          props.addTableAction(props.interfaceUrl, formData, props.componentName);
-          history.push(props.skipUrl) // 跳转到管理界面
-        }
+        props.addTableAction(props.interfaceUrl, formData, props.componentName);
+        history.push(props.skipUrl) // 跳转到制定页面
       } else {
         message.error(`表单格式有误`);
       }
@@ -208,8 +174,11 @@ const BaseFormComponent = props => {
 
   // 处理表格组件
   const initForm = () => {
-    const { getFieldDecorator } = props.form, FormItem = Form.Item, formItemList = [];
-
+    const { getFieldDecorator } = props.form, 
+          FormItem = Form.Item, 
+          { Option } = Select,
+          formItemList = [];
+          
     // 正则处理特殊字符
     const RegExpStr = /[^<>&*%$^|\\]+$/gi;
 
@@ -222,6 +191,7 @@ const BaseFormComponent = props => {
           placeholder = item.placeholder || '',
           radioContent = item.radioContent || [];
 
+        // 文本框
         if (item.type === 'text') {
           const input_text = (
             <FormItem key={field} label={label}>
@@ -241,7 +211,32 @@ const BaseFormComponent = props => {
             </FormItem>
           );
           formItemList.push(input_text);
-        } else if (item.type === 'textarea') {
+        }
+        // 下拉框
+        else if(item.type === 'select'){
+          const input_text = (
+            <FormItem key={field} label={label}>
+              {getFieldDecorator(field, {
+                rules: [
+                  {
+                    required: true,
+                    message: placeholder,
+                  }
+                ],
+                initialValue: initialValue,
+              })(
+                <Select style={{ width: '300px' }}>
+                  <Option value={1} key={1}>1</Option>
+                  <Option value={2} key={2}>2</Option>
+                  <Option value={3} key={3}>3</Option>
+                </Select>
+              )}
+            </FormItem>
+          );
+          formItemList.push(input_text);
+        }
+        // 文本区域
+        else if (item.type === 'textarea') {
           const input_textarea = (
             <FormItem key={field} label={label}>
               {getFieldDecorator(field, {
@@ -269,22 +264,26 @@ const BaseFormComponent = props => {
             </FormItem>
           );
           formItemList.push(input_textarea);
-        } else if (item.type === 'radio') {
-            const radioInput = (
-              <FormItem label={label}>
-                {getFieldDecorator(field)(
-                  <Radio.Group>
-                    {
-                      radioContent.map((item, key) => {
-                        return <Radio value={item.value} key={key}> {item.item} </Radio>
-                      })
-                    }
-                  </Radio.Group>,
-                )}
-              </FormItem>
-            )
+        }
+        // 单选框
+        else if (item.type === 'radio') {
+          const radioInput = (
+            <FormItem label={label}>
+              {getFieldDecorator(field)(
+                <Radio.Group>
+                  {
+                    radioContent.map((item, key) => {
+                      return <Radio value={item.value} key={key}> {item.item} </Radio>
+                    })
+                  }
+                </Radio.Group>,
+              )}
+            </FormItem>
+          )
           formItemList.push(radioInput);
-        } else if (item.type === 'richText') {
+        }
+        // 富文本
+        else if (item.type === 'richText') {
           const richText = (<FormItem key={field} label={label} >
             {getFieldDecorator(field)(
               <div>
@@ -310,7 +309,9 @@ const BaseFormComponent = props => {
             )}
           </FormItem>)
           formItemList.push(richText);
-        } else if (item.type === 'file') {
+        }
+        // 文件 
+        else if (item.type === 'file') {
           const input_file = (
             <FormItem key={field} label={label}>
               {getFieldDecorator(field)(
@@ -333,15 +334,16 @@ const BaseFormComponent = props => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} {...checkFormItemLayout()} >
       {initForm()}
       <FormItem>
         <Button
           loading={loading}
           type="primary"
           htmlType="submit"
+          className="submitButton"
         >
-          {loading ? '上传中' : '开始上传'}
+          {loading ? `${props.submitButtonName}中` : `${props.submitButtonName}`}
         </Button>
       </FormItem>
     </Form>

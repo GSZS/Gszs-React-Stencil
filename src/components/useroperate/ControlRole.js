@@ -8,7 +8,7 @@
 
 
 import React,{Component, Fragment} from 'react';
-import ControlComponent from '../Common/BaseControlComponent/ControlComponent';
+import ControlComponent from '../Common/ControlComponent';
 import {FINDALLROLE, DELETEROLE, UPDATEAUTH} from '../../axios/index';
 import {G_transformTime} from '../../utils/utils';
 import UserControlComponent from '../Common/UserControlComponent/UserControlComponent';

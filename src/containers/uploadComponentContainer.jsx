@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-07-29 10:13:13
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-11 09:47:25
+ * @ Modified time: 2019-09-19 09:52:51
  * @ 文件解释: 公共上传文件容器组件
  */
 
@@ -16,7 +16,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import BaseFormComponent from '../components/Common/BaseuploadComponent/uploadComponent';
+import BaseFormComponent from '../components/Common/uploadComponent';
 import { addTableAction } from '../action/controlTableDataAction';
 import { localStoreAction } from '../action/settingAction';
 

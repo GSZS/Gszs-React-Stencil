@@ -9,7 +9,7 @@
 import React, {Component} from 'react';
 import '../../style/controlvideo.less';
 import {QUERYALLMACNUM, EXTENSIONSERIAL, DELETEMAC} from '../../axios/index';
-import ControlComponent from '../Common/BaseControlComponent/ControlComponent';
+import ControlComponent from '../Common/ControlComponent';
 import {G_transformTime} from '../../utils/utils';
 
 class ControlSerial extends Component {

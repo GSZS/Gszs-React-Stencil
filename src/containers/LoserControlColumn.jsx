@@ -8,7 +8,7 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import LoserControlColumns from '../components/Common/BaseControlComponent/LoserControlComlumns';
+import LoserControlColumns from '../components/Common/LoserControlComlumns';
 import {logDataSelector, logDataTotalSelector} from '../selector/settingSelector';
 import {LogAction} from '../action/settingAction';
 

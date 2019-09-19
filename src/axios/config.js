@@ -2,14 +2,13 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-18 15:32:17
+ * @ Modified time: 2019-09-19 11:57:18
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-18 14:36:52
  */
 
-
 // const baseip = 'http://192.168.43.228:3000'; // 线上地址1
-const baseip = 'http://192.168.101.116:5001'; // express服务地址 http
+const baseip = 'http://192.168.101.116:5001'; // Express登录
 
 /**
  * 登录接口
