@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-18 23:39:16
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-19 14:34:06
+ * @ Modified time: 2019-09-19 16:32:31
  * @ 文件解释: 新增项目UI组件
  */
 
@@ -59,7 +59,8 @@ export const AddProject = props => {
     {
       label: '项目详情',
       field: 'projectDetails',
-      type: 'marked',
+      type: 'markdown',
+      placeholder: '请填入项目详情',
     },
     {
       label: '项目负责人',

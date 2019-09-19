@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-04 22:08:25
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-19 14:18:51
+ * @ Modified time: 2019-09-19 17:25:47
  * @ 文件解释: 表单上传公共组件(涵盖富文本,markdown)
  */
 
@@ -23,6 +23,8 @@ import { EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import MdEditor from 'react-markdown-editor-lite'
+import MarkdownIt from 'markdown-it'
 
 const BaseFormComponent = props => {
   const [loading] = useState(false);
@@ -30,12 +32,13 @@ const BaseFormComponent = props => {
   // 用来获取原始组件的push方法
   const history = props.routerPath;
 
+  const [mdParser, setMdParser] = useState(new MarkdownIt());
+
   // 初始化富文本内容
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const [editorContent, setEditorContent] = useState(undefined)
+  const [editorContent, setEditorContent] = useState(undefined);
 
-  const [fileList, setfileList] = useState([])
-
+  const [fileList, setfileList] = useState([]);
   const { TextArea } = Input;
 
   // 表单配置
@@ -174,11 +177,11 @@ const BaseFormComponent = props => {
 
   // 处理表格组件
   const initForm = () => {
-    const { getFieldDecorator } = props.form, 
-          FormItem = Form.Item, 
-          { Option } = Select,
-          formItemList = [];
-          
+    const { getFieldDecorator } = props.form,
+      FormItem = Form.Item,
+      { Option } = Select,
+      formItemList = [];
+
     // 正则处理特殊字符
     const RegExpStr = /[^<>&*%$^|\\]+$/gi;
 
@@ -212,8 +215,31 @@ const BaseFormComponent = props => {
           );
           formItemList.push(input_text);
         }
+        // Markdown
+        else if (item.type === 'markdown') {
+          const input_text = (
+            <FormItem key={field} label={label}>
+              {getFieldDecorator(field, {
+                rules: [
+                  {
+                    required: true,
+                    message: placeholder,
+                  }
+                ]
+              })(
+                <div style={{height: "500px", width: '800px'}}>
+                  <MdEditor
+                    value={'"Hello.\n\n * This is markdown.\n * It is fun\n * Love it or leave it."'}
+                    renderHTML={(text) => mdParser.render(text)}
+                  />                
+                </div>
+              )}
+            </FormItem>
+          );
+          formItemList.push(input_text);
+        }
         // 下拉框
-        else if(item.type === 'select'){
+        else if (item.type === 'select') {
           const input_text = (
             <FormItem key={field} label={label}>
               {getFieldDecorator(field, {
