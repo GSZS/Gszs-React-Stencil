@@ -14,7 +14,6 @@ import routesConfig from './config';
 import queryString from 'query-string'; // 将URL参数解构为对象
 import nprogress from 'nprogress';
 import 'nprogress/nprogress.css'
-// import '../style/font/iconfont.css'
 
 /**
  * @description 核心路由类

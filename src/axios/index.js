@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-12 18:24:51
+ * @ Modified time: 2019-09-20 23:18:31
  * @ 文件解释: 请求数据的接口函数
  */
 
@@ -10,12 +10,6 @@ import axios from 'axios';
 import {get, post} from './tools';
 import * as config from './config';
 import qs from 'qs';
-
-// BBC新闻
-export const getBbcNews = () =>
-  get ({
-    url: config.NEWS_BBC,
-  });
 
 // npm.json
 export const npmDependencies = () =>
@@ -78,17 +72,6 @@ export const LOGOUT = () => {
     url: config.LOGOUT_URL,
   });
 };
-
-/** 
- * 后台首页 
- */
-export const BackgroundHeader = () => {
-  getToken ();
-  return get ({
-    url: config.BACKGROUND_HEADER_URL,
-  });
-};
-
 
 /**
  * @description 查询本用户权限/最新视频/新闻资讯综合接口
@@ -388,3 +371,41 @@ export const QUERYHASNOTITEM = (roleId, operatorType) => {
       `?roleId=${roleId}&operatorType=${operatorType}`,
   });
 };
+
+/**
+ * @description 查询所有组织接口 
+ * @method {GET}
+ */
+export const ALLORGANIZATION = () => {
+  getToken();
+  return get({
+    url: config._allOrganization
+  })
+}
+
+/**
+ * @description 查询所有项目类型接口
+ * @method {GET}
+ */
+export const ALLPROJECTTYPE = () => {
+  getToken();
+  return get({
+    url: config._allProjectType
+  })
+}
+
+/**
+ * @description 新增项目接口
+ * @method {POST}
+ */
+export const ADDPROJECT = formData => {
+  getToken();
+  return post ({
+    url: config._addProject,
+    data: qs.stringify (formData),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  });
+}
+

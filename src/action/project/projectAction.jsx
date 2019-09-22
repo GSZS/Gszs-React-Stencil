@@ -10,37 +10,53 @@ import * as projectConstants from '../../constants/projectConstants';
 import { message } from 'antd';
 
 /**
- * @description 项目类Action
+ * @description 公共Action
+ * @param {Object} constants 公共常量
  * @param {Function} func 
- * @param {Function} callback 回调函数
+ * @param {Function} callback 
  */
-export const ProjectAction = (func, callback) => {
+const publicPjAction = (constants, publicFunc, _message, callback) => {
   return async dispatch => {
     dispatch({
-      type: projectConstants._startAddProject
+      type: constants._start
     })
     try {
-      const res = await func();
+      const res = await publicFunc();
       if (res && res.status === 200) {
         dispatch({
-          type: projectConstants._successAddProject,
+          type: constants._success,
           payload: res
         })
-        message.success('新增项目成功!')
+        message.success(_message)
         callback();
       } else {
         message.error(res.message)
       }
     } catch (err) {
-      console.log(`新增项目捕获错误: ${err}`);
+      console.log(`发送请求捕获错误: ${err}`);
       dispatch({
-        type: projectConstants._failAddProject
+        type: constants._fail
       })
     } finally {
       dispatch({
-        type: projectConstants._stoptAddProject
+        type: constants._stop
       })
     }
   }
 }
 
+// 查询所有项目类型
+export const findAllPjAction = (func, callback) => {
+  publicPjAction(projectConstants.allPjTypeConstants, func, callback);
+}
+
+
+// 新增项目
+export const addPjAction = (func, callback) => {
+  publicPjAction(projectConstants.addPjConstants, func, callback);
+}
+
+// 删除项目
+export const deletePjAction = (func, callback) => {
+  publicPjAction(projectConstants.deletePjConstants, func, callback);  
+}

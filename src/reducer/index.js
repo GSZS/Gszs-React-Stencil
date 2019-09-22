@@ -2,7 +2,7 @@
  * @Author: Gszs 
  * @Date: 2019-04-22 09:46:20 
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-11 23:23:47
+ * @ Modified time: 2019-09-21 16:26:53
  */
 
 import { combineReducers } from 'redux';
@@ -11,7 +11,7 @@ import { isMobileReducer, logDataReducer } from './settingReducer';
 import { searchReducer } from './searchReducer';
 import { getTableReducer, delTableReducer, getTableByIdReducer, getAllCityIdReducer } from './controlTableDataReducer';
 import { UserReducer, RoleReducer, MenuReducer, AuthReducer } from './authReducer';
-// import { addProjectReducer } from './project/ProjectReducer';
+import { findAllOgReducer } from './organization/organizationReducer';
 
 const appReducer = combineReducers({
 	LoginReducer,
@@ -26,7 +26,7 @@ const appReducer = combineReducers({
 	MenuReducer,
 	AuthReducer,
 	searchReducer,
-	// addProjectReducer
+	findAllOgReducer,
 });
 
 // 处理退出清除所有state

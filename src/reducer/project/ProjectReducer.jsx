@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-18 22:05:07
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-18 23:06:53
+ * @ Modified time: 2019-09-21 08:13:12
  * @ 文件解释: 项目Reducer
  */
 
@@ -14,32 +14,44 @@ let initialProjectState = {
 }
 
 /**
- * @description 新增项目Reducer
+ * @description 项目公共Reducer
+ * @param {Object} publicState 
+ * @param {Object} publicAction
+ * @param {Array}  publicStateData 将对应Reducer的data存如对应的initialState的data中
+ * @param {Object} constants 
  */
-export const addProjectReducer = (state = initialProjectState, action) => {
-  switch (action.type) {
-    case projectConstants._startAddProject :
+const addProjectReducer = (publicState, publicAction, publicStateData, constants) => {
+  switch (publicAction.type) {
+    case constants._start :
       return {
-        ...state,
+        ...publicState,
         loading: true
       }
-    case projectConstants._successAddProject :
+    case constants._success :
       return {
-        ...state,
-        addProjectData: action.payload
+        ...publicState,
+        publicStateData: publicState.payload
       }
-    case projectConstants._failAddProject :
+    case constants._fail :
       return {
-        ...state
+        ...publicState
       }
-    case projectConstants._stoptAddProject :
+    case constants._stop :
       return {
-        ...state,
+        ...publicState,
         loading: false
       }
     default:
       return state
   }
+}
+
+
+/**
+ * @description 新增项目Reducer
+ */
+export const addProjectReducer = (state = initialProjectState, action) => {
+  addProjectReducer(state, action, addProjectData, projectConstants.addPjConstants)
 }
 
 

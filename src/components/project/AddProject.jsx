@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-18 23:39:16
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-19 16:32:31
+ * @ Modified time: 2019-09-20 23:18:37
  * @ 文件解释: 新增项目UI组件
  */
 
@@ -19,19 +19,15 @@ export const AddProject = props => {
       label: '项目名称',
       field: 'projectName',
       type: 'text',
-      placeholder: '请输入项目名称'
-    },
-    {
-      label: '项目key',
-      field: 'projectKey',
-      type: 'text',
-      placeholder: '请输入项目key',
+      placeholder: '请输入项目名称',
+      initialValue: '请输入项目名称'
     },
     {
       label: '组织',
       field: 'projectOrganization',
       type: 'select',
       initialValue: 'Default',
+      on: true
     },
     {
       label: '项目类型',
@@ -54,7 +50,7 @@ export const AddProject = props => {
       field: 'projectDesc',
       type: 'textarea',
       placeholder: '请简单填入此项目描述',
-      initialValue: '项目管理中后台',
+      initialValue: '请简单填入此项目描述...',
     },
     {
       label: '项目详情',
@@ -69,7 +65,7 @@ export const AddProject = props => {
       initialValue: 'Gszs',
     },
     {
-      label: '项目大图',
+      label: '项目标图',
       field: 'projectPicture',
       type: 'file'
     }
@@ -86,6 +82,8 @@ export const AddProject = props => {
           FormConfig={addProject} 
           formItemLayout = {true}
           submitButtonName = "创建项目"
+          _action = {props._action} // 接受容器组件中的Action,帮助公共组件解耦
+          _axiosFunc = {props._axiosFunc}
         />
       </div>
     </>

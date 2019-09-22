@@ -45,7 +45,7 @@ class App extends Component {
   getClientWidth = () => {
     // 获取当前浏览器宽度并设置responsive管理响应式
     const clientWidth = window.innerWidth;
-    clientWidth <= 992 ? this.props.isMobile(true) : this.props.isMobile(false)
+    clientWidth <= 992 ? this.props.isMobile(true) : this.props.isMobile(false);
   };
   toggle = () => {
     this.setState({

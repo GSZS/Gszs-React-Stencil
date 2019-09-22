@@ -31,9 +31,8 @@ export const judgementGetMenuTotal = state => state.MenuReducer.MenuStateTotal;
 // 项目类
 export const judgementGetaddProject = state => state.addProjectReducer.addProjectData;
 
-// 问题类
-
-// 帮助类
+// 组织类
+export const judgementGetAllOg = state => state.findAllOgReducer.allOgData;
 
 /**
  * @description 登陆选择器
