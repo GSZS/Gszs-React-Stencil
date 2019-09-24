@@ -1,16 +1,16 @@
 /**
- * @ 作者: Gszs
- * @ 创建时间: 2019-05-04 22:08:25
+ * @ Author: Gszs
+ * @ Create Time: 2019-09-24 09:39:37
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-20 22:51:38
- * @ 文件解释: Markdown组件(辅助上传公共组件)
+ * @ Modified time: 2019-09-24 09:39:39
+ * @ 文件解释: Markdown-UI组件
  */
 
-import React,{ useState, useEffect } from 'react';
+import React,{ useState } from 'react';
 import MdEditor from 'react-markdown-editor-lite'
 import MarkdownIt from 'markdown-it' 
 
-export const MarkdownForm = props => {
+export const MarkdownComponents = props => {
   
   const [mdParser] = useState(new MarkdownIt());
 
@@ -23,3 +23,5 @@ export const MarkdownForm = props => {
     </div>
   )
 }
+
+

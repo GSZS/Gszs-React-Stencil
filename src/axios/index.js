@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-20 23:18:31
+ * @ Modified time: 2019-09-24 16:18:42
  * @ 文件解释: 请求数据的接口函数
  */
 
@@ -373,17 +373,6 @@ export const QUERYHASNOTITEM = (roleId, operatorType) => {
 };
 
 /**
- * @description 查询所有组织接口 
- * @method {GET}
- */
-export const ALLORGANIZATION = () => {
-  getToken();
-  return get({
-    url: config._allOrganization
-  })
-}
-
-/**
  * @description 查询所有项目类型接口
  * @method {GET}
  */
@@ -409,3 +398,26 @@ export const ADDPROJECT = formData => {
   });
 }
 
+/**
+ * @description 测试Redux-Saga
+ */
+export const TESTREDUXSAGA = () => {
+  return get({
+    url: 'http://192.168.50.87:5001/api/test_saga'
+  })
+}
+
+//////////////////////////
+// 重新设计整个项目-axios ////////
+/////////////////////////
+
+/**
+* @description 动态获取下拉框数据
+* @param {String} axiosPath 请求地址
+*/
+export const GETSELECTDATA = axiosPath => {
+  getToken();
+  return get({
+    url: axiosPath
+  })
+}

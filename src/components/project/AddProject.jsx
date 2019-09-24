@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-18 23:39:16
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-20 23:18:37
+ * @ Modified time: 2019-09-24 11:02:27
  * @ 文件解释: 新增项目UI组件
  */
 
@@ -10,9 +10,10 @@ import React from 'react';
 import UpoloadComponentContainer from '../../containers/uploadComponentContainer'
 import BreadcrumbCustom from '../BreadcrumbCustom';
 import '../../style/components/project/addProject.less';
+import { _findAllOrganization } from '../../axios/config';
 
 export const AddProject = props => {
-  
+
   // 配置表单
   const addProject = [
     {
@@ -27,14 +28,15 @@ export const AddProject = props => {
       field: 'projectOrganization',
       type: 'select',
       initialValue: 'Default',
-      on: true
+      axiosPath: _findAllOrganization, // 请求地址
+      on: true //这个Boolean值是用于下拉框的数据是否需要动态获取
     },
     {
       label: '项目类型',
       field: 'projectType',
       type: 'radio',
       radioLength: 2, // 可以配置单选框的数量(默认是1个)
-      radioDesc: [    // 配置单选框的内容(覆盖label)
+      radioDesc: [ // 配置单选框的内容(覆盖label)
         {
           name: '敏捷开发',
           desc: '搜集用户故事、规划迭代、进度管理、团队协作、用例管理、缺陷追踪、评审回顾、总结沉淀'
@@ -63,6 +65,21 @@ export const AddProject = props => {
       field: 'projectBoss',
       type: 'select',
       initialValue: 'Gszs',
+      on: false,
+      selectData: [ // 如果填充下拉框的数据不是动态设置，那么需要自己配置。配置规则是需要设置一个id , value
+        {
+          id: 1,
+          value: 1
+        },
+        {
+          id: 2,
+          value: 2
+        },
+        {
+          id: 3,
+          value: 3
+        }
+      ]
     },
     {
       label: '项目标图',
@@ -76,14 +93,12 @@ export const AddProject = props => {
       <BreadcrumbCustom first="项目管理" second={props.routerTitle} />
       {/* 创建项目 */}
       <div className="headerName"><span> 创建项目 </span></div> 
-      <hr/>
+      <hr />
       <div className="addProjectForm">
-        <UpoloadComponentContainer 
+        <UpoloadComponentContainer
           FormConfig={addProject} 
           formItemLayout = {true}
           submitButtonName = "创建项目"
-          _action = {props._action} // 接受容器组件中的Action,帮助公共组件解耦
-          _axiosFunc = {props._axiosFunc}
         />
       </div>
     </>

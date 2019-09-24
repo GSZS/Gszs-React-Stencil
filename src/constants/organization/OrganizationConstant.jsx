@@ -10,37 +10,26 @@
 export const findAllOg = {
   _start: '_startGetAllOg',
   _success: '_successGetAllOg',
-  _fail: '_failGetAllOg',
-  _stop: '_stoptGetAllOg'
+  _fail: '_failGetAllOg'
 }
 
 // 新增组织
 export const addOj = {
   _start: '_startAddOg',
   _success: '_successAddOg',
-  _fail: '_failAddOg',
-  _stop: '_stoptAddOg'
+  _fail: '_failAddOg'
 }
 
 // 查询某个组织的详细信息
 export const gteOgDetail = {
   _start: '_startGetOgDetail',
   _success: '_successGetOgDetail',
-  _fail: '_failGetOgDetail',
-  _stop: '_stopGetOgDetail'
+  _fail: '_failGetOgDetail'
 }
 
 // 删除组织
 export const deleteOg = {
   _start: '_startDeleteOg',
-  _success: '_successDeletelOg',
-  _fail: '_failGetDeleteOg',
-  _stop: '_stoptDeleteOg'
+  _success: '_successDeleteOg',
+  _fail: '_failGetDeleteOg'
 }
-
-// export const og = {
-//   findAllOg,
-//   addOj,
-//   gteOgDetail,
-//   deleteOg
-// }

@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-07-30 15:20:35
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-11 09:46:46
+ * @ Modified time: 2019-09-22 15:37:19
  * @ 文件解释: 表格数据 - Action
  */
 
@@ -176,5 +176,25 @@ export const updateTableAction = (axiosFun, id, formData) => {
         type: TableDataConstants._stopUpdateTableData
       })
     }
+  }
+}
+
+/**
+ * @description 测试Redux-Saga (Success)
+ */
+export const TestSagaAction = payload => {
+  return {
+    type: 'TEST_SAGA',
+    res: payload
+  }
+}
+
+/**
+ * @description 测试Redux-Saga (Error)
+ */
+export const TestSagaErrorAction = error => {
+  return {
+    type: 'TEST_SAGA_ERROR',
+    err: error 
   }
 }

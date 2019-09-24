@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-07-29 10:13:13
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-21 18:10:00
+ * @ Modified time: 2019-09-23 23:13:28
  * @ 文件解释: 公共上传文件容器组件
  */
 
@@ -20,22 +20,12 @@ import BaseFormComponent from '../components/Common/uploadComponent';
 import { addTableAction } from '../action/controlTableDataAction';
 import { localStoreAction } from '../action/settingAction';
 
-// 储存所有需要在这个项目中分发的Action
-let dispatchAction = {};
-
-const UpoloadComponentContainer = props => {
-  Object.keys(props._action).map(cv => {
-    dispatchAction[cv] = cv
-  })
-  
-  return <BaseFormComponent {...props} />
-}
+const UpoloadComponentContainer = props => <BaseFormComponent {...props} />
 
 export default connect(
   null, {
     addTableAction,
     localStoreAction,
-    ...dispatchAction[']
   }
 )(UpoloadComponentContainer);
 

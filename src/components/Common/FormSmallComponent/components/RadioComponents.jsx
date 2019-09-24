@@ -1,17 +1,17 @@
 /**
  * @ Author: Gszs
- * @ Create Time: 2019-09-20 09:43:14
+ * @ Create Time: 2019-09-24 09:49:10
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-20 22:21:06
- * @ 文件解释: 单选框组件(辅助上传公共组件)
+ * @ Modified time: 2019-09-24 09:49:11
+ * @ 文件解释: 单选框Ui-组件
  */
 
 import React from 'react';
 import {Radio} from 'antd';
-import { StyleDivFlex, StyleDiv, StyleSpan } from './styleComponents';
-import './styleComponents.less';
+import { StyleDivFlex, StyleDiv, StyleSpan } from '../../../styleComponents';
+import '../../../styleComponents.less';
 
-export const RadioForm = props => {
+export const RadioComponents = props => {
 
   const Radiogroup = Radio.Group;
 
@@ -36,4 +36,5 @@ export const RadioForm = props => {
     </Radiogroup>
   )
 }
+
 

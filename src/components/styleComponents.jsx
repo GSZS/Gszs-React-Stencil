@@ -9,15 +9,22 @@
 
 import styled from 'styled-components';
 
-// <div></div>用于display: flex;
+// <div></div>用于display: flex;（含宽高）
 export const StyleDivFlex = styled.div`
-  width: 100%;
-  height: 150px;
+  width: ${props => props.width || '100px'};
+  height: ${props => props.height || '100px'};
   display: flex;
   justify-content: start;
   align-items: start;
   
 `;
+
+// <div></div>用于display: flex;（不含宽高）
+export const StyleDivFlex2 = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: start;
+`
 
 // <div></div>用于小框
 export const StyleDiv = styled.div`

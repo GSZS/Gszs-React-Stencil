@@ -16,7 +16,6 @@ import {loginDataSelector} from '../selector/commonSelector';
 const LoginContainer = props => <Login {...props} />
 
 const mapStateToProps = state => {
-
   return {
     loginData: loginDataSelector(state),
   }

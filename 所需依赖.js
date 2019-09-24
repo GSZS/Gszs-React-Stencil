@@ -48,6 +48,7 @@ const js = {
   "babel-plugin-named-asset-import": "^0.2.2",                  // Babel插件 - 处理Antd的按需加载
   "babel-plugin-transform-decorators-legacy": "^1.3.5",         // Babel插件 - 支持ES7 修饰器语法Decorator
   "babel-preset-react-app": "^5.0.3",                           // Babel插件 - 支持react语法
+  "babel-polyfill": "^6.26.0",                                  // Babel插件 - 兼容低版本浏览器(需要在index.js的头部导入a)
   "eslint": "5.6.0",                                            // Eslint插件 - 核心文件
   "eslint-config-react-app": "^3.0.3",                          // Eslint插件 - 让Eslint支持检测React语法（JSX）（.eslintrc.json中配置的plugins参数）
   "eslint-loader": "2.1.1",                                     // Eslint插件 - 打包时检测代码规范时用
@@ -88,4 +89,5 @@ const js = {
   "redux-alita": "^1.0.0",                                      // 插件 - 这个孩子需要删除(到时看看如何解耦)
   "resolve": "1.8.1",                                           // 插件 - 处理模块路径的问题
   "screenfull": "^3.3.3",                                       // 插件 - 平滑全屏展示功能
+  "redux-saga": "^1.1.1",                                       // Redux插件 - 更好的处理副作用Action
 }

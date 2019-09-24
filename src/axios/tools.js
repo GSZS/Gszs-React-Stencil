@@ -1,8 +1,8 @@
 /**
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-01 01:00:32
- * @ 修改人: Gszs
- * @ 最新修改时间: 2019-07-02 16:16:33
+ * @ Modified by: Gszs
+ * @ Modified time: 2019-09-24 16:09:35
  * @ 文件解释: 对axios进行包装
  */
 
@@ -20,15 +20,7 @@ export const get = ({url, msg = '接口异常', headers}) =>
   axios
     .get (url, headers)
     .then (res => {
-			// 处理一层token异常
-			if(env && env === 'development' && res.data.status === 500209){
-        window.location.href="http://localhost:3006/#/login";
-        window.location.reload()
-			}else if(env && env === 'production' && res.data.status === 500209){
-        window.location.href="http://47.111.23.117:8081/#/login";
-			}else{
-				return res.data;
-			}
+      return res.data;
     })
     .catch (msg => {
       message.warn (msg);
@@ -45,15 +37,7 @@ export const post = ({url, data, msg = '接口异常', headers}) =>
   axios
     .post (url, data, headers)
     .then (res => {
-			// 处理一层token异常
-			if(env && env === 'development' && res.data.status === 500209){
-        window.location.href="http://localhost:3006/#/login";
-        window.location.reload()
-			}else if(env && env === 'production' && res.data.status === 500209){
-        window.location.href="http://47.111.23.117:8081/#/login";
-			}else{
-				return res.data;
-			}
+			return res.data;
     })
     .catch (msg => {
       message.warn (msg);

@@ -10,22 +10,19 @@
 export const addPjConstants = {
   _start: '_startAddProject',
   _success: '_successAddProject',
-  _fail: '_failAddProject',
-  _stop: '_stoptAddProject'
+  _fail: '_failAddProject'
 }
 
 // 删除项目
 export const deletePjConstants = {
   _start: '_startDeletePj',
   _success: '_successDeletelPj',
-  _fail: '_failGetDeletePj',
-  _stop: '_stoptDeletePj'
+  _fail: '_failGetDeletePj'
 }
 
 // 查询所有项目类型
 export const allPjTypeConstants = {
   _start: '_startfindAllPj',
   _success: '_successfindAllPj',
-  _fail: '_failGetfindAllPj',
-  _stop: '_stoptfindAllPj'
+  _fail: '_failGetfindAllPj'
 }

@@ -2,15 +2,14 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-19 11:57:18
+ * @ Modified time: 2019-09-24 10:16:02
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-18 14:36:52
  */
 
-// const baseip = 'http://192.168.43.228:3000';    // 线上地址1
-const baseip = 'http://192.168.101.116:5001';      // Express登录
-const apiBaseip1 = 'http://192.168.101.125:8081';  // 高升
-const apiBaseip2 = 'http://192.168.101.110:8002';  // 啊峻
+const baseip = 'http://192.168.43.228:3000'; // 线上地址1
+const apiBaseip1 = 'http://192.168.101.112:8001'; // 阿俊
+const apiBaseip2 = 'http://192.168.101.125:8001'; // 高升
 
 /**
  * @description 基础接口
@@ -94,9 +93,6 @@ export const _roleItemAdd = baseip + '/web/roleItem/add'
  * @description 创建项目类
  */
 
-// 查询所有组织接口
-export const _allOrganization = apiBaseip2 + '/project/queryAllProGroup';
-
 // 查询所有项目类型接口
 export const _allProjectType = apiBaseip2 + '/project/queryAllProType';
 
@@ -113,5 +109,3 @@ export const _addOrganization = apiBaseip1 + '/app/group/add';
 
 // 查询组织
 export const _findAllOrganization = apiBaseip1 + '/app/group';
-
-

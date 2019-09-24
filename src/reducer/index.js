@@ -2,7 +2,7 @@
  * @Author: Gszs 
  * @Date: 2019-04-22 09:46:20 
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-21 16:26:53
+ * @ Modified time: 2019-09-22 14:41:30
  */
 
 import { combineReducers } from 'redux';
@@ -26,7 +26,7 @@ const appReducer = combineReducers({
 	MenuReducer,
 	AuthReducer,
 	searchReducer,
-	findAllOgReducer,
+	findAllOgReducer
 });
 
 // 处理退出清除所有state

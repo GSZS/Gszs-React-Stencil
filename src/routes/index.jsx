@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-28 11:19:50
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-18 16:57:40
+ * @ Modified time: 2019-09-24 01:01:33
  * @ 文件解释: 控制路由系统
  */
 
@@ -13,7 +13,9 @@ import AllComponents from '../components';
 import routesConfig from './config';
 import queryString from 'query-string'; // 将URL参数解构为对象
 import nprogress from 'nprogress';
-import 'nprogress/nprogress.css'
+import 'nprogress/nprogress.css';
+import { Icon } from 'antd';
+import { StyleDivFlex2 } from '../components/styleComponents';
 
 /**
  * @description 核心路由类
@@ -82,7 +84,12 @@ export default class CRouter extends Component {
                     // 重新包装组件
                     const wrappedComponent = (
                       <DocumentTitle title={r.title}>
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={
+                            <StyleDivFlex2>
+                              <Icon type="loading" />
+                            </StyleDivFlex2>
+                            }
+                          >
                           <Component {...merge} routerTitle={r.title} />
                         </Suspense>
                       </DocumentTitle>

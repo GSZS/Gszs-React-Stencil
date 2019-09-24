@@ -2,33 +2,38 @@
  * @ Author: Gszs
  * @ Create Time: 2019-07-23 18:02:04
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-10 15:53:36
+ * @ Modified time: 2019-09-23 14:52:57
  * @ Description: configureStore
  */
 
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from '../reducer/index';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from '../sagas';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-export const configureStore = (initialState) => {
-  // Redux Configuration
-  const middleware = [];
-  const enhancers = [];
 
-  // Thunk 中间件
-  middleware.push(thunk);
+export const configureStore = initialState => {
 
-  // 如果安装了Redux DevTools则使用它, 否则使用Redux compose
-  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-    : compose;
+  // saga
+  const sagaMiddleware = createSagaMiddleware();
 
-  enhancers.push(applyMiddleware(...middleware));
-  const enhancer = composeEnhancers(...enhancers);
+  // 中间件
+  const middlewares = [
+    thunk,
+    sagaMiddleware
+  ];
 
-  // Create Store
-  const store = createStore(rootReducer, initialState, enhancer);
-  // persistStore(store) // 暂时不清楚这玩意的bug
+  // store
+  const store = createStore(
+    rootReducer,
+    composeWithDevTools(
+      applyMiddleware.apply(this, middlewares),
+    )
+  )
+  sagaMiddleware.run(rootSaga)
+
   // 控制热更
   if (module.hot) {
     module.hot.accept(
@@ -36,6 +41,7 @@ export const configureStore = (initialState) => {
       () => store.replaceReducer(require('../reducer')).default
       );
     }
-    
+    // 允许直接调试store
+    window.__store = store;
     return store;
 };
