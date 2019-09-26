@@ -5,7 +5,7 @@ import React, {Component} from 'react';
 import {Row, Col, Card} from 'antd';
 import BreadcrumbCustom from '@/components/BreadcrumbCustom';
 import AuthWidget from '@/components/widget/AuthWidget';
-import beauty from '@/style/imgs/beauty.jpg';
+import beauty from '@/assets/image/beauty.jpg';
 
 class Basic extends Component {
   render () {

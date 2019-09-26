@@ -2,20 +2,20 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-07-01 15:49:46
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-18 14:47:55
+ * @ Modified time: 2019-09-26 11:40:15
  * @ 文件解释: 登录页面
  */
 
 import React from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import CanvasBox from '../canvasBackground/CanvasBg';
-import LogoImg from '../../style/imgs/logo.png';
+import LogoImg from '@/assets/image/logo.png';
 import Vcode from 'react-vcode';
-import tools from '../../utils/tools';
+import tools from '@/utils/tools';
 import cookies from 'react-cookies';
-import {aes_128_cbc_key, aes_128_cbc_iv} from '../../constants';
-import {cryptoTools} from '../../utils/utils';
-import '../../style/components/login.less';
+import {aes_128_cbc_key, aes_128_cbc_iv} from '@/constants';
+import {cryptoTools} from '@/utils/utils';
+import '@/style/components/login.less';
 
 const FormItem = Form.Item;
 

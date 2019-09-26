@@ -2,13 +2,13 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-02 21:36:36
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-19 00:05:27
+ * @ Modified time: 2019-09-26 11:32:21
  * @ 文件解释: 导航条头部使用者介绍
  */
 
 import React, { Component } from 'react';
 import screenfull from 'screenfull';
-import avater from '../style/imgs/Qiong.jpeg';
+import avater from '@/assets/image/Qiong.jpeg';
 import SiderCustom from './SiderCustom';
 import { Menu, Icon, Layout, Popover, Input, Tooltip } from 'antd';
 import { withRouter } from 'react-router-dom';

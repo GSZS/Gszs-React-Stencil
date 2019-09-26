@@ -106,7 +106,7 @@ module.exports = {
 		alias: { // 别名系统
 			'react-native': 'react-native-web',
 			// 全局相对路径别名，处理相对路径过长和繁琐问题
-			'@': paths.appSrc
+			'@': paths.appSrc // @代表src/
 		},
 		plugins: [
 			// Adds support for installing with Plug'n'Play, leading to faster installs and adding
