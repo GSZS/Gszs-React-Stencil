@@ -2,15 +2,24 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-23 23:31:39
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-25 07:38:25
+ * @ Modified time: 2019-09-25 20:06:44
  * @ 文件解释: 下拉框UI组件
  */
 
-import React, { useEffect } from 'react';
-import { Select } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Select, Form } from 'antd';
 
-export const SelectComponents = props => {
-  const { axiosPath } = props.selectConfig;
+export const SelectComponent = props => {
+  const { 
+    axiosPath,
+    field,
+    label,
+    initialValue,
+    on
+  } = props.selectConfig;
+  const { Option } = Select;
+  const FormItem = Form.Item;
+  const [selectValue, setSelectValue] = useState(initialValue)
 
   if (axiosPath) {
     useEffect(() => {
@@ -18,28 +27,37 @@ export const SelectComponents = props => {
     }, [])
   }
 
-  const { Option } = Select;
+  const handleChange = (_v) => {
+    console.log('_v=>>>', _v);
+    setSelectValue(_v)
+  }
 
   return (
-    !props.selectConfig.on ?
-      <Select>
-        {
-          props.selectConfig.selectData.map((cv, index) => {
-            <Option value={cv.id} key={index}>
-              {cv.value}
-            </Option>
-          })
-        }
-      </Select> : 
-    props._allOg ? 
-      <Select>
-        props._allOg.map((cv, index) => {
-          <Option value={cv.id} key={index}>
-            {cv.groupName}
-          </Option>
-        })
-      </Select> : <Select />
+    <FormItem key={field} label={label} >
+      {props.getFieldDecorator(field, {
+        initialValue: selectValue
+      })(
+        !on ?
+          <Select onChange={handleChange}>
+            {
+              props.selectConfig.selectData.map((cv, index) => {
+                return <Option value={cv.id} key={index}>
+                  {cv.value}
+                </Option>
+              })
+            }
+          </Select> :
+          props._allOg ?
+            <Select onChange={handleChange}>
+              {
+                props._allOg.map((cv, index) => {
+                  return <Option value={cv.id} key={index}>
+                    {cv.groupName}
+                  </Option>
+                })
+              }
+            </Select> : <Select />
+      )}
+    </FormItem>
   )
 }
-
-

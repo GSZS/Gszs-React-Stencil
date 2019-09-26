@@ -6,39 +6,31 @@
  * @ 文件解释: 项目Reducer
  */
 
-import * as projectConstants from '../../constants/projectConstants';
+import * as PjConstants from '../../constants/project/projectConstants';
 
-let initialProjectState = {
-  addProjectData: [],  
+let initialPjState = {
+  allPjTypes: [], // 获取所有组织
   loading: false
 }
 
 /**
  * @description 项目公共Reducer
- * @param {Object} publicState 
- * @param {Object} publicAction
- * @param {Array}  publicStateData 将对应Reducer的data存如对应的initialState的data中
- * @param {Object} constants 
+ * @param {Object} publicState     State
+ * @param {Object} publicAction    Action
+ * @param {Array}  publicStateData 将对应Reducer的data存入对应的initialState的data中
+ * @param {Object} constants       常量
  */
-const addProjectReducer = (publicState, publicAction, publicStateData, constants) => {
-  switch (publicAction.type) {
-    case constants._start :
+const PjReducer = (state, action, publicStateData, constants) => {
+  switch (action.type) {
+    case constants._success:
+      const { data } = action.payload;
       return {
-        ...publicState,
-        loading: true
+        ...state,
+        [publicStateData]: data
       }
-    case constants._success :
+    case constants._fail:
       return {
-        ...publicState,
-        publicStateData: publicState.payload
-      }
-    case constants._fail :
-      return {
-        ...publicState
-      }
-    case constants._stop :
-      return {
-        ...publicState,
+        ...state,
         loading: false
       }
     default:
@@ -46,12 +38,10 @@ const addProjectReducer = (publicState, publicAction, publicStateData, constants
   }
 }
 
-
 /**
- * @description 新增项目Reducer
+ * @description 查询所有组织
  */
-export const addProjectReducer = (state = initialProjectState, action) => {
-  addProjectReducer(state, action, addProjectData, projectConstants.addPjConstants)
+export const getAllPjTypesReducer = (state = initialPjState, action) => {
+  return PjReducer(state, action, 'allPjTypes', PjConstants.allPjTypeConstant)
 }
-
 

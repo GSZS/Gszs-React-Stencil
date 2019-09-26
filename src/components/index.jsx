@@ -16,6 +16,7 @@ const RouterEnter = lazy(() => import('./auth/RouterEnter') );
 const QueryParams = lazy(() => import('./extension/QueryParams') );
 const LogInfo = lazy(() => import('./log/LogControl') );
 const AddProjectContainer = lazy(() => import('../containers/project/AddProjectContainer'));
+const ProjectListContainer = lazy(() => import('../containers/project/ProjectListContainer'));
 
 export default {
 	Echarts,
@@ -25,5 +26,6 @@ export default {
 	RouterEnter,
 	QueryParams,
 	LogInfo,
-	AddProjectContainer
+	AddProjectContainer,
+	ProjectListContainer
 }

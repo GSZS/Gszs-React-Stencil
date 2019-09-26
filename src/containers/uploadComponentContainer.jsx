@@ -17,15 +17,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BaseFormComponent from '../components/Common/uploadComponent';
-import { addTableAction } from '../action/controlTableDataAction';
-import { localStoreAction } from '../action/settingAction';
+import { addFormAction } from '../action/FormAction';
 
 const UpoloadComponentContainer = props => <BaseFormComponent {...props} />
 
 export default connect(
   null, {
-    addTableAction,
-    localStoreAction,
+    addFormAction,
   }
 )(UpoloadComponentContainer);
 

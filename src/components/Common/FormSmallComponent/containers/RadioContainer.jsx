@@ -9,7 +9,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { RadioComponents } from '../components/RadioComponents';
+import { GetAllPjAction } from '../../../../action/project/projectAction'
+import { getAllPjTypes } from '../../../../selector/project/projectSelector';
 
 const RadioContainer = props => <RadioComponents {...props} />
 
-export default connect()(RadioContainer)
+const mapStateToProps = state => {
+  return {
+    _allPjTypes: getAllPjTypes(state)
+  }
+}
+
+export default connect(mapStateToProps, {
+  GetAllPjAction
+})(RadioContainer)

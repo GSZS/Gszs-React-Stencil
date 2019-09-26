@@ -6,13 +6,11 @@
  * @ 文件解释: 管理所有头部相关的Action
  */
 
-import { ProjectAction } from '../projectAction';
 import { SearchAction } from '../searchAction';
 import { HelpAction } from '../helpAction';
 import { ProblemAction } from '../problemAction';
 
 export const HeaderAction = {
-   ProjectAction,
    SearchAction,
    HelpAction,
    ProblemAction 

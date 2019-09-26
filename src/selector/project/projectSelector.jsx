@@ -2,18 +2,18 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-18 23:17:02
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-18 23:20:55
+ * @ Modified time: 2019-09-25 09:51:13
  * @ 文件解释: 项目类Selector
  */
 
 
 import { createSelector } from 'reselect';
-import { judgementGetaddProject } from '../commonSelector';
+import { judgementGetPjTypes } from '../commonSelector';
 
 /**
- * @description 新增项目
+ * @description 获取所有项目类型
  */
-export const getAddProjectSelector = createSelector(
-  judgementGetaddProject,
-  getAddProject => getAddProject
+export const getAllPjTypes = createSelector(
+  judgementGetPjTypes,
+  getAddPjTypes => getAddPjTypes
 )

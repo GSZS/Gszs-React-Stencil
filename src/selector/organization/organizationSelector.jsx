@@ -7,12 +7,12 @@
  */
 
 import { createSelector } from 'reselect';
-import { judgementGetMenuTotal } from '../commonSelector';
+import { judgementGetAllOg } from '../commonSelector';
 
 /**
  * @description 获取所有组织
  */
 export const getAllOgSelector = createSelector(
-  judgementGetMenuTotal,
+  judgementGetAllOg,
   getAllOg => getAllOg
 )

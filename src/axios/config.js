@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-24 10:16:02
+ * @ Modified time: 2019-09-25 16:04:02
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-18 14:36:52
  */
@@ -89,23 +89,23 @@ export const _queryHasNotItem = baseip + '/web/admin/item/queryHasNotItem'
 export const _roleItemAdd = baseip + '/web/roleItem/add'
 
 
-/**
- * @description 创建项目类
- */
+/////////////
+//项目接口类//
+////////////
 
 // 查询所有项目类型接口
-export const _allProjectType = apiBaseip2 + '/project/queryAllProType';
+export const _allProjectType = apiBaseip2 + '/proType/queryAllProType';
 
 // 新增项目接口
 export const _addProject = apiBaseip2 + '/project/createProject';
 
 
-/**
- * @description 组织类
- */
+/////////////
+//组织接口类//
+////////////
 
 // 新增组织
-export const _addOrganization = apiBaseip1 + '/app/group/add';
+export const _addOrganization = apiBaseip2 + '/app/group/add';
 
 // 查询组织
-export const _findAllOrganization = apiBaseip1 + '/app/group';
+export const _findAllOrganization = apiBaseip2 + '/app/group';

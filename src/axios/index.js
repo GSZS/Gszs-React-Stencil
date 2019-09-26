@@ -7,29 +7,32 @@
  */
 
 import axios from 'axios';
-import {get, post} from './tools';
+import {
+  get,
+  post
+} from './tools';
 import * as config from './config';
 import qs from 'qs';
 
 // npm.json
 export const npmDependencies = () =>
   axios
-    .get ('./npm.json')
-    .then (res => res.data)
-    .catch (err => console.log (err));
+  .get('./npm.json')
+  .then(res => res.data)
+  .catch(err => console.log(err));
 
 /** 微博 */
 export const weibo = () =>
   axios
-    .get ('./weibo.json')
-    .then (res => res.data)
-    .catch (err => console.log (err));
+  .get('./weibo.json')
+  .then(res => res.data)
+  .catch(err => console.log(err));
 
 // 请求头带上token
 const getToken = () =>
   (axios.defaults.headers.common[
     'authorization'
-  ] = window.localStorage.getItem ('token'));
+  ] = window.localStorage.getItem('token'));
 axios.defaults.withCredentials = true;
 
 
@@ -40,7 +43,7 @@ axios.defaults.withCredentials = true;
  */
 export const getLoginAuth = (username) => {
   return get({
-    url: config.GETLOGINAUTH+`?username=${username}`
+    url: config.GETLOGINAUTH + `?username=${username}`
   })
 }
 
@@ -51,12 +54,12 @@ export const getLoginAuth = (username) => {
  */
 export const handleLogin = (username, password) => {
   // 清除token,方便开发环境
-  if (window.localStorage.getItem ('token')) {
-    window.localStorage.removeItem ('token');
+  if (window.localStorage.getItem('token')) {
+    window.localStorage.removeItem('token');
   }
-  return post ({
+  return post({
     url: config.LOGIN_URL,
-    data: qs.stringify ({
+    data: qs.stringify({
       username: username,
       password: password,
     })
@@ -67,8 +70,8 @@ export const handleLogin = (username, password) => {
  * @description 退出
  */
 export const LOGOUT = () => {
-  getToken ();
-  return get ({
+  getToken();
+  return get({
     url: config.LOGOUT_URL,
   });
 };
@@ -77,8 +80,8 @@ export const LOGOUT = () => {
  * @description 查询本用户权限/最新视频/新闻资讯综合接口
  */
 export const GETADMININDEX = () => {
-  getToken ();
-  return get ({
+  getToken();
+  return get({
     url: config._findAdminIndexInfo,
   });
 };
@@ -91,13 +94,13 @@ export const GETADMININDEX = () => {
  * @param {limit} 每页要显示的条数
  */
 export const LOGMANAGER = (page, limit = undefined) => {
-  getToken ();
+  getToken();
   if (limit !== undefined) {
-    return get ({
+    return get({
       url: config._getAllLogManager + `?page=${page}&limit=${limit}`,
     });
   } else {
-    return get ({
+    return get({
       url: config._getAllLogManager + `?page=${page}`,
     });
   }
@@ -112,10 +115,10 @@ export const LOGMANAGER = (page, limit = undefined) => {
  * @param {name}		 真实姓名
  */
 export const ADDOPERATEUSER = formData => {
-  getToken ();
-  return post ({
+  getToken();
+  return post({
     url: config._addOperateUser,
-    data: qs.stringify (formData),
+    data: qs.stringify(formData),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
@@ -129,8 +132,8 @@ export const ADDOPERATEUSER = formData => {
  * @param 1:前台
  */
 export const FINDFRONTUSER = (key, page) => {
-  getToken ();
-  return get ({
+  getToken();
+  return get({
     url: config._findAllUser + `?operatorType=${key}&page=${page}`,
   });
 };
@@ -139,8 +142,8 @@ export const FINDFRONTUSER = (key, page) => {
  * @description 删除用户
  */
 export const DELETEUSER = key => {
-  getToken ();
-  return get ({
+  getToken();
+  return get({
     url: config._deleteUser + `?key=${key}`,
   });
 };
@@ -150,8 +153,8 @@ export const DELETEUSER = key => {
  * @method {GET}
  */
 export const RESETUSERPWD = key => {
-  getToken ();
-  return get ({
+  getToken();
+  return get({
     url: config._resetUser + `?key=${key}`,
   });
 };
@@ -163,10 +166,10 @@ export const RESETUSERPWD = key => {
  * @param {roleId} 角色id - 必传   
  */
 export const CHANGEROLEBYID = formData => {
-  getToken ();
-  return post ({
+  getToken();
+  return post({
     url: config._changeRole,
-    data: qs.stringify (formData),
+    data: qs.stringify(formData),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
@@ -182,10 +185,10 @@ export const CHANGEROLEBYID = formData => {
  * @param {name}
  */
 export const UPDATEUSER = formData => {
-  getToken ();
-  return post ({
+  getToken();
+  return post({
     url: config._updateUser,
-    data: qs.stringify (formData),
+    data: qs.stringify(formData),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
@@ -197,8 +200,8 @@ export const UPDATEUSER = formData => {
  *	@method {GET}
  */
 export const LOCKUSER = key => {
-  getToken ();
-  return get ({
+  getToken();
+  return get({
     url: config._lockUser + `?key=${key}`,
   });
 };
@@ -208,8 +211,8 @@ export const LOCKUSER = key => {
  * @method {GET}
  */
 export const UNLOCKUSER = key => {
-  getToken ();
-  return get ({
+  getToken();
+  return get({
     url: config._unlockUser + `?key=${key}`,
   });
 };
@@ -219,13 +222,13 @@ export const UNLOCKUSER = key => {
  * @method {GET}
  */
 export const FINDALLAUTH = (operate = undefined) => {
-  getToken ();
+  getToken();
   if (operate === undefined) {
-    return get ({
+    return get({
       url: config._findAllAuth,
     });
   } else {
-    return get ({
+    return get({
       url: config._findAllAuth + `?operatorType=${operate}`,
     });
   }
@@ -238,10 +241,10 @@ export const FINDALLAUTH = (operate = undefined) => {
  * @param {roleDesc} 角色描述
  */
 export const ADDCREATEROLE = formData => {
-  getToken ();
-  return post ({
+  getToken();
+  return post({
     url: config._addCreateRole,
-    data: qs.stringify (formData),
+    data: qs.stringify(formData),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
@@ -254,10 +257,10 @@ export const ADDCREATEROLE = formData => {
  * @param {itemId} itemId - 必传
  */
 export const ROLEITEMADD = formData => {
-  getToken ();
-  return post ({
+  getToken();
+  return post({
     url: config._roleItemAdd,
-    data: qs.stringify (formData),
+    data: qs.stringify(formData),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
@@ -269,8 +272,8 @@ export const ROLEITEMADD = formData => {
  * @param {key} 必传
  */
 export const QUERYROLEBYUSERID = key => {
-  getToken ();
-  return get ({
+  getToken();
+  return get({
     url: config._queryRoleByUserId + `?userId=${key}`,
   });
 };
@@ -281,8 +284,8 @@ export const QUERYROLEBYUSERID = key => {
  * @param {operatorType}
  */
 export const QUERYITEM = (roleId, operatorType) => {
-  getToken ();
-  return get ({
+  getToken();
+  return get({
     url: config._findAuth + `?roleId=${roleId}&operatorType=${operatorType}`,
   });
 };
@@ -297,10 +300,10 @@ export const QUERYITEM = (roleId, operatorType) => {
  * @param {item} 必传
  */
 export const CREATEROLE = formData => {
-  getToken ();
-  return post ({
+  getToken();
+  return post({
     url: config._addCreateRole,
-    data: qs.stringify (formData),
+    data: qs.stringify(formData),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
@@ -312,11 +315,11 @@ export const CREATEROLE = formData => {
  * @param {_updateAuth} key 
  */
 export const UPDATEAUTH = (formData, operatorType) => {
-  getToken ();
+  getToken();
   formData.operatorType = operatorType;
-  return post ({
+  return post({
     url: config._updateAuth,
-    data: qs.stringify (formData),
+    data: qs.stringify(formData),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
@@ -329,8 +332,8 @@ export const UPDATEAUTH = (formData, operatorType) => {
  * @param {key}
  */
 export const DELETEROLE = key => {
-  getToken ();
-  return get ({
+  getToken();
+  return get({
     url: config._deleteRole + `?key=${key}`,
   });
 };
@@ -343,17 +346,17 @@ export const DELETEROLE = key => {
  * @param {key}
  */
 export const FINDALLROLE = (page, operatorType = undefined) => {
-  getToken ();
+  getToken();
   if (operatorType === undefined && page instanceof Array) {
-    return get ({
+    return get({
       url: config._findAllRole + `?page=${page[0]}&operatorType=${page[1]}`,
     });
-  } else if(operatorType === undefined){
-    return get ({
+  } else if (operatorType === undefined) {
+    return get({
       url: config._findAllRole + `?page=${page}`,
     });
-  }else{
-    return get ({
+  } else {
+    return get({
       url: config._findAllRole + `?page=${page}&operatorType=${operatorType}`,
     });
   }
@@ -365,8 +368,8 @@ export const FINDALLROLE = (page, operatorType = undefined) => {
  * @param {operatorType}
  */
 export const QUERYHASNOTITEM = (roleId, operatorType) => {
-  getToken ();
-  return get ({
+  getToken();
+  return get({
     url: config._queryHasNotItem +
       `?roleId=${roleId}&operatorType=${operatorType}`,
   });
@@ -389,9 +392,9 @@ export const ALLPROJECTTYPE = () => {
  */
 export const ADDPROJECT = formData => {
   getToken();
-  return post ({
+  return post({
     url: config._addProject,
-    data: qs.stringify (formData),
+    data: qs.stringify(formData),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
@@ -412,12 +415,27 @@ export const TESTREDUXSAGA = () => {
 /////////////////////////
 
 /**
-* @description 动态获取下拉框数据
-* @param {String} axiosPath 请求地址
-*/
+ * @description 动态获取下拉框数据
+ * @param {String} axiosPath 请求地址
+ */
 export const GETSELECTDATA = axiosPath => {
   getToken();
   return get({
     url: axiosPath
   })
+}
+
+/**
+ * @description 新增表单
+ * @param {String} axiosPath
+ */
+export const ADDFORM = (axiosPath, formData) => {
+  getToken();
+  return post({
+    url: axiosPath,
+    data: qs.stringify(formData),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  });
 }

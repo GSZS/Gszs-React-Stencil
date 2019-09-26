@@ -13,6 +13,12 @@ export default {
 			component: 'Dashboard'
 		},
 		{
+			key: '/app/project',
+			title: '项目',
+			icon: 'project',
+			component: 'ProjectListContainer'
+		},
+		{
 			key: '/app/control',
 			title: '管理',
 			icon: 'control',

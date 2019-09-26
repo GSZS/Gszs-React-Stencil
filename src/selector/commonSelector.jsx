@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-07-23 10:22:18
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-18 23:05:01
+ * @ Modified time: 2019-09-25 09:51:56
  * @ Description: 公共Selector
  * @ Use: 设置一个input-selector , 改变input-selector后的函数 , 公共selector
  */
@@ -30,6 +30,8 @@ export const judgementGetMenuTotal = state => state.MenuReducer.MenuStateTotal;
 
 // 项目类
 export const judgementGetaddProject = state => state.addProjectReducer.addProjectData;
+export const judgementGetPjTypes = state => state.getAllPjTypesReducer.allPjTypes;
+
 
 // 组织类
 export const judgementGetAllOg = state => state.findAllOgReducer.allOgData;

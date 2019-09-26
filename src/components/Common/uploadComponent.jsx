@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-04 22:08:25
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-25 07:57:17
+ * @ Modified time: 2019-09-25 20:24:58
  * @ 文件解释: 表单上传公共组件(涵盖富文本,markdown)
  */
 
@@ -24,7 +24,7 @@ import RichContainer from './FormSmallComponent/containers/RichContainer';
 import '../../style/components/common/uploadComponent.less';
 
 const BaseFormComponent = props => {
-
+  console.log('重渲染');
   const [loading] = useState(false);
 
   // 用来获取原始组件的push方法
@@ -101,6 +101,7 @@ const BaseFormComponent = props => {
     e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
+        console.log('=>>>', values);
         let formData = {};
         // 处理没有文件的情况
         if (fileList.length === 0) {
@@ -113,8 +114,8 @@ const BaseFormComponent = props => {
             formData.append('file', file);
           });
         }
-        props.addTableAction(props.interfaceUrl, formData, props.componentName);
-        history.push(props.skipUrl) // 跳转到制定页面
+        props.addFormAction(props.interfaceUrl, formData);
+        // history.push(props.skipUrl) // 跳转到制定页面
       } else {
         message.error(`表单格式有误`);
       }
@@ -136,8 +137,7 @@ const BaseFormComponent = props => {
         let label = item.label,
           field = item.field,
           initialValue = item.initialValue || '',
-          placeholder = item.placeholder || '',
-          radioDesc = item.radioDesc || [];
+          placeholder = item.placeholder || '';
 
         // 文本框
         if (item.type === 'text') {
@@ -178,19 +178,10 @@ const BaseFormComponent = props => {
         }
         // 下拉框
         else if (item.type === 'select') {
-          const input_text = (
-            <FormItem key={field} label={label}>
-              {getFieldDecorator(field, {
-                rules: [
-                  {
-                    required: true,
-                    message: placeholder,
-                  }
-                ],
-                initialValue: initialValue,
-              })(<SelectContainer selectConfig={item} />)}
-            </FormItem>
-          );
+          const input_text = <SelectContainer 
+            selectConfig={item} 
+            getFieldDecorator={getFieldDecorator}
+          />
           formItemList.push(input_text);
         }
         // 文本区域
@@ -216,11 +207,10 @@ const BaseFormComponent = props => {
         }
         // 单选框
         else if (item.type === 'radio') {
-          const radioInput = (
-            <FormItem label={label}>
-              {getFieldDecorator(field)(<RadioContainer radioConfig={radioDesc} />)}
-            </FormItem>
-          )
+          const radioInput = <RadioContainer 
+            getFieldDecorator={getFieldDecorator}
+            radioConfig={ item } 
+          />
           formItemList.push(radioInput);
         }
         // 富文本

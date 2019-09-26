@@ -8,7 +8,6 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { addPjAction } from '../../action/project/projectAction';
 import { AddProject } from '../../components/project/AddProject';
 import { getAllOgSelector } from '../../selector/organization/organizationSelector'
 
@@ -20,4 +19,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { addPjAction })(AddProjectContainer);
+export default connect(mapStateToProps, null )(AddProjectContainer);

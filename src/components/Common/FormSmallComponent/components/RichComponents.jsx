@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-25 07:43:26
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-25 07:57:04
+ * @ Modified time: 2019-09-25 09:11:22
  * @ 文件解释: 富文本UI组件
  */
 
@@ -12,7 +12,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-export const RichComponent = () => {
+export const RichComponent = props => {
 
   // 初始化富文本内容
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
