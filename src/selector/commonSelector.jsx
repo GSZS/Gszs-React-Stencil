@@ -28,12 +28,13 @@ export const judgementGetRoleTotal = state => state.RoleReducer.RoleStateTotal;
 export const judgementGetAuthTotal = state => state.AuthReducer.AuthStateTotal;
 export const judgementGetMenuTotal = state => state.MenuReducer.MenuStateTotal;
 
-// 项目类
+/* 项目类 */
 export const judgementGetaddProject = state => state.addProjectReducer.addProjectData;
 export const judgementGetPjTypes = state => state.getAllPjTypesReducer.allPjTypes;
 
 
-// 组织类
+/* 组织类 */
+// 获取所有组织
 export const judgementGetAllOg = state => state.findAllOgReducer.allOgData;
 
 /**

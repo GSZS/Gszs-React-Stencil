@@ -2,12 +2,12 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-17 10:06:31
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-11 10:37:26
+ * @ Modified time: 2019-09-28 18:24:34
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-01 17:02:56
  */
 
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Table,
   Button,
@@ -17,8 +17,8 @@ import {
   Pagination,
   Tooltip
 } from 'antd';
-import BreadcrumbCustom from '../../BreadcrumbCustom';
-import ModalFormContainer from '../../../containers/ModalFormContainer';
+import BreadcrumbCustom from '@/components/BreadcrumbCustom';
+import ModalFormContainer from '@/containers/ModalFormContainer';
 
 // 创建Context实例
 const EditableContext = React.createContext();
@@ -78,7 +78,7 @@ const EditableCell = props => {
 const EditableTable = props => {
 
   // 接口地址
-  const [GET_ALL_DATA, DELETE_ALL_DATA, GET_ALL_DATA_BYID] = props.interfaceUrl;
+  // const [GET_ALL_DATA, DELETE_ALL_DATA, GET_ALL_DATA_BYID] = props.interfaceUrl;
 
   // 设置初始值
   const [data, setData] = useState(null),
@@ -93,23 +93,23 @@ const EditableTable = props => {
   const [setSortedInfo] = useState(null);
 
   // 发送请求
-  useEffect(() => {
-    getData(page)
-  }, [page, props._total, props._reload])
+  // useEffect(() => {
+  //   getData(page)
+  // }, [page, props._total, props._reload])
 
   // 获取数据的核心函数
-  const getData = page => {
-    props.getTableAction(GET_ALL_DATA, page)
+  // const getData = page => {
+  //   props.getTableAction(GET_ALL_DATA, page)
 
-    // 设置数据
-    setData(props._tableData);
-    setTotal(props._total);
-  };
+  //   // 设置数据
+  //   setData(props._tableData);
+  //   setTotal(props._total);
+  // };
 
 
   // 删除操作
   const HandleDelete = id => {
-    props.delTableAction(DELETE_ALL_DATA, id);
+    // props.delTableAction(DELETE_ALL_DATA, id);
   };
 
   // 排序操作
@@ -195,7 +195,7 @@ const EditableTable = props => {
 
   // 渲染
   return (
-    <Fragment>
+    <>
       <BreadcrumbCustom
         first={crumbsConfig.first}
         second={crumbsConfig.second}
@@ -228,10 +228,10 @@ const EditableTable = props => {
           onCancel={handleCancel}
           onOk={handleOk}
         >
-          <ModalFormContainer rowId={rowId} getDataById={GET_ALL_DATA_BYID} />
+          {/* <ModalFormContainer rowId={rowId} getDataById={GET_ALL_DATA_BYID} /> */}
         </Modal>
       </EditableContext.Provider>
-    </Fragment>
+    </>
   );
 };
 

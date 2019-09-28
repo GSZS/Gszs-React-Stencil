@@ -2,14 +2,14 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-24 09:49:10
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-25 20:54:43
+ * @ Modified time: 2019-09-28 12:23:54
  * @ 文件解释: 单选框Ui-组件
  */
 
 import React, { useState, useEffect } from 'react';
 import {Radio, Form} from 'antd';
-import { StyleDivFlex, StyleDiv, StyleSpan } from '../../../styleComponents';
-import '../../../styleComponents.less';
+import { StyleDivFlex, StyleDiv, StyleSpan } from '@/components/styleComponents'
+import '@/components/styleComponents.less';
 
 export const RadioComponents = props => {
   const Radiogroup = Radio.Group;

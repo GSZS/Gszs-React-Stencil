@@ -10,7 +10,7 @@ export default {
 			key: '/app/organization',
 			title: '组织',
 			icon: 'branches',
-			component: 'Dashboard'
+			component: 'OgListContainer'
 		},
 		{
 			key: '/app/project',

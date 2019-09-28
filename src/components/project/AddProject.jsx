@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import UpoloadComponentContainer from '../../containers/uploadComponentContainer'
+import UpoloadComponentContainer from '@/containers/uploadComponentContainer'
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import '../../style/components/project/addProject.less';
-import { _findAllOrganization, _allProjectType, _addProject } from '../../axios/config';
+import '@/style/components/project/addProject.less';
+import { _findAllOrganization, _allProjectType, _addProject } from '@/axios/config';
 
 export const AddProject = props => {
 

@@ -401,15 +401,6 @@ export const ADDPROJECT = formData => {
   });
 }
 
-/**
- * @description 测试Redux-Saga
- */
-export const TESTREDUXSAGA = () => {
-  return get({
-    url: 'http://192.168.50.87:5001/api/test_saga'
-  })
-}
-
 //////////////////////////
 // 重新设计整个项目-axios ////////
 /////////////////////////
@@ -439,3 +430,16 @@ export const ADDFORM = (axiosPath, formData) => {
     },
   });
 }
+
+// 新增组织
+export const ADDOG = (axiosPath, formData) => {
+  getToken();
+  return post({
+    url: axiosPath,
+    data: qs.stringify(formData),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }
+  })
+}
+

@@ -7,12 +7,13 @@
  */
 
 import { call, all } from 'redux-saga/effects';
-import { getAllOg } from './organization/organization_saga';
+import { getAllOg, addOg } from './organization/organization_saga';
 import { getAllPjTypes } from './project/project_saga'
 
 export default function* root() {
   yield all([
     call(getAllOg),
-    call(getAllPjTypes)
+    call(getAllPjTypes),
+    call(addOg)
   ])
 }
