@@ -56,6 +56,7 @@ const js = {
   "eslint-plugin-import": "2.14.0",                             // Eslint插件 - 检测导入是否有错(例如模块名称)
   "eslint-plugin-jsx-a11y": "6.1.1",                            // Eslint插件 - 检测导入是否有错(例如模块名称)
   "eslint-plugin-react": "7.11.1",                              // Eslint插件 - 配置React的Eslint规则
+  "eslint-plugin-react-hooks": "^2.1.1",                        // Eslint插件 - 此规则会在添加错误依赖时发出警告并给出修复建议。
   "jest": "23.6.0",                                             // Jest插件 - 核心文件（孤儿捡来的）
   "jest-pnp-resolver": "1.0.1",                                 // Jest插件 - 1
   "jest-resolve": "23.6.0",                                     // Jest插件 - 2

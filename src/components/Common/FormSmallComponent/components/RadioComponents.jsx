@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-24 09:49:10
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-28 12:23:54
+ * @ Modified time: 2019-09-29 15:19:05
  * @ 文件解释: 单选框Ui-组件
  */
 
@@ -22,11 +22,11 @@ export const RadioComponents = props => {
   } = props.radioConfig;
   const [radioValue, setRadioValue] = useState(1);
 
-  if( axiosPath ){
-    useEffect(() => {
+  useEffect(() => {
+    if( axiosPath ){
       props.GetAllPjAction(axiosPath)
-    }, [])
-  }
+    }
+  }, [])
 
   const changeHanle = e => {
     console.log(radioValue)

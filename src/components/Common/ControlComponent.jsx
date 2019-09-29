@@ -17,7 +17,6 @@ import {
   Pagination,
   Tooltip
 } from 'antd';
-import BreadcrumbCustom from '@/components/BreadcrumbCustom';
 import ModalFormContainer from '@/containers/ModalFormContainer';
 
 // 创建Context实例
@@ -196,10 +195,6 @@ const EditableTable = props => {
   // 渲染
   return (
     <>
-      <BreadcrumbCustom
-        first={crumbsConfig.first}
-        second={crumbsConfig.second}
-      />
       <EditableContext.Provider value={props.form}>
         <Table
           components={components} // 用于覆盖默认的table配置

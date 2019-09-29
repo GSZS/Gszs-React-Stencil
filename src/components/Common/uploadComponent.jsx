@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-04 22:08:25
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-25 20:24:58
+ * @ Modified time: 2019-09-29 16:21:33
  * @ 文件解释: 表单上传公共组件(涵盖富文本,markdown)
  */
 
@@ -13,7 +13,8 @@ import {
   Upload,
   Button,
   Icon,
-  message
+  message,
+  Modal
 } from 'antd';
 import FormItem from 'antd/lib/form/FormItem';
 import RadioContainer from './FormSmallComponent/containers/RadioContainer';
@@ -24,9 +25,8 @@ import RichContainer from './FormSmallComponent/containers/RichContainer';
 import '../../style/components/common/uploadComponent.less';
 
 const BaseFormComponent = props => {
-  console.log('重渲染');
   const [loading] = useState(false);
-
+  // console.log('打印', props);
   // 用来获取原始组件的push方法
   const history = props.routerPath;
 
@@ -48,6 +48,11 @@ const BaseFormComponent = props => {
       },
     };
     if (props.formItemLayout) return formItemLayout
+  }
+
+  // 测试forwardRef
+  const _forwardRef = () => {
+    console.log('打印测试forwardRef');
   }
 
   // 配置上传
@@ -98,10 +103,10 @@ const BaseFormComponent = props => {
 
   // 上传提交
   const handleSubmit = e => {
-    e.preventDefault();
+    console.log('提交');
     props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('=>>>', values);
+        console.log('success=>>>', values);
         let formData = {};
         // 处理没有文件的情况
         if (fileList.length === 0) {
@@ -117,6 +122,7 @@ const BaseFormComponent = props => {
         props.addFormAction(props.interfaceUrl, formData);
         // history.push(props.skipUrl) // 跳转到制定页面
       } else {
+        console.log('error=>>>', values);
         message.error(`表单格式有误`);
       }
     });
@@ -186,23 +192,26 @@ const BaseFormComponent = props => {
         }
         // 文本区域
         else if (item.type === 'textarea') {
-          const input_textarea = (
-            <FormItem key={field} label={label}>
-              {getFieldDecorator(field, {
-                rules: [
-                  {
-                    required: true,
-                    message: placeholder,
-                  },
-                  {
-                    pattern: new RegExp(RegExpStr, 'ig'),
-                    message: '不允许输入特殊字符',
-                  },
-                ],
-                initialValue: initialValue,
-              })(<TextareaContainer />)}
-            </FormItem>
-          );
+          const input_textarea = <TextareaContainer 
+            textareaConfig={ item } 
+            getFieldDecorator={getFieldDecorator}
+          />
+            // <FormItem key={field} label={label}>
+            //   {getFieldDecorator(field, {
+            //     rules: [
+            //       {
+            //         required: true,
+            //         message: placeholder,
+            //       },
+            //       {
+            //         pattern: new RegExp(RegExpStr, 'ig'),
+            //         message: '不允许输入特殊字符',
+            //       },
+            //     ],
+            //     initialValue: initialValue,
+            //   })(<TextareaContainer textareaConfig={ item } />)}
+            // </FormItem>
+            
           formItemList.push(input_textarea);
         }
         // 单选框
@@ -242,19 +251,23 @@ const BaseFormComponent = props => {
     }
     return formItemList;
   };
-
   return (
-    <Form onSubmit={handleSubmit} {...checkFormItemLayout()} >
+    <Form onSubmit={handleSubmit} ref={props._ref} {...checkFormItemLayout()} >
       {initForm()}
+      {/* 如果没有设置submitButtonName则表示嵌入到Modal里 */}
       <FormItem>
-        <Button
-          loading={loading}
-          type="primary"
-          htmlType="submit"
-          className="submitButton"
-        >
-          {loading ? `${props.submitButtonName}中` : `${props.submitButtonName}`}
-        </Button>
+        {
+          props.submitButtonName ? 
+          <Button
+            loading={loading}
+            type="primary"
+            htmlType="submit"
+            className="submitButton"
+          >
+            {loading ? `${props.submitButtonName}中` : `${props.submitButtonName}`}
+          </Button> :
+          <></>
+        }
       </FormItem>
     </Form>
   );
