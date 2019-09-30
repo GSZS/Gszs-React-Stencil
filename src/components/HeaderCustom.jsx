@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-02 21:36:36
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-26 11:32:21
+ * @ Modified time: 2019-09-30 16:44:13
  * @ 文件解释: 导航条头部使用者介绍
  */
 
@@ -11,7 +11,7 @@ import screenfull from 'screenfull';
 import avater from '@/assets/image/Qiong.jpeg';
 import SiderCustom from './SiderCustom';
 import { Menu, Icon, Layout, Popover, Input, Tooltip } from 'antd';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { ModalComponents } from './Common/ModalComponents';
 import { SVGICON } from './svg/svgIcon';
 import '../style/components/headerCustom.less';
@@ -24,7 +24,6 @@ const { Search } = Input;
 
 class HeaderCustom extends Component {
   state = {
-    user: '',
     visible: false,
     modalOpen: false,
     _Modalvisible: false,
@@ -152,7 +151,14 @@ class HeaderCustom extends Component {
             >
               <MenuItemGroup title="用户中心">
                 <MenuItem key="setting:1">
-                  你好 - {this.props.user}
+                  <span>
+                    <Link to="/app/user_info">个人资料</Link>
+                  </span>
+                </MenuItem>
+                <MenuItem key="setting:2">
+                  <span>
+                    <Link to="/app/user_setting">个人设置</Link>
+                  </span>
                 </MenuItem>
                 <MenuItem key="logout">
                   <span onClick={this.logout}>退出登录</span>

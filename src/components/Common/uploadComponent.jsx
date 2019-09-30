@@ -50,11 +50,6 @@ const BaseFormComponent = props => {
     if (props.formItemLayout) return formItemLayout
   }
 
-  // 测试forwardRef
-  const _forwardRef = () => {
-    console.log('打印测试forwardRef');
-  }
-
   // 配置上传
   const uploadConfig = {
     // 移除文件
@@ -103,10 +98,8 @@ const BaseFormComponent = props => {
 
   // 上传提交
   const handleSubmit = e => {
-    console.log('提交');
     props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('success=>>>', values);
         let formData = {};
         // 处理没有文件的情况
         if (fileList.length === 0) {
@@ -122,7 +115,6 @@ const BaseFormComponent = props => {
         props.addFormAction(props.interfaceUrl, formData);
         // history.push(props.skipUrl) // 跳转到制定页面
       } else {
-        console.log('error=>>>', values);
         message.error(`表单格式有误`);
       }
     });
@@ -195,23 +187,7 @@ const BaseFormComponent = props => {
           const input_textarea = <TextareaContainer 
             textareaConfig={ item } 
             getFieldDecorator={getFieldDecorator}
-          />
-            // <FormItem key={field} label={label}>
-            //   {getFieldDecorator(field, {
-            //     rules: [
-            //       {
-            //         required: true,
-            //         message: placeholder,
-            //       },
-            //       {
-            //         pattern: new RegExp(RegExpStr, 'ig'),
-            //         message: '不允许输入特殊字符',
-            //       },
-            //     ],
-            //     initialValue: initialValue,
-            //   })(<TextareaContainer textareaConfig={ item } />)}
-            // </FormItem>
-            
+          />            
           formItemList.push(input_textarea);
         }
         // 单选框

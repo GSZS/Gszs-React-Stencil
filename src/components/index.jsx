@@ -18,6 +18,9 @@ const LogInfo = lazy(() => import('./log/LogControl') );
 const AddProjectContainer = lazy(() => import('@/containers/project/AddProjectContainer'));
 const ProjectListContainer = lazy(() => import('@/containers/project/ProjectListContainer'));
 const OgListContainer = lazy(() => import('@/containers/organization/OgListContainer'));
+const UserInfoContainer = lazy(() => import('@/containers/users/UserInfoContainer'));
+const UserSettingContainer = lazy(() => import('@/containers/users/UserSettingContainer'));
+
 
 export default {
 	Echarts,
@@ -29,5 +32,7 @@ export default {
 	LogInfo,
 	AddProjectContainer,
 	ProjectListContainer,
-	OgListContainer
+	OgListContainer,
+	UserInfoContainer,
+	UserSettingContainer
 }
