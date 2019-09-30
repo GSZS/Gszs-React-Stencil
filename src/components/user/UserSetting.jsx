@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-30 13:25:39
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-30 16:20:45
+ * @ Modified time: 2019-09-30 17:00:10
  * @ 文件解释: 个人设置UI组件
  */
 
@@ -10,6 +10,7 @@ import React,{useState} from 'react';
 import { Tabs } from 'antd';
 import UpdatePwdContainer from '@/containers/users/userTabs/UpdatePwdContainer';
 import { SVGICON } from '@/components/svg/svgIcon';
+import '@/style/components/users/userSetting.less';
 
 export const UserSetting = props => {
 
@@ -53,7 +54,9 @@ export const UserSetting = props => {
           }
           key={2}
         >
-          <UpdatePwdContainer />
+          <div className="updatePwd">
+            <UpdatePwdContainer />
+          </div>
         </TabPane>
       </Tabs>
     </div>

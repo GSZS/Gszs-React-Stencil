@@ -67,7 +67,7 @@ export const UserInfo = props => {
 						key={2}
 					>
 						22222
-							</TabPane>
+					</TabPane>
 				</Tabs>
 			</div>
 		</>

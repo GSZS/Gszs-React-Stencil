@@ -2,7 +2,33 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-30 14:10:23
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-30 14:10:25
+ * @ Modified time: 2019-09-30 17:22:14
  * @ 文件解释: 个人设置less
  */
 
+.TabRegion {
+  text-align: center;
+  background-color: #fafafa;
+  padding: 10px 0;
+  .updatePwd{
+    width: 60%;
+    margin: 0 auto;
+    @color: #fff;
+    .updateButton{
+      background-color: #1aaa55;
+      border-color: #168f48;
+      color: @color;
+      &:hover{
+        box-shadow: 0 0 4px 2px #a4b999;
+      }
+    }
+    .forgetButton{
+      background-color: #b2850d;
+      border-color: #b2850d;
+      color: @color;
+      &:hover{
+        box-shadow: 0 0 4px 2px #a4b999;
+      }
+    }
+  }
+}

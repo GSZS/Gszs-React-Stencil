@@ -152,12 +152,12 @@ class HeaderCustom extends Component {
               <MenuItemGroup title="用户中心">
                 <MenuItem key="setting:1">
                   <span>
-                    <Link to="/app/user_info">个人资料</Link>
+                    <Link to="/app/users/user_info">个人资料</Link>
                   </span>
                 </MenuItem>
                 <MenuItem key="setting:2">
                   <span>
-                    <Link to="/app/user_setting">个人设置</Link>
+                    <Link to="/app/users/user_setting">个人设置</Link>
                   </span>
                 </MenuItem>
                 <MenuItem key="logout">

@@ -64,6 +64,7 @@ class App extends Component {
           <Layout style={{ flexDirection: 'column' }}>
             {/* 头部 */}
             <HeaderCustomContainer
+            
               toggle={this.toggle}
               collapsed={this.state.collapsed}
               // user={this.roles.title || '' }

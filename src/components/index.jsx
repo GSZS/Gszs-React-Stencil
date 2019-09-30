@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-01 01:00:32
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-28 18:04:48
+ * @ Modified time: 2019-09-30 21:33:08
  * @ 文件解释: 路由组件出口配置
  */
 
@@ -20,6 +20,9 @@ const ProjectListContainer = lazy(() => import('@/containers/project/ProjectList
 const OgListContainer = lazy(() => import('@/containers/organization/OgListContainer'));
 const UserInfoContainer = lazy(() => import('@/containers/users/UserInfoContainer'));
 const UserSettingContainer = lazy(() => import('@/containers/users/UserSettingContainer'));
+const ForgetPwdContainer = lazy(() => import('@/containers/users/ForgetPwdContainer'));
+
+// 私人路线
 
 
 export default {
@@ -34,5 +37,6 @@ export default {
 	ProjectListContainer,
 	OgListContainer,
 	UserInfoContainer,
-	UserSettingContainer
+	UserSettingContainer,
+	ForgetPwdContainer
 }
