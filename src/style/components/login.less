@@ -3,13 +3,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
 
   .login-form {
-
+    padding-top: 5%;
     .middleBox {
-      width: calc(55vw);
-      height: calc(55vh);
+      width: calc(40vw);
+      height: calc(40vh);
       text-align: center;
       
       .formBox {
@@ -108,4 +107,24 @@
   left: 50px;
   position: absolute;
   background-size: cover;
+}
+
+// 注册页面
+.registerBox{
+  label{
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 1px;
+  }
+  width: 55%;
+  margin: 0 auto;
+  .cancelButton, .confirmButton{
+    width: 80px;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 5%;
+    background-color: #1aaa55;
+    border-color: #168f48;
+    color: #fff;
+  }
 }
