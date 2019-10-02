@@ -48,6 +48,7 @@ export default {
 	],
 	// 个人资料/个人设置
 	users: [
+		
 		{
 			key: '/app/users/user_info', 
 			title: '个人资料',

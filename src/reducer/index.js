@@ -11,7 +11,7 @@ import { isMobileReducer, logDataReducer } from './settingReducer';
 import { searchReducer } from './searchReducer';
 import { UserReducer, RoleReducer, MenuReducer, AuthReducer } from './authReducer';
 import { findAllOgReducer } from './organization/organizationReducer';
-import { getAllPjTypesReducer } from './project/ProjectReducer'
+import { getAllPjTypesReducer } from './project/ProjectReducer';
 
 const appReducer = combineReducers({
 	LoginReducer,

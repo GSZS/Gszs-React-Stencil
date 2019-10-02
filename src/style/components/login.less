@@ -1,59 +1,85 @@
-.login{
+.login {
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  .login-form{
-    width: 400px;
-    height: 300px;
-    padding: 36px;
-    background-color: #fff;
-    border-radius: 15px;
-    .login-logo{
-      position: relative;
+
+  .login-form {
+
+    .middleBox {
+      width: calc(55vw);
+      height: calc(55vh);
       text-align: center;
-      height: 40px;
-      line-height: 40px;
-      cursor: pointer;
-      margin-bottom: 24px;
-      span {
-        text-transform: uppercase;
-        display: inline-block;
-        img{
-          width: 50px;
-          height: 50px;
+      
+      .formBox {
+        padding-top: 5%;
+        > div{
+          box-shadow: 0 0 4px 2px #ccc;
+          background: rgba(210, 201, 201, 0.44);  
         }
-        span{
-          vertical-align: middle;
-          font-size: 20px;
-          color: white;
-          font-weight: bolder;
+        .ant-tabs-tab{
+          font-size: 23px;
+          font-weight: bold;
+          color: antiquewhite;
+          letter-spacing: 1px;
+        }
+        .formStyle {
+          
+          width: 50%;
+          margin: 0 auto;
+    
+          .githubAddress {
+            float: right;
+            font-size: 16px;
+            color: white;
+            font-weight: 500;
+          }
+
+          .inputCode {
+            float: left;
+            width: 40%;
+          }
+
+          .vcode {
+            float: right;
+          }
+        }
+      }
+
+      .login-logo {
+        position: relative;
+        text-align: center;
+        height: 40px;
+        line-height: 40px;
+        cursor: pointer;
+        margin-bottom: 24px;
+
+        span {
+          text-transform: uppercase;
+          display: inline-block;
+
+          img {
+            width: 50px;
+            height: 50px;
+          }
+
+          span {
+            vertical-align: middle;
+            font-size: 20px;
+            color: white;
+            font-weight: bolder;
+          }
+        }
+
+        .projectName{
+          letter-spacing: 1px;
+          font-size: 25px;
         }
       }
     }
-    .formStyle{
-      .userStyle > .ant-form-item-control-wrapper, .passwordStyle > .ant-form-item-control-wrapper{
-        width: 100%;
-        .ant-input-affix-wrapper{
-          height: 45px;
-        }
-      }
-      .githubAddress{
-        float: right;
-        font-size: 16px;
-        color: white;
-        font-weight: 500;
-      }
-      .inputCode{
-        float: left;
-        width: 40%;
-      }
-      .vcode{
-        float: right;
-      }
-    }
-    .canvasBox{
+
+    .canvasBox {
       position: absolute;
       top: 0;
       left: 0;
@@ -63,6 +89,7 @@
     }
   }
 }
+
 .installer {
   width: 0;
   height: 0;
@@ -73,12 +100,12 @@
   top: 0;
   right: 0;
 }
+
 .installer__btn {
   width: 50px;
   height: 50px;
   transform: rotate(45deg);
   left: 50px;
   position: absolute;
-  // background: url('./imgs/installer.png') no-repeat;
   background-size: cover;
 }

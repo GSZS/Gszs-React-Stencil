@@ -2,14 +2,13 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-27 13:48:36
+ * @ Modified time: 2019-10-02 12:51:04
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-18 14:36:52
  */
 
-const baseip = '192.168.50.87:5001'; // http是5001，https是5000
-const apiBaseip1 = ''; // 阿俊
-const apiBaseip2 = ''; // 高升
+const baseip = 'http://192.168.43.228:5001'; // http是5001，https是5000
+const apiBaseip2 = '';
 
 /**
  * @description 基础接口
@@ -22,7 +21,7 @@ export const LOGIN_URL = baseip + '/signin';
 export const GETLOGINAUTH = baseip + '/queryUserInfo'
 
  // 退出接口
-export const LOGOUT_URL = baseip + '/signout';
+export const LOGOUT_URL = baseip + '/v1/signout';
 
 /**
  * @description RBAC

@@ -9,6 +9,7 @@ import React from 'react';
 import {HashRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import NotFound from './components/pages/NotFound';
 import LoginContainer from './containers/loginContainer';
+import RegisterContainer from './containers/RegisterContainer';
 import AppContainer from './containers/AppContainer';
 // 私人路线组件
 import PrivateContainer from '@/containers/PrivateContainer'
@@ -24,6 +25,7 @@ export default () => (
       <Route path="/app" component={AppContainer} />
       <Route path="/404" component={NotFound} />
       <Route path="/login" component={LoginContainer} />
+      <Route path="/Register" component={RegisterContainer} />
       {/* 私人路线 */}
       <Route path='/private' component={PrivateContainer} />      
       <Route component={NotFound} />

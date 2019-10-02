@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-07-24 14:48:30
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-21 16:30:13
+ * @ Modified time: 2019-10-02 12:41:43
  * @ Description: 系统设置的Action(例如屏幕尺寸)
  */
 
@@ -34,6 +34,7 @@ export const isMobile = (_isMobile) => {
  */
 export const logout = callback => {
   return async dispatch => {
+    console.log('触发=>>>');
     const res = await LOGOUT();
     if(res && res.status === 200){
       // 因为localStoreage存的信息不多,所以直接处理
