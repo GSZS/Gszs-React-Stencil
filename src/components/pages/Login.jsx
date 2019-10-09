@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-07-01 15:49:46
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-08 21:29:07
+ * @ Modified time: 2019-10-09 22:00:50
  * @ 文件解释: 登录页面
  */
 
@@ -22,6 +22,10 @@ const FormItem = Form.Item;
 const { TabPane } = Tabs;
 
 class Login extends React.Component {
+
+  state = {
+    key: 1
+  }
 
   // componentDidMount() {
   //   let sakura_point_vsh = `
@@ -1273,7 +1277,7 @@ class Login extends React.Component {
   
   componentDidUpdate(){
     const { loginData, history } = this.props;
-    if (loginData.username) {
+    if (loginData.newUserData) {
         this.props.saveUserInfo(loginData); // 存localStore
         history.push('/');
       }
@@ -1284,6 +1288,13 @@ class Login extends React.Component {
     labelCol: { span: 6 },
     wrapperCol: { span: 18 },
   };
+
+  // 切换Tabs
+	handleChange = key => {
+    this.setState({
+      key,
+    })
+	}
 
   // 验证码改变时触发
   onVcodeChange(code) {
@@ -1330,7 +1341,7 @@ class Login extends React.Component {
               {/* <PwaInstaller /> */}
             </div>
             <div className="formBox">
-              <Tabs defaultActiveKey={1}>
+              <Tabs defaultActiveKey={this.state.key} onChange={this.handleChange} >
                 <TabPane tab="欢迎登录" key={1}>
                   <Form onSubmit={this.handleSubmit} className="formStyle" >
                     <FormItem className="userStyle" label="用户名 / 邮箱地址">
@@ -1420,7 +1431,7 @@ class Login extends React.Component {
                   </Form>
                 </TabPane>
                 <TabPane tab="注册" key={2}>
-                  <RegisterContainer {...this.props} />
+                  <RegisterContainer history = {this.props.history} />
                 </TabPane>
               </Tabs>
             </div>

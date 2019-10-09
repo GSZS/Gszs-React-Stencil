@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-10-02 12:56:03
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-08 17:04:02
+ * @ Modified time: 2019-10-09 22:04:42
  * @ 文件解释: 注册组件
  */
 
@@ -76,8 +76,8 @@ const Register = props => {
   // 注册成功后返回登录界面
   const handleCancle = e => {
     e.preventDefault();
-    const { history } = props;
-    history.push('/');
+    // const { history } = props;
+    props.history.push('/');
   }
 
 
