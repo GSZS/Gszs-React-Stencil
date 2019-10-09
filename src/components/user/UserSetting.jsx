@@ -2,11 +2,11 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-30 13:25:39
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-30 17:00:10
+ * @ Modified time: 2019-10-09 23:42:47
  * @ 文件解释: 个人设置UI组件
  */
 
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import { Tabs } from 'antd';
 import UpdatePwdContainer from '@/containers/users/userTabs/UpdatePwdContainer';
 import { SVGICON } from '@/components/svg/svgIcon';
@@ -16,10 +16,11 @@ export const UserSetting = props => {
 
   const { TabPane } = Tabs;
   const [tabKey, setTabKey] = useState(1);
+
   // 切换Tabs
-	const handleChange = key => {
-		setTabKey(key)
-	}
+  const handleChange = key => {
+    setTabKey(key)
+  }
 
   return (
     <div className="TabRegion">

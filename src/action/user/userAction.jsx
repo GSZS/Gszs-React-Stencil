@@ -8,23 +8,21 @@
 
 import * as UserConstant from '@/constants/user/userConstant';
 
-// 发送注册请求
+/////////
+///注册///
+/////////
 export const StartRegister = formData => {
   return {
     type: UserConstant.addRegister._start,
     formData
   }
 }
-
-// 成功处理注册请求
 export const SuccessRegister = payload => {
   return {
     type: UserConstant.addRegister._success,
     payload
   }
 }
-
-// 处理注册请求失败
 export const ErrorRegister = error => {
   return {
     type: UserConstant.addRegister._fail,
@@ -32,3 +30,24 @@ export const ErrorRegister = error => {
   }
 }
 
+/////////////
+///修改资料///
+/////////////
+export const StartUpdateUserInfo = formData => {
+  return {
+    type: UserConstant.updateUserInfo._start,
+    formData
+  }
+}
+export const SuccessUpdateUserInfo = payload => {
+  return {
+    type: UserConstant.updateUserInfo._success,
+    payload
+  }
+}
+export const ErrorUpdateUserInfo = error => {
+  return {
+    type: UserConstant.updateUserInfo._fail,
+    error
+  }
+}

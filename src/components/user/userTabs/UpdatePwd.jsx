@@ -2,20 +2,22 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-30 15:37:30
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-30 22:55:06
+ * @ Modified time: 2019-10-09 23:53:47
  * @ 文件解释: 更改密码UI组件
  */
 
 import React,{useState, useEffect} from 'react';
 import { Form, Input, Button, message, Tooltip } from 'antd';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
+import { UPDATEPWD } from '@/axios';
 
 const UpdatePwd = props => {
-
+  
   const [update, setUpdate] = useState(false);
   const [confirmDirty, setConfirmDirty] = useState(false);
   const { getFieldDecorator } = props.form;
   const FormItem = Form.Item;
+  
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -56,7 +58,17 @@ const UpdatePwd = props => {
     e.preventDefault();
     props.form.validateFieldsAndScroll((err, values) => {
       if(!err){
+        const formData = {}; 
         console.log('Received values of form: ', values);
+        formData.password = values.newPwd;
+        UPDATEPWD(formData).then((res, err) => {
+          if(err){
+            message.err(err)
+          }else if(res && res.status === 200){
+            const { history } = props;
+            history.push('/login')
+          }
+        })
       }else{
         message.error('表单有误')
       }
@@ -151,4 +163,4 @@ const UpdatePwd = props => {
   )
 }
 
-export default Form.create()(UpdatePwd);
+export default withRouter(Form.create()(UpdatePwd));

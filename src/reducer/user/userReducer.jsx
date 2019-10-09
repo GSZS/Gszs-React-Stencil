@@ -42,6 +42,3 @@ const UserReducer = (state, action, publicStateData, constants) => {
 export const registerReducer = (state = initialUserState, action) => {
   return UserReducer(state, action, 'userData', UserConstant.addRegister)
 }
-
-
-

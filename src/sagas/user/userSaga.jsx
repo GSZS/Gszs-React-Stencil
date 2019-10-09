@@ -8,8 +8,8 @@
 
 import { take, put, call } from 'redux-saga/effects';
 import { SuccessRegister, ErrorRegister } from '@/action/user/userAction';
-import { addRegister } from '@/constants/user/userConstant';
-import { REGISTER } from '@/axios';
+import { addRegister, updatePwd } from '@/constants/user/userConstant';
+import { REGISTER, UPDATEPWD } from '@/axios';
 import { message } from 'antd';
 
 /**

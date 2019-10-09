@@ -111,3 +111,10 @@ export const _addOrganization = baseip + '/v2/add_og';
 
 // 查询组织
 export const _findAllOrganization = baseip + '/app/group';
+
+/////////////
+///用户信息///
+/////////////
+
+// 修改密码
+export const _updatePwd = baseip + '/v1/update_pwd';

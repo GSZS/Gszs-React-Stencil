@@ -452,3 +452,19 @@ export const ADDOG = (axiosPath, formData) => {
     }
   })
 }
+
+/////////////
+///用户信息///
+/////////////
+
+// 更新密码
+export const UPDATEPWD = formData => {
+  getToken();
+  return post({
+    url: config._updatePwd,
+    data: qs.stringify(formData),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }    
+  })
+}

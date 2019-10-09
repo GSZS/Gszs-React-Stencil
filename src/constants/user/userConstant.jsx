@@ -12,20 +12,6 @@ export const addRegister = {
   _success: '_successAddRegister',
   _fail: '_failAddRegister'
 }
-      
-// 忘记密码/找回密码
-export const forgetPwd = {
-  _start: '_startforgetPwd',
-  _success: '_successforgetPwd',
-  _fail: '_failforgetPwd'
-}
-
-// 修改密码
-export const updatePwd = {
-  _start: '_startupdatePwd',
-  _success: '_successupdatePwd',
-  _fail: '_failupdatePwd'
-}
 
 // 更新用户信息
 export const updateUserInfo = {
