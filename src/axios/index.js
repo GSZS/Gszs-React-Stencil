@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-30 13:14:50
+ * @ Modified time: 2019-10-09 15:35:46
  * @ 文件解释: 请求数据的接口函数
  */
 
@@ -53,10 +53,7 @@ export const getLoginAuth = (username) => {
  * @method {POST}
  */
 export const handleLogin = (username, password) => {
-  // 清除token,方便开发环境
-  if (window.localStorage.getItem('token')) {
-    window.localStorage.removeItem('token');
-  }
+  getToken();
   return post({
     url: config.LOGIN_URL,
     data: qs.stringify({
@@ -69,10 +66,10 @@ export const handleLogin = (username, password) => {
 /**
  * @description 退出
  */
-export const LOGOUT = () => {
+export const LOGOUT = phonenumber => {
   getToken();
   return get({
-    url: config.LOGOUT_URL,
+    url: config.LOGOUT_URL + `?phonenumber=${phonenumber}`
   });
 };
 
@@ -86,6 +83,19 @@ export const GETADMININDEX = () => {
   });
 };
 
+/**
+ * @description 注册
+ * @param {Object} formData 表单
+ */
+export const REGISTER = formData => {
+  return post({
+    url: config.REGISTER_URL,
+    data: qs.stringify(formData),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  });
+}
 
 /**
  * @description 日志管理

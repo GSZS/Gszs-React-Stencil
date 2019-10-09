@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-02 21:36:36
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-02 11:45:37
+ * @ Modified time: 2019-10-09 16:22:32
  * @ 文件解释: 导航条头部使用者介绍
  */
 
@@ -54,7 +54,8 @@ class HeaderCustom extends Component {
     this.setState({
       _Modalvisible: false,
     });
-    this.props.logout((()=>{this.props.history.push('/login')}));
+    const phonenumber = window.localStorage.getItem('phonenumber');
+    this.props.logout( phonenumber, (()=>{this.props.history.push('/login')}));
   };
 
   // 新增项目跳转

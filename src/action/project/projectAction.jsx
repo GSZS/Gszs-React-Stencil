@@ -6,11 +6,9 @@
  * @ 文件解释: 项目类Action
  */
 
-import * as PjConstant from '../../constants/project/projectConstants';
+import * as PjConstant from '@/constants/project/projectConstants';
 
-/**
- *  @description 获取项目类型
- */
+// 获取项目类型
 export const GetAllPjAction = axiosPath => {
   return {
     type: PjConstant.allPjTypeConstant._start,

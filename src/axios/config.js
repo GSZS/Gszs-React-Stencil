@@ -2,30 +2,16 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-02 12:51:04
+ * @ Modified time: 2019-10-09 16:21:54
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-18 14:36:52
  */
 
-const baseip = 'http://192.168.43.228:5001'; // http是5001，https是5000
-const apiBaseip2 = '';
+const baseip = 'http://192.168.0.106:5001'; // http是5001，https是5000
 
-/**
- * @description 基础接口
- */
-
- // 登录接口
-export const LOGIN_URL = baseip + '/signin';
-
- // 未登录获取用户信息
-export const GETLOGINAUTH = baseip + '/queryUserInfo'
-
- // 退出接口
-export const LOGOUT_URL = baseip + '/v1/signout';
-
-/**
- * @description RBAC
- */
+//////////
+///RBAC///
+//////////
 
  // 删除权限
 export const _deleteAuth = baseip + '/web/admin/item/delItem';
@@ -87,6 +73,23 @@ export const _queryHasNotItem = baseip + '/web/admin/item/queryHasNotItem'
 // 角色添加权限接口
 export const _roleItemAdd = baseip + '/web/roleItem/add'
 
+/////////////
+//常规接口类//
+////////////
+
+ // 登录接口
+ export const LOGIN_URL = baseip + '/v1/signin';
+
+ // 未登录获取用户信息
+export const GETLOGINAUTH = baseip + '/queryUserInfo'
+
+ // 退出接口
+export const LOGOUT_URL = baseip + '/v1/signout';
+
+// 注册
+export const REGISTER_URL = baseip + '/v1/register';
+
+
 
 /////////////
 //项目接口类//
@@ -96,7 +99,7 @@ export const _roleItemAdd = baseip + '/web/roleItem/add'
 export const _allProjectType = baseip + '';
 
 // 新增项目接口
-export const _addProject = apiBaseip2 + '/project/createProject';
+export const _addProject = baseip + '/project/createProject';
 
 
 /////////////
@@ -104,7 +107,7 @@ export const _addProject = apiBaseip2 + '/project/createProject';
 ////////////
 
 // 新增组织
-export const _addOrganization = apiBaseip2 + '/v2/add_og';
+export const _addOrganization = baseip + '/v2/add_og';
 
 // 查询组织
-export const _findAllOrganization = apiBaseip2 + '/app/group';
+export const _findAllOrganization = baseip + '/app/group';

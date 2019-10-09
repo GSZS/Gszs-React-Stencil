@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-10-02 12:56:03
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-02 16:38:37
+ * @ Modified time: 2019-10-08 17:04:02
  * @ 文件解释: 注册组件
  */
 
@@ -21,19 +21,28 @@ const Register = props => {
 
   const [confirmDirty, setConfirmDirty] = useState(false);
   const [update, setUpdate] = useState(false);
+  const { history, userData, saveUserInfo, StartRegister } = props;
+
+  // 注册成功跳转到登录界面
+  useEffect(() => {
+    if(userData.code && userData.code === 200){
+      saveUserInfo(userData);
+      history.push('/');
+    }
+  }, [props.userData.code]);
 
   // 注册
   const handleSubmit = e => {
     e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
-        props.Register({
-          nickname: values.nickname,
+        const registerData = {
           username: values.username,
-          mobile: values.mobile,
+          phonenumber: values.phonenumber,
           email: values.email,
           password: values.password
-        })
+        }
+        StartRegister(registerData);
       } else {
         message.error('表单有误');
       }
@@ -79,18 +88,18 @@ const Register = props => {
       <div className="registerBox">
         <div style={{ textAlign: 'left' }} >
           <Form onSubmit={handleSubmit}>
-            <FormItem label="昵称">
-              {getFieldDecorator('nickname', {
+            <FormItem label="用户名">
+              {getFieldDecorator('username', {
                 rules: [
                   {
                     required: true,
-                    message: '昵称不能为空',
+                    message: '用户名不能为空',
                   },
                 ],
-              })(<Input type="text" placeholder="请输入你的昵称" />)}
+              })(<Input type="text" placeholder="请输入你的用户名" />)}
             </FormItem>
             <FormItem label="手机号">
-              {getFieldDecorator('mobile', {
+              {getFieldDecorator('phonenumber', {
                 rules: [
                   {
                     required: true,

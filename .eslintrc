@@ -18,8 +18,8 @@
       "ecmaFeatures": {
         "legacyDecorators": true
       }
-    },
-    "react-hooks/rules-of-hooks": "error",      // React钩子规则
-    "react-hooks/exhaustive-deps": "warn"
+    }
+    // "react-hooks/rules-of-hooks": "error",      // React钩子规则
+    // "react-hooks/exhaustive-deps": "warn"
   }
 }
