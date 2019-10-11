@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-09 15:35:46
+ * @ Modified time: 2019-10-11 00:03:49
  * @ 文件解释: 请求数据的接口函数
  */
 
@@ -34,7 +34,6 @@ const getToken = () =>
     'authorization'
   ] = window.localStorage.getItem('token'));
 axios.defaults.withCredentials = true;
-
 
 /**
  * @description 获取权限
@@ -432,13 +431,21 @@ export const GETSELECTDATA = axiosPath => {
  */
 export const ADDFORM = (axiosPath, formData) => {
   getToken();
-  return post({
-    url: axiosPath,
-    data: qs.stringify(formData),
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-  });
+  console.log('formData', formData.get('file'))
+  if(formData instanceof FormData){
+    return post({
+      url: axiosPath,
+      data: formData
+    });
+  }else {
+    return post({
+      url: axiosPath,
+      data: qs.stringify(formData),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+  }
 }
 
 // 新增组织

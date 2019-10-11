@@ -2,13 +2,14 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-30 13:25:39
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-09 23:42:47
+ * @ Modified time: 2019-10-10 10:12:05
  * @ 文件解释: 个人设置UI组件
  */
 
 import React, { useState } from 'react';
 import { Tabs } from 'antd';
 import UpdatePwdContainer from '@/containers/users/userTabs/UpdatePwdContainer';
+import UpdateUserInfoContainer from '@/containers/users/userTabs/UpdateInfo';
 import { SVGICON } from '@/components/svg/svgIcon';
 import '@/style/components/users/userSetting.less';
 
@@ -39,7 +40,7 @@ export const UserSetting = props => {
           }
           key={1}
         >
-          修改资料
+          <UpdateUserInfoContainer />
         </TabPane>
         <TabPane
           tab={

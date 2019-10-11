@@ -19,3 +19,7 @@ export const _startGetLogData = '_startGetLogData'; // 开始查询日志
 export const _successGetLogData = '_successGetLogData'; // 开始查询日志
 export const _failGetLogData = '_failGetLogData'; // 开始查询日志
 export const _stopGetLogData = '_stopGetLogData'; // 开始查询日志
+
+
+export const user_id = window.localStorage.getItem('user_id');         // user_id
+export const phonenumber = window.localStorage.getItem('phonenumber')  // 手机号码

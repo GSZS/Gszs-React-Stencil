@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-07-24 14:48:30
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-09 17:03:54
+ * @ Modified time: 2019-10-10 10:48:23
  * @ Description: 系统设置的Action(例如屏幕尺寸)
  */
 
@@ -39,10 +39,12 @@ export const logout = ( phonenumber, callback) => {
       if(window.localStorage.getItem('token') 
         && window.localStorage.getItem('roles')
         && window.localStorage.getItem('phonenumber')
+        && window.localStorage.getItem('user_id')
       ){
         window.localStorage.removeItem('token');
         window.localStorage.removeItem('roles');
         window.localStorage.removeItem('phonenumber');
+        window.localStorage.removeItem('user_id');
       }
       dispatch({
         type: settingConstants._isLogout

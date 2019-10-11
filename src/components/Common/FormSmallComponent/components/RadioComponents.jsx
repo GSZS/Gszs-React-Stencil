@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-24 09:49:10
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-29 15:19:05
+ * @ Modified time: 2019-10-11 14:35:07
  * @ 文件解释: 单选框Ui-组件
  */
 
@@ -37,7 +37,7 @@ export const RadioComponents = props => {
       <FormItem key={field} label={label}>
         {
           props.getFieldDecorator(field, {
-            initialValue: 2,
+            initialValue: 1,
           })(
             <Radiogroup style={{width: '100%'}} value={radioValue} onChange={changeHanle}>
               <StyleDivFlex>

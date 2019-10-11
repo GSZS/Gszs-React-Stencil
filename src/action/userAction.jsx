@@ -45,7 +45,7 @@ export const rememberPwd = (_boolean, username, password) => {
 
 /**
  * @description localStore存储用户基础信息/token
- * @param {loginData} 用户登陆后的信息
+ * @param {loginData} 用户登陆后/注册后的信息(因为默认注册成功后跳转到首页)
  */
 
 export const saveUserInfo = (loginData) => {
@@ -54,7 +54,8 @@ export const saveUserInfo = (loginData) => {
    const {newUserData} = loginData;
    
    localStorage.setItem('roles', JSON.stringify(newUserData.roles));
-   localStorage.setItem('phonenumber', JSON.stringify(newUserData.phonenumber))
+   localStorage.setItem('phonenumber', JSON.stringify(newUserData.phonenumber));
+   localStorage.setItem('user_id', JSON.stringify(newUserData.user_id));
    localStorage.setItem('token', loginData.token);
    dispatch({
      type: userConstants.saveUserInfo
