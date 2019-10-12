@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-30 15:37:30
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-09 23:53:47
+ * @ Modified time: 2019-10-12 15:23:55
  * @ 文件解释: 更改密码UI组件
  */
 
@@ -10,6 +10,7 @@ import React,{useState, useEffect} from 'react';
 import { Form, Input, Button, message, Tooltip } from 'antd';
 import {Link, withRouter} from 'react-router-dom';
 import { UPDATEPWD } from '@/axios';
+import { user_id, phonenumber } from '@/constants/settingConstant'
 
 const UpdatePwd = props => {
   
@@ -59,14 +60,18 @@ const UpdatePwd = props => {
     props.form.validateFieldsAndScroll((err, values) => {
       if(!err){
         const formData = {}; 
-        console.log('Received values of form: ', values);
-        formData.password = values.newPwd;
+        formData.user_id = user_id;
+        formData.oldpassword = values.oldPwd;
+        formData.newpassword = values.newPwd;
         UPDATEPWD(formData).then((res, err) => {
-          if(err){
-            message.err(err)
-          }else if(res && res.status === 200){
+          if(res && res.status === 200){
             const { history } = props;
-            history.push('/login')
+            props.logout( phonenumber, (()=>{history.push('/login')}));
+          } else if(res && res.status !== 200 ){
+            message.error(res.message);
+          }
+          else{
+            message.error(err);
           }
         })
       }else{

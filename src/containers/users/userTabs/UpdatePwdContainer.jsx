@@ -9,8 +9,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import UpdatePwd from '@/components/user/userTabs/UpdatePwd';
+import { logout } from '@/action/settingAction'
 
 const UpdatePwdContainer = props => <UpdatePwd {...props} />  
 
-export default connect(null, null)(UpdatePwdContainer)
+export default connect(null, {
+  logout
+})(UpdatePwdContainer)
 
