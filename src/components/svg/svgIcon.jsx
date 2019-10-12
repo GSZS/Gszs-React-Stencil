@@ -17,14 +17,17 @@
  * @param { icon-mima } 密码
  * @param { icon-bianji } 编辑
  * @param { icon-xiangji } 相机
- * @param {} 
+ * @param { icon-weixin } 微信
+ * @param { icon-github } github
+ * @param { icon-qq } qq
+ * @param { icon-weibo } 微博 
  */
 
  import {Icon} from 'antd'
 
  
  // 图标代码地址
- const iconUrl = '//at.alicdn.com/t/font_1423056_7367urunr7p.js';
+ const iconUrl = '//at.alicdn.com/t/font_1423056_ezv1es1sb.js';
  
 // 创建icon-SVG图标
 export const SVGICON = Icon.createFromIconfontCN({

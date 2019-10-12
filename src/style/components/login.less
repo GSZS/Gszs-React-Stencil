@@ -10,34 +10,30 @@
       font-size: 20px;
       text-align: center;
       text-align: center;
-      
+
       .formBox {
         padding-top: 5%;
         text-align: center;
-        > div{
+
+        >div {
           width: 30%;
           margin: 0 auto;
           border-radius: 5%;
           box-shadow: 0 0 4px 2px #ccc;
-          background: rgba(210, 201, 201, 0.44);  
+          background: rgba(210, 201, 201, 0.44);
         }
-        .ant-tabs-tab{
+
+        .ant-tabs-tab {
           font-size: 23px;
           font-weight: bold;
           color: antiquewhite;
           letter-spacing: 1px;
         }
+
         .formStyle {
-          
+
           width: 60%;
           margin: 0 auto;
-    
-          .githubAddress {
-            float: right;
-            font-size: 16px;
-            color: white;
-            font-weight: 500;
-          }
 
           .inputCode {
             float: left;
@@ -48,6 +44,44 @@
             float: right;
           }
         }
+
+        // 第三方登录
+        .third-login{
+
+          width: 30%;
+          margin: 0 auto;
+          margin-top: 20px;
+          color: #8590a6;
+          border-radius: 4px;
+          -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
+          box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
+          
+          padding: 0 24px;
+
+          .third-login-name{
+            text-align: center;
+            font-size: 17px;
+            color: white;
+          }
+
+          .third-login-content{
+            height: 60px;
+            line-height: 60px;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+
+            // github
+            .githubAddress {
+              font-size: 16px;
+              color: white;
+              font-weight: 500;
+            }            
+          }
+
+        }
+
       }
 
       .login-logo {
@@ -76,7 +110,7 @@
           }
         }
 
-        .projectName{
+        .projectName {
           letter-spacing: 1px;
           font-size: 25px;
         }
@@ -115,15 +149,18 @@
 }
 
 // 注册页面
-.registerBox{
-  label{
+.registerBox {
+  label {
     font-size: 15px;
     font-weight: 500;
     letter-spacing: 1px;
   }
+
   width: 55%;
   margin: 0 auto;
-  .cancelButton, .confirmButton{
+
+  .cancelButton,
+  .confirmButton {
     width: 80px;
     height: 40px;
     font-size: 15px;
