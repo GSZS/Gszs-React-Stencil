@@ -475,3 +475,15 @@ export const UPDATEPWD = formData => {
     }    
   })
 }
+
+// 找回密码
+export const FINDPWD = formData => {
+  getToken();
+  return post({
+    url: config._findPwd,
+    data: qs.stringify(formData),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }    
+  })
+}

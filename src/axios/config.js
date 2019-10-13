@@ -2,12 +2,12 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-12 11:00:51
+ * @ Modified time: 2019-10-13 09:26:06
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-18 14:36:52
  */
 
-const baseip = 'http://192.168.101.122:5001'; // http是5001，https是5000
+const baseip = 'http://192.168.50.87:5001'; // http是5001，https是5000
 
 //////////
 ///RBAC///
@@ -121,3 +121,6 @@ export const _updatePwd = baseip + '/v1/update_pwd';
 
 // 修改资料
 export const _updateUserInfo = baseip + '/v1/update_userinfo';
+
+// 找回密码
+export const _findPwd = baseip + '/v1//find_pwd';

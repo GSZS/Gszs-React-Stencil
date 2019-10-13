@@ -9,7 +9,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ForgetPwd from '@/components/user/ForgetPwd';
+import { logout } from '@/action/settingAction'
 
 const ForgetPwdContainer = props => <ForgetPwd {...props} />
 
-export default connect()(ForgetPwdContainer);
+export default connect(null, {
+  logout
+})(ForgetPwdContainer);

@@ -59,6 +59,7 @@ export default {
 			title: '个人设置',
 			component: 'UserSettingContainer'
 		},
+		// 内部的忘记密码设置
 		{
 			key: '/private/users/forget_pwd', component: 'ForgetPwdContainer'			
 		}

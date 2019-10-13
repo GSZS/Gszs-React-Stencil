@@ -2,12 +2,12 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-07-01 15:49:46
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-12 16:32:18
+ * @ Modified time: 2019-10-13 10:27:36
  * @ 文件解释: 登录页面
  */
 
 import React from 'react';
-import { Form, Icon, Input, Button, Checkbox, Tabs } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Tabs, Tooltip } from 'antd';
 import { aes_128_cbc_key, aes_128_cbc_iv } from '@/constants';
 import { cryptoTools } from '@/utils/utils';
 import LogoImg from '@/assets/image/logo.png';
@@ -16,6 +16,7 @@ import tools from '@/utils/tools';
 import cookies from 'react-cookies';
 import RegisterContainer from '@/containers/RegisterContainer';
 import { SVGICON } from '@/components/svg/svgIcon';
+import { Link } from 'react-router-dom';
 import '@/style/components/login.less';
 
 
@@ -169,7 +170,7 @@ class Login extends React.Component {
                         valuePropName: 'checked',
                         initialValue: true,
                       })(<Checkbox>记住我</Checkbox>)}
-
+                      <Link to="/forgetpwd" className="forget-pwd-style" >忘记密码 ? </Link>
                       <Button
                         type="primary"
                         htmlType="submit"
