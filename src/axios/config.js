@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-13 09:26:06
+ * @ Modified time: 2019-10-14 00:00:55
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-18 14:36:52
  */
@@ -123,4 +123,14 @@ export const _updatePwd = baseip + '/v1/update_pwd';
 export const _updateUserInfo = baseip + '/v1/update_userinfo';
 
 // 找回密码
-export const _findPwd = baseip + '/v1//find_pwd';
+export const _findPwd = baseip + '/v1/find_pwd';
+
+///////////
+///API///
+///////////
+
+// 邮件验证码
+export const _getEmailCode = baseip + '/api/send_emailCode';
+
+// 发送邮件
+export const _sendEmail = baseip + '/api/send_email';

@@ -487,3 +487,23 @@ export const FINDPWD = formData => {
     }    
   })
 }
+
+///////////
+///API///
+///////////
+
+// 获取邮件验证码
+export const GETEMAILCODE = email => {
+  getToken();
+  return get({
+    url: config._getEmailCode+`?email=${email}`
+  })
+}
+
+// 发送邮件
+export const SETEMAIL = email => {
+  getToken();
+  return get({
+    url: config._sendEmail+`?email=${email}`
+  })
+}
