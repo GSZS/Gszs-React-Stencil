@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-30 19:56:14
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-14 01:13:38
+ * @ Modified time: 2019-10-14 01:49:33
  * @ 文件解释: 忘记密码/找回密码UI组件
  */
 
@@ -28,10 +28,10 @@ const ForgetPwd = props => {
     e.preventDefault();
     props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        setDisplayForm(!displayForm);
-        setReceiveEmail(values.email);
         SETEMAIL(values.email).then(res => {
           if (res && res.status === 200) {
+            setDisplayForm(!displayForm);
+            setReceiveEmail(values.email);
             message.success('找回密码验证码已发送至你的注册邮箱');
           } else {
             message.error(res.message);

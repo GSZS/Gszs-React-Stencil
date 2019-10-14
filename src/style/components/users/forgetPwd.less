@@ -2,35 +2,39 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-30 21:05:22
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-13 15:28:32
+ * @ Modified time: 2019-10-14 13:39:26
  * @ 文件解释: 忘记密码less样式
  */
 
 
-.fontStyle{
+.fontStyle {
   font-size: 20px;
   font-weight: 500;
 }
 
+@width: 100%;
 
-.forgetPwdStyle{
+
+.forgetPwdStyle {
   text-align: center;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
-  .headerContent{
-    img{
+
+  .headerContent {
+    img {
       width: 100px;
       height: 100px;
     }
   }
-  .middleContent{
-    padding-top: 100px; 
 
-    .leftContentHeader{
+  .middleContent {
+    padding-top: 100px;
+
+    .leftContentHeader {
       .fontStyle();
     }
 
-    .leftContent{
+    .leftContent {
       width: 50%;
       margin: 0 auto;
       padding-top: 5%;
@@ -38,29 +42,41 @@
       font-size: 17px;
     }
 
-    .rightContent{
-      .rightContent-1{
+    .rightContent {
+      .rightContent-1 {
         .fontStyle();
       }
 
-      .formStyle{
+      .formStyle {
         width: 40%;
         margin: 0 auto;
-        
-        button{
+
+        .inputCode {
+          widows: 50%;
+          float: left;
+        }
+
+        button {
           background-color: #1f78d1;
           border-color: #1b69b6;
           color: #fff;
         }
 
-        .hasVerifyCode{
-          width: 50%;
+        .hasVerifyCode {
+          width: 100%;
         }
 
-        .countDownCode{
+        .countDownCode {
           color: white;
           font-weight: 700;
           cursor: pointer;
+        }
+
+        .sendEmailButton_2{
+          clear: left;
+          .sendEmail_2 {
+            width: @width;
+          }
         }
 
       }

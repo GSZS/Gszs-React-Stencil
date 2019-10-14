@@ -2,13 +2,13 @@
  * @ Author: Gszs
  * @ Create Time: 2019-10-14 00:14:23
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-14 01:23:43
+ * @ Modified time: 2019-10-14 13:19:57
  * @ 文件解释: 专门用于显示倒计时验证码的组件
  */
 
-import React,{useState, useEffect} from 'react';
-import { Form, Button, Input, message} from 'antd';
-import { GETEMAILCODE } from '@/axios'
+import React, { useState, useEffect } from 'react';
+import { Form, Button, Input, message } from 'antd';
+import { SETEMAIL, FINDPWD } from '@/axios'
 
 const HasVerifyCode = props => {
 
@@ -20,7 +20,36 @@ const HasVerifyCode = props => {
   // 重新获取邮件验证码
   const getEmailCode = e => {
     e.preventDefault();
-    GETEMAILCODE(props.receiveEmail);
+    SETEMAIL(props.email).then(res => {
+      if (res && res.status === 200) {
+        message.success('找回密码验证码已发送至你的注册邮箱');
+      } else {
+        message.error(res.message);
+      }
+    })
+  }
+
+  // 发送邮件
+  const handleSubmit = e => {
+    e.preventDefault();
+    props.form.validateFieldsAndScroll((err, values) => {
+      console.log('=>>>', values);
+      if (!err) {
+        let formData = {};
+        Object.keys(values).map((cv, index) => {
+          formData[cv] = values[cv];
+        })
+        FINDPWD(formData).then(res => {
+          if (res && res.status === 200) {
+            message.success('验证正确')
+          } else {
+            message.error(res.message)
+          }
+        })
+      } else {
+        message.error('表单有误');
+      }
+    })
   }
 
   // 60s倒计时
@@ -37,10 +66,10 @@ const HasVerifyCode = props => {
   }, [])
 
   return (
-    <Form className="formStyle">
+    <Form className="formStyle" onSubmit={handleSubmit}>
       <FormItem label="注册时的邮箱">
         {getFieldDecorator('email', {
-          initialValue: props.receiveEmail,
+          initialValue: props.email,
           rules: [
             {
               required: true,
@@ -53,7 +82,7 @@ const HasVerifyCode = props => {
         />)}
       </FormItem>
       {/* 验证码 */}
-      <FormItem>
+      <FormItem className="inputCode">
         {getFieldDecorator('verifyCode', {
           rules: [
             {
@@ -61,29 +90,25 @@ const HasVerifyCode = props => {
               message: '验证码不能为空',
             }
           ],
-        })(
-          <>
-            <Input type="text" placeholder="请输入邮箱验证码" className="hasVerifyCode" />
-            {/* 60s倒计时 */}
-            <Button className="countDownCode"
-              style={
-                countDownTime == 0 ? {
-                  cursor: 'point'
-                } : {
-                    opacity: .5,
-                    pointerEvents: 'none',
-                  }
-              }
-              onClick={getEmailCode}
-            >
-              {countDownTime == 0 ? '重新获取邮箱验证码' : `${countDownTime}秒后可重发`}
-            </Button>
-          </>
-        )}
+        })(<Input type="text" placeholder="请输入邮箱验证码" className="hasVerifyCode" />)}
       </FormItem>
-      <FormItem>
+      {/* 60s倒计时 */}
+      <Button className="countDownCode"
+        style={
+          countDownTime == 0 ? {
+            cursor: 'point'
+          } : {
+              opacity: .5,
+              pointerEvents: 'none',
+            }
+        }
+        onClick={getEmailCode}
+      >
+        {countDownTime == 0 ? '重新获取邮箱验证码' : `${countDownTime}秒后可重发`}
+      </Button>
+      <FormItem className="sendEmailButton_2">
         {/* TODO: htmlType="submit配合onSubmit={handleSubmit}"会自动提交表单 */}
-        <Button className="sendEmail" htmlType="submit" >
+        <Button className="sendEmail_2" htmlType="submit" >
           下一步
         </Button>
       </FormItem>
