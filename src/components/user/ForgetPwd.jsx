@@ -2,14 +2,14 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-30 19:56:14
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-14 01:49:33
+ * @ Modified time: 2019-10-14 20:58:58
  * @ 文件解释: 忘记密码/找回密码UI组件
  */
 
 import React, { useState } from 'react';
 import { Row, Col, Button, Form, Input, message } from 'antd';
 import '@/style/components/users/forgetPwd.less';
-import { withRouter } from 'react-router-dom';
+import {Link, withRouter } from 'react-router-dom';
 import logo from '@/assets/image/logo.png';
 import { phonenumber } from '@/constants/settingConstant';
 import { SETEMAIL } from '@/axios';
@@ -41,13 +41,6 @@ const ForgetPwd = props => {
         message.error('表单有误');
       }
     })
-  }
-
-  // 重置密码后点击跳转到登录清除localstore保存的信息
-  const handleClick = e => {
-    e.preventDefault();
-    const { history } = props;
-    props.logout(phonenumber, (() => { history.push('/login') }));
   }
 
   return (
@@ -102,9 +95,9 @@ const ForgetPwd = props => {
               }
               <div>
                 <span>我又记起来了.
-                  <a style={{ color: '#1b69b6' }} onClick={handleClick}>
-                    &nbsp;&nbsp;登录
-                  </a>
+                  <Link to="/login" style={{ color: '#1b69b6' }}>
+                    &nbsp;&nbsp;返回登录界面
+                  </Link>
                 </span>
               </div>
             </div>
