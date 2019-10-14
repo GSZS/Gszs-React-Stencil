@@ -492,18 +492,22 @@ export const FINDPWD = formData => {
 ///API///
 ///////////
 
-// 获取邮件验证码
-// export const GETEMAILCODE = email => {
-//   getToken();
-//   return get({
-//     url: config._getEmailCode+`?email=${email}`
-//   })
-// }
-
 // 发送邮件
 export const SETEMAIL = email => {
   getToken();
   return get({
     url: config._sendEmail+`?email=${email}`
+  })
+}
+
+// 重设密码
+export const RESETPWD = formData => {
+  getToken();
+  return post({
+    url: config._resetPwd,
+    data: qs.stringify(formData),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }    
   })
 }

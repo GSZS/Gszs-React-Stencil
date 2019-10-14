@@ -125,6 +125,9 @@ export const _updateUserInfo = baseip + '/v1/update_userinfo';
 // 找回密码
 export const _findPwd = baseip + '/v1/find_pwd';
 
+// 重设密码
+export const _resetPwd = baseip + '/v1/reset_pwd';
+
 ///////////
 ///API///
 ///////////

@@ -11,8 +11,8 @@ import { Row, Col, Button, Form, Input, message } from 'antd';
 import '@/style/components/users/forgetPwd.less';
 import { withRouter } from 'react-router-dom';
 import logo from '@/assets/image/logo.png';
-import { phonenumber } from '@/constants/settingConstant'
-import { SETEMAIL } from '@/axios'
+import { phonenumber } from '@/constants/settingConstant';
+import { SETEMAIL } from '@/axios';
 import HasVerifyCode from './HasVerifyCode';
 
 const ForgetPwd = props => {
@@ -101,7 +101,7 @@ const ForgetPwd = props => {
                 )
               }
               <div>
-                <span>如已经重置好了密码,请点击
+                <span>我又记起来了.
                   <a style={{ color: '#1b69b6' }} onClick={handleClick}>
                     &nbsp;&nbsp;登录
                   </a>
