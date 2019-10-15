@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-20 23:20:10
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-28 15:27:36
+ * @ Modified time: 2019-10-15 11:16:08
  * @ 文件解释: 组织类Action
  */
 
@@ -41,6 +41,14 @@ export const AddOgAction = (axiosPath, formData) => {
     type: OjConstant.addOj._start,
     axiosPath,
     formData
+  }
+}
+
+// 新增组织成功
+export const AddOgSuccessAction = payload => {
+  return {
+    type: OjConstant.addOj._success,
+    payload
   }
 }
 

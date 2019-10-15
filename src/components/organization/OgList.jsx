@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-28 17:04:10
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-29 16:20:25
+ * @ Modified time: 2019-10-15 11:08:58
  * @ 文件解释: 组织列表容器组件
  */
 
@@ -27,7 +27,6 @@ export const OgList = props => {
   }
   // 触发公共上传组件的submit
   const handleOk = () => {   
-    console.log('->>>', refContainer.current)
     refContainer.current.props.onSubmit();
     setVisible(!visible);
   }

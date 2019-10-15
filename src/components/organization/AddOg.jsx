@@ -10,6 +10,7 @@ import React from 'react';
 import UpoloadComponentContainer from '@/containers/uploadComponentContainer'
 import '@/style/components/project/addProject.less';
 import { _addOrganization } from '@/axios/config';
+import { AddOgAction } from '@/action/organization/OrganizationAction';
 
 export const AddOg = props => {
   // 配置表单
@@ -43,9 +44,10 @@ export const AddOg = props => {
 
   return (
     <UpoloadComponentContainer
-      FormConfig={addOj} 
-      formItemLayout = {true}
-      interfaceUrl = {_addOrganization}
+      FormConfig={addOj}
+      formItemLayout={true}
+      interfaceUrl={_addOrganization}
+      _startAction = { AddOgAction }
       {...props}
     />
   )

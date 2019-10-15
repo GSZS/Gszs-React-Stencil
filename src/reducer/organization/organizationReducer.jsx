@@ -46,3 +46,9 @@ export const findAllOgReducer = (state = initialOgState, action) => {
   return OgReducer(state, action, 'allOgData', organizationConstants.findAllOg)
 }
 
+/**
+ * @description 新增组织成功
+ */
+export const addOgReducer = (state = initialOgState, action) => {
+  return OgReducer(state, action, 'allOgData', organizationConstants.addOj)
+}

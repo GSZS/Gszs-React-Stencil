@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-04 22:08:25
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-11 14:32:40
+ * @ Modified time: 2019-10-15 11:05:09
  * @ 文件解释: 表单上传公共组件(涵盖富文本,markdown)
  */
 
@@ -135,7 +135,8 @@ const BaseFormComponent = props => {
         Object.keys(values).map((cv, index) => {
           formData.append(cv, values[cv]);
         });
-        props.addFormAction(props.interfaceUrl, formData);
+        // props._startAction -> 用于在FormAction中做开始请求的中转Action
+        props.addFormAction(props.interfaceUrl, formData, props._startAction);
       } else {
         message.error(`表单格式有误`);
       }

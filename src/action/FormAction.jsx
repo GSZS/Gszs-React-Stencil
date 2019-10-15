@@ -11,30 +11,33 @@ import * as formConstants from '../constants/FormConstants';
 /**
  * @description 新增表单
  * @param {String} path axios请求地址
+ * @param {Object} path 成功的中转Action
+ * @param {Object} path 错误的中转Action
  */
-export const addFormAction = (axiosPath, formData) => {
+export const addFormAction = (axiosPath, formData, _startAction) => {
   return {
     type: formConstants.addForm._start,
     axiosPath,
-    formData
+    formData,
+    _startAction
   }
 }
 
-// 新增表单成功
-export const addFormSuccessAction = payload => {
-  return {
-    type: formConstants.addForm._success,
-    payload
-  }
-}
+// // 新增表单成功
+// export const addFormSuccessAction = payload => {
+//   return {
+//     type: formConstants.addForm._success,
+//     payload
+//   }
+// }
 
-// 新增表单失败
-export const addFormErrorAction = error => {
-  return {
-    type: formConstants.addForm._fail,
-    error
-  }
-}
+// // 新增表单失败
+// export const addFormErrorAction = error => {
+//   return {
+//     type: formConstants.addForm._fail,
+//     error
+//   }
+// }
 
 
 
