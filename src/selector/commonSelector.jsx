@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-07-23 10:22:18
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-02 21:55:59
+ * @ Modified time: 2019-10-16 10:12:28
  * @ Description: 公共Selector
  * @ Use: 设置一个input-selector , 改变input-selector后的函数 , 公共selector
  */
@@ -12,9 +12,6 @@ import { createSelector } from 'reselect';
 export const inputSelectLogin = state => state.LoginReducer.loginData;
 export const judgementMobile = state => state.isMobileReducer.isMobile;
 export const judgementDashboard = state => state.dashboardReducer.dashboardInitialValue;
-export const judgementGetTable = state => state.getTableReducer.tableData;
-export const judgementGetTableById = state => state.getTableByIdReducer.tableDataById;
-export const judgementGetTableTotal = state => state.getTableReducer.total;
 export const judgementGetLogData = state => state.logDataReducer.logData;
 export const judgementGetLogDataTotal = state => state.logDataReducer.logDataTotal;
 export const judgementGetSearchData = state => state.searchReducer.getSearchResult;
@@ -39,8 +36,7 @@ export const judgementGetPjTypes = state => state.getAllPjTypesReducer.allPjType
 ///////////
 
 // 获取所有组织
-export const judgementGetAllOg = state => state.findAllOgReducer.allOgData;
-
+export const judgementGetNewOg = state => state.addOgReducer.allOgData;
 
 //////////////
 ///用户操作类///

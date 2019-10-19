@@ -2,46 +2,88 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-28 17:04:10
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-15 11:08:58
+ * @ Modified time: 2019-10-19 12:29:54
  * @ 文件解释: 组织列表容器组件
  */
 
-import React,{ useState, useRef } from 'react';
+import React,{ useEffect, useState, useRef } from 'react';
 import ControlTableContainer from '@/containers/controlTableContainer';
-import { Button, Modal } from 'antd';
+import { Button, Modal, message } from 'antd';
 import BreadcrumbCustom from '@/components/BreadcrumbCustom';
 import '@/style/components/organization/oglist.less';
 import AddOgContainer from '@/containers/organization/AddOgContainer';
+import { _findAllOrganization } from '@/axios/config';
+import { GETALLOG } from '@/axios';
 
 export const OgList = props => {
   
   const [visible, setVisible] = useState(false);
   const refContainer = useRef(null);
+  const [ data, setData ] = useState([]);
+
+  // 获取所有组织
+  useEffect(() => {
+    getAllOg();
+  }, [props._newAddOgData])
 
   // 设置modal显隐
   const displayModal = () => {
     setVisible(!visible);
   }
+
   const handleCancel = () => {
     setVisible(!visible);
   }
+
   // 触发公共上传组件的submit
   const handleOk = () => {   
     refContainer.current.props.onSubmit();
     setVisible(!visible);
   }
 
+  // 获取所有组织的函数
+  const getAllOg = () => {
+    GETALLOG(_findAllOrganization).then(res => {
+      if(res && res.status === 200){
+        setData(res.data);
+      }else{
+        message.error(res.message);
+      }
+    })
+  }
+
   // 设置基础表格columns
   const columns = [
     {
       title: '组织名称',
-      dataIndex: 'OgName',
-      key: 'OgName'
+      dataIndex: 'og_name',
+      key: 'og_name'
+    },
+    {
+      title: '组织关键字',
+      dataIndex: 'og_key',
+      key: 'og_key'
+    },
+    {
+      title: '组织标图',
+      dataIndex: 'og_pic',
+      key: 'og_pic',
+      render: pic => (
+        <img style={{
+          width: '80px',
+          height: '80px'
+        }} src={`http://localhost:5001/og_img/${pic}`} alt="404" />
+      )
     },
     {
       title: '包含项目',
-      dataIndex: 'includePj',
-      key: 'includePj'
+      dataIndex: 'project',
+      key: 'project'
+    },
+    {
+      title: '组织描述',
+      dataIndex: 'og_desc',
+      key: 'og_desc'
     },
     {
       title: '操作',
@@ -69,6 +111,7 @@ export const OgList = props => {
       <ControlTableContainer 
         columns = {columns}
         componentName = {props.routerTitle}
+        data = {data}
       />
       {/* 新增组织 */}
       <Modal

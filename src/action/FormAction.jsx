@@ -11,8 +11,7 @@ import * as formConstants from '../constants/FormConstants';
 /**
  * @description 新增表单
  * @param {String} path axios请求地址
- * @param {Object} path 成功的中转Action
- * @param {Object} path 错误的中转Action
+ * @param {Object} path 开始请求的中转Action
  */
 export const addFormAction = (axiosPath, formData, _startAction) => {
   return {

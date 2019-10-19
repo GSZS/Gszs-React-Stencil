@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-15 11:13:06
+ * @ Modified time: 2019-10-16 09:43:37
  * @ 文件解释: 请求数据的接口函数
  */
 
@@ -13,6 +13,7 @@ import {
 } from './tools';
 import * as config from './config';
 import qs from 'qs';
+import { user_id } from '@/constants/settingConstant';
 
 // npm.json
 export const npmDependencies = () =>
@@ -454,6 +455,14 @@ export const ADDOG = (axiosPath, formData) => {
   return post({
     url: axiosPath,
     data: formData
+  })
+}
+
+// 获取所有组织
+export const GETALLOG = (axiosPath, page, total) => {
+  getToken();
+  return get({
+    url: axiosPath+`?user_id=${user_id}&page=${page}&?total=${total}`
   })
 }
 

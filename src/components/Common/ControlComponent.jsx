@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-17 10:06:31
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-28 18:24:34
+ * @ Modified time: 2019-10-19 12:13:05
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-01 17:02:56
  */
@@ -14,8 +14,7 @@ import {
   Popconfirm,
   Form,
   Modal,
-  Pagination,
-  Tooltip
+  Pagination
 } from 'antd';
 import ModalFormContainer from '@/containers/ModalFormContainer';
 
@@ -33,22 +32,6 @@ const EditableFormRow = Form.create()(EditableRow);
 
 // 表格细胞
 const EditableCell = props => {
-
-  // 使用Tooltip显示一些内容比较长的
-  const displaytooltipContent = (e, record, dataIndex) => {
-    e.preventDefault();
-    // introduction代表表格中的详细内容的字段
-    if (dataIndex === 'introduction') {
-      // setTooltip(record[dataIndex])
-      setTooltip(
-        <div
-          dangerouslySetInnerHTML={{ __html: record[dataIndex] }}
-        />
-      )
-    }
-  }
-  const [tooltip, setTooltip] = useState([]);
-
   const {
     dataIndex,
     title,
@@ -62,11 +45,9 @@ const EditableCell = props => {
     <EditableContext.Consumer>
       {form => {
         return (
-          <Tooltip placement="top" title={tooltip}>
-            <td {...restProps} onClick={e => displaytooltipContent(e, record, dataIndex)}>
+            <td {...restProps} >
               {restProps.children}
             </td>
-          </Tooltip>
         );
       }}
     </EditableContext.Consumer>
@@ -76,35 +57,22 @@ const EditableCell = props => {
 // EditableTable
 const EditableTable = props => {
 
-  // 接口地址
-  // const [GET_ALL_DATA, DELETE_ALL_DATA, GET_ALL_DATA_BYID] = props.interfaceUrl;
-
   // 设置初始值
-  const [data, setData] = useState(null),
+  const [data, setData] = useState([]),
     [total, setTotal] = useState(10),
     [visible, setVisible] = useState(false),
     [rowId, setRowId] = useState(undefined)
+
+  // 监控表格数据
+  useEffect(() => {
+    setData(props.data);
+  }, [props.data])
 
   // 分页
   const [page, setPage] = useState(1);
 
   // 排序
   const [setSortedInfo] = useState(null);
-
-  // 发送请求
-  // useEffect(() => {
-  //   getData(page)
-  // }, [page, props._total, props._reload])
-
-  // 获取数据的核心函数
-  // const getData = page => {
-  //   props.getTableAction(GET_ALL_DATA, page)
-
-  //   // 设置数据
-  //   setData(props._tableData);
-  //   setTotal(props._total);
-  // };
-
 
   // 删除操作
   const HandleDelete = id => {
@@ -203,7 +171,6 @@ const EditableTable = props => {
           dataSource={data}
           columns={columns}
           onChange={handleChange}
-          loading={props.loading}
           pagination={false}
         />
         {/* 分页 */}
@@ -232,3 +199,58 @@ const EditableTable = props => {
 
 export default EditableTable;
 
+
+/**
+ * 
+ * 
+ * {className: "", record: {…}, dataIndex: "og_name", title: "组织名称", onClick: ƒ, …}
+children: (3) [null, null, undefined]
+className: ""
+dataIndex: "og_name"
+onClick: ƒ (e)
+record: {key: "1", name: "胡彦斌", age: 32, address: "西湖区湖底公园1号"}
+title: "组织名称"
+__proto__: Object
+ */
+
+ /**
+  * // 1
+{
+    "_id": ObjectId("5da679566034e3594b37d387"),
+    "company_id": NumberInt("47"),
+    "user_id": NumberInt("26"),
+    "og_id": NumberInt("51"),
+    "og_key": "G",
+    "og_name": "缘之空",
+    "og_desc": "遥远的天空",
+    "og_pic": "16dd24a0fb589.jpeg",
+    "project": [
+        {
+            "_id": ObjectId("5da679566034e3594b37d388"),
+            "id": NumberInt("9")
+        }
+    ],
+    "__v": NumberInt("0"),
+    "key": "2"
+}
+
+// 2
+{
+    "_id": ObjectId("5daa75b172f35dba5193e706"),
+    "company_id": NumberInt("47"),
+    "user_id": NumberInt("26"),
+    "og_id": NumberInt("52"),
+    "og_key": "1",
+    "og_name": "1",
+    "og_desc": "1",
+    "og_pic": "16de1dbe0fa90.jpeg",
+    "project": [
+        {
+            "_id": ObjectId("5daa75b172f35dba5193e707"),
+            "id": NumberInt("10")
+        }
+    ],
+    "__v": NumberInt("0"),
+    "key": "1"
+}
+  */

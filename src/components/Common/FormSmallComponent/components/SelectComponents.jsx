@@ -21,13 +21,6 @@ export const SelectComponent = props => {
   const FormItem = Form.Item;
   const [selectValue, setSelectValue] = useState(initialValue)
 
-  useEffect(() => {
-    if (axiosPath) {
-      props.GetAllOgAction(axiosPath);
-    }
-  }, [])
-
-
   const handleChange = (_v) => {
     setSelectValue(_v)
   }

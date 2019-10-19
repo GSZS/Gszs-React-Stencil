@@ -26,7 +26,6 @@ import '../../style/components/common/uploadComponent.less';
 const BaseFormComponent = props => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImgUrl] = useState('');
-  // console.log('打印', props);
   // 用来获取原始组件的push方法
   const history = props.routerPath;
 

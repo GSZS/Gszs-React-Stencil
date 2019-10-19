@@ -2,12 +2,12 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-15 09:10:20
+ * @ Modified time: 2019-10-19 10:21:42
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-18 14:36:52
  */
 
-const baseip = 'http://192.168.0.110:5001'; // http是5001，https是5000
+const baseip = 'http://192.168.50.87:5001'; // http是5001，https是5000
 
 //////////
 ///RBAC///
@@ -26,7 +26,7 @@ export const _lockUser = baseip + '/web/usermanager/lock';
 export const _unlockUser = baseip + '/web/usermanager/unlock';
 
 // 查询所有权限的接口
-export const _findAllAuth = baseip + '/web/admin/item/queryItemAll'
+export const _findAllAuth = baseip + '/web/admin/item/queryItemAll';
 
 // 添加新角色
 export const _addCreateRole = baseip + '/web/role/createRole';
@@ -109,8 +109,8 @@ export const _addProject = baseip + '/project/createProject';
 // 新增组织
 export const _addOrganization = baseip + '/v2/add_og';
 
-// 查询组织
-export const _findAllOrganization = baseip + '/app/group';
+// 查询所有组织
+export const _findAllOrganization = baseip + '/v2/return_allog';
 
 /////////////
 ///用户信息///
