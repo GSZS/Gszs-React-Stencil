@@ -9,8 +9,6 @@
 import React from 'react';
 import EditableTable from '@/components/Common/ControlComponent';
 import {connect } from 'react-redux';
-import { getAllOgSelector } from '@/selector/organization/organizationSelector';
-import { startGetTableDataAction } from '@/action/tableDataAction';
 
 const ControlTableContainer = props => <EditableTable {...props} />;
 

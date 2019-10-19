@@ -2,24 +2,24 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-28 17:04:10
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-19 12:29:54
+ * @ Modified time: 2019-10-19 23:37:07
  * @ 文件解释: 组织列表容器组件
  */
 
-import React,{ useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import ControlTableContainer from '@/containers/controlTableContainer';
-import { Button, Modal, message } from 'antd';
+import { Button, Modal, message, Tag } from 'antd';
 import BreadcrumbCustom from '@/components/BreadcrumbCustom';
 import '@/style/components/organization/oglist.less';
 import AddOgContainer from '@/containers/organization/AddOgContainer';
-import { _findAllOrganization } from '@/axios/config';
-import { GETALLOG } from '@/axios';
+import { _findAllOrganization, _delOrganization } from '@/axios/config';
+import { GETALLOG, DELOG } from '@/axios';
 
 export const OgList = props => {
-  
+
   const [visible, setVisible] = useState(false);
   const refContainer = useRef(null);
-  const [ data, setData ] = useState([]);
+  const [data, setData] = useState([]);
 
   // 获取所有组织
   useEffect(() => {
@@ -36,17 +36,18 @@ export const OgList = props => {
   }
 
   // 触发公共上传组件的submit
-  const handleOk = () => {   
+  const handleOk = () => {
     refContainer.current.props.onSubmit();
+    message.success('新增成功')
     setVisible(!visible);
   }
 
   // 获取所有组织的函数
   const getAllOg = () => {
     GETALLOG(_findAllOrganization).then(res => {
-      if(res && res.status === 200){
+      if (res && res.status === 200) {
         setData(res.data);
-      }else{
+      } else {
         message.error(res.message);
       }
     })
@@ -71,14 +72,30 @@ export const OgList = props => {
       render: pic => (
         <img style={{
           width: '80px',
-          height: '80px'
+          height: '80px',
+          borderRadius: '10%'
         }} src={`http://localhost:5001/og_img/${pic}`} alt="404" />
       )
     },
     {
       title: '包含项目',
       dataIndex: 'project',
-      key: 'project'
+      key: 'project',
+      render: pjlist => (
+        <span>
+          {
+            pjlist.map((cv, index) => {
+              return (
+                <Tag color='volcano' key={index}>
+                  {
+                    Boolean(cv.pj_key) ? cv.pj_key : ''
+                  }
+                </Tag>
+              );
+            })
+          }
+        </span>
+      )
     },
     {
       title: '组织描述',
@@ -102,16 +119,20 @@ export const OgList = props => {
       {/* 内容头部 */}
       <div className="contentHeader">
         <span>组织</span>
-        <Button 
-          type="primary" 
-          icon="plus" 
+        <Button
+          type="primary"
+          icon="plus"
           onClick={displayModal}
         >新增</Button>
       </div>
-      <ControlTableContainer 
-        columns = {columns}
-        componentName = {props.routerTitle}
-        data = {data}
+      <ControlTableContainer
+        columns={columns}
+        componentName={props.routerTitle}
+        data={data}
+        delAxiosFunc={DELOG}
+        delAxiosPath={_delOrganization}
+        // 获取所有组织
+        _getAllOg = { () => getAllOg() }
       />
       {/* 新增组织 */}
       <Modal
@@ -123,7 +144,7 @@ export const OgList = props => {
         onCancel={handleCancel}
         onOk={handleOk}
       >
-        <AddOgContainer _ref={ refContainer } />
+        <AddOgContainer _ref={refContainer} />
       </Modal>
     </>
   )

@@ -112,6 +112,9 @@ export const _addOrganization = baseip + '/v2/add_og';
 // 查询所有组织
 export const _findAllOrganization = baseip + '/v2/return_allog';
 
+// 删除组织
+export const _delOrganization = baseip + '/v2/del_Og';
+
 /////////////
 ///用户信息///
 /////////////

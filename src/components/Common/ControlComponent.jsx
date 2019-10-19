@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-17 10:06:31
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-19 12:13:05
+ * @ Modified time: 2019-10-19 23:33:38
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-01 17:02:56
  */
@@ -14,9 +14,9 @@ import {
   Popconfirm,
   Form,
   Modal,
-  Pagination
+  Pagination,
+  message
 } from 'antd';
-import ModalFormContainer from '@/containers/ModalFormContainer';
 
 // 创建Context实例
 const EditableContext = React.createContext();
@@ -45,9 +45,9 @@ const EditableCell = props => {
     <EditableContext.Consumer>
       {form => {
         return (
-            <td {...restProps} >
-              {restProps.children}
-            </td>
+          <td {...restProps} >
+            {restProps.children}
+          </td>
         );
       }}
     </EditableContext.Consumer>
@@ -76,7 +76,14 @@ const EditableTable = props => {
 
   // 删除操作
   const HandleDelete = id => {
-    // props.delTableAction(DELETE_ALL_DATA, id);
+    props.delAxiosFunc(props.delAxiosPath, id).then(res => {
+      if (res && res.status === 200) {
+        message.success(res.message);
+        props._getAllOg();
+      } else {
+        message.error(res.message);
+      }
+    })
   };
 
   // 排序操作
@@ -133,14 +140,14 @@ const EditableTable = props => {
               <span>
                 <EditableContext.Consumer>
                   {form => (
-                    <Button type="primary" icon="edit" onClick={() => handleEdit(record.id)} >
+                    <Button type="primary" icon="edit" onClick={() => handleEdit(record.og_id)} >
                       修改
                     </Button>
                   )}
                 </EditableContext.Consumer>
                 <Popconfirm
                   title="确定要删除吗?"
-                  onConfirm={() => HandleDelete(record.id)}
+                  onConfirm={() => HandleDelete(record.og_id)}
                 >
                   <a href="javascript:;">
                     <Button icon="delete" type="danger" className="deleteButton">
@@ -198,59 +205,3 @@ const EditableTable = props => {
 };
 
 export default EditableTable;
-
-
-/**
- * 
- * 
- * {className: "", record: {…}, dataIndex: "og_name", title: "组织名称", onClick: ƒ, …}
-children: (3) [null, null, undefined]
-className: ""
-dataIndex: "og_name"
-onClick: ƒ (e)
-record: {key: "1", name: "胡彦斌", age: 32, address: "西湖区湖底公园1号"}
-title: "组织名称"
-__proto__: Object
- */
-
- /**
-  * // 1
-{
-    "_id": ObjectId("5da679566034e3594b37d387"),
-    "company_id": NumberInt("47"),
-    "user_id": NumberInt("26"),
-    "og_id": NumberInt("51"),
-    "og_key": "G",
-    "og_name": "缘之空",
-    "og_desc": "遥远的天空",
-    "og_pic": "16dd24a0fb589.jpeg",
-    "project": [
-        {
-            "_id": ObjectId("5da679566034e3594b37d388"),
-            "id": NumberInt("9")
-        }
-    ],
-    "__v": NumberInt("0"),
-    "key": "2"
-}
-
-// 2
-{
-    "_id": ObjectId("5daa75b172f35dba5193e706"),
-    "company_id": NumberInt("47"),
-    "user_id": NumberInt("26"),
-    "og_id": NumberInt("52"),
-    "og_key": "1",
-    "og_name": "1",
-    "og_desc": "1",
-    "og_pic": "16de1dbe0fa90.jpeg",
-    "project": [
-        {
-            "_id": ObjectId("5daa75b172f35dba5193e707"),
-            "id": NumberInt("10")
-        }
-    ],
-    "__v": NumberInt("0"),
-    "key": "1"
-}
-  */

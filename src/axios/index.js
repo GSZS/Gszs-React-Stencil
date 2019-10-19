@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-16 09:43:37
+ * @ Modified time: 2019-10-19 21:50:09
  * @ 文件解释: 请求数据的接口函数
  */
 
@@ -411,9 +411,6 @@ export const ADDPROJECT = formData => {
   });
 }
 
-//////////////////////////
-// 重新设计整个项目-axios ////////
-/////////////////////////
 
 /**
  * @description 动态获取下拉框数据
@@ -449,6 +446,10 @@ export const ADDFORM = (axiosPath, formData) => {
   }
 }
 
+/////////////
+///组织//////
+////////////
+
 // 新增组织
 export const ADDOG = (axiosPath, formData) => {
   getToken();
@@ -463,6 +464,18 @@ export const GETALLOG = (axiosPath, page, total) => {
   getToken();
   return get({
     url: axiosPath+`?user_id=${user_id}&page=${page}&?total=${total}`
+  })
+}
+
+// 删除所有组织
+export const DELOG = (axiosPath, og_id) => {
+  getToken();
+  return post({
+    url: axiosPath,
+    data: {og_id:[og_id]},
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }    
   })
 }
 
