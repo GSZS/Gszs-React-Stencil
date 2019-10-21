@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import UpoloadComponentContainer from '../../containers/uploadComponentContainer'
+import UpoloadComponentContainer from '@/containers/uploadComponentContainer'
 import BreadcrumbCustom from '../BreadcrumbCustom';
-import '../../style/components/project/addProject.less';
-import { _findAllOrganization, _allProjectType, _addProject } from '../../axios/config';
+import '@/style/components/project/addProject.less';
+import { _findAllOrganization, _allProjectType, _addProject } from '@/axios/config';
 
 export const AddProject = props => {
 
@@ -35,7 +35,7 @@ export const AddProject = props => {
       label: '项目类型',
       field: 'proTypeId',
       type: 'radio',
-      radioDesc: [ // 如果不是动态获取数据,要自己设置这样的格式
+      radioDesc: [ // 如果不是动态获取数据,要设置为这样的格式
         {
           id: 1,
           name: '敏捷开发',
@@ -79,7 +79,7 @@ export const AddProject = props => {
       <div className="addProjectForm">
         <UpoloadComponentContainer
           FormConfig={addProject} 
-          formItemLayout = {true}
+          formItemLayout = {true} // 是否开启横向表格布局
           submitButtonName = "创建项目"
           interfaceUrl = {_addProject}
         />

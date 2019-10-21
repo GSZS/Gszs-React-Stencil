@@ -4,7 +4,7 @@
  * @ Modified by: Gszs
  * @ Modified time: 2019-09-20 22:20:03
  * @ 文件解释: styled-components
- */
+ */ 
 
 
 import styled from 'styled-components';
@@ -14,16 +14,16 @@ export const StyleDivFlex = styled.div`
   width: ${props => props.width || '100px'};
   height: ${props => props.height || '100px'};
   display: flex;
-  justify-content: start;
-  align-items: start;
+  justify-content: ${props => props.jc || 'start'};
+  align-items: ${props => props.ai || 'start'};
   
 `;
 
 // <div></div>用于display: flex;（不含宽高）
 export const StyleDivFlex2 = styled.div`
   display: flex;
-  justify-content: start;
-  align-items: start;
+  justify-content: ${props => props.jc || 'start'};
+  align-items: ${props => props.ai || 'start'};
 `
 
 // <div></div>用于小框

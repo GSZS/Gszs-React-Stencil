@@ -1,5 +1,6 @@
 {
   "extends": "react-app",
+  "plugins": ["react-hooks"],
   "rules": {
     "no-multi-spaces": 1,
     "react/jsx-tag-spacing": 1,                 // 总是在自动关闭的标签前加一个空格，正常情况下也不需要换行
@@ -18,5 +19,7 @@
         "legacyDecorators": true
       }
     }
+    // "react-hooks/rules-of-hooks": "error",      // React钩子规则
+    // "react-hooks/exhaustive-deps": "warn"
   }
 }

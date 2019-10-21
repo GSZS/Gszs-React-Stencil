@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-24 16:18:42
+ * @ Modified time: 2019-10-11 00:03:49
  * @ 文件解释: 请求数据的接口函数
  */
 
@@ -35,7 +35,6 @@ const getToken = () =>
   ] = window.localStorage.getItem('token'));
 axios.defaults.withCredentials = true;
 
-
 /**
  * @description 获取权限
  * @method {GET}
@@ -53,10 +52,7 @@ export const getLoginAuth = (username) => {
  * @method {POST}
  */
 export const handleLogin = (username, password) => {
-  // 清除token,方便开发环境
-  if (window.localStorage.getItem('token')) {
-    window.localStorage.removeItem('token');
-  }
+  getToken();
   return post({
     url: config.LOGIN_URL,
     data: qs.stringify({
@@ -69,10 +65,10 @@ export const handleLogin = (username, password) => {
 /**
  * @description 退出
  */
-export const LOGOUT = () => {
+export const LOGOUT = phonenumber => {
   getToken();
   return get({
-    url: config.LOGOUT_URL,
+    url: config.LOGOUT_URL + `?phonenumber=${phonenumber}`
   });
 };
 
@@ -86,6 +82,19 @@ export const GETADMININDEX = () => {
   });
 };
 
+/**
+ * @description 注册
+ * @param {Object} formData 表单
+ */
+export const REGISTER = formData => {
+  return post({
+    url: config.REGISTER_URL,
+    data: qs.stringify(formData),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  });
+}
 
 /**
  * @description 日志管理
@@ -401,15 +410,6 @@ export const ADDPROJECT = formData => {
   });
 }
 
-/**
- * @description 测试Redux-Saga
- */
-export const TESTREDUXSAGA = () => {
-  return get({
-    url: 'http://192.168.50.87:5001/api/test_saga'
-  })
-}
-
 //////////////////////////
 // 重新设计整个项目-axios ////////
 /////////////////////////
@@ -431,11 +431,83 @@ export const GETSELECTDATA = axiosPath => {
  */
 export const ADDFORM = (axiosPath, formData) => {
   getToken();
+  console.log('formData', formData.get('file'))
+  if(formData instanceof FormData){
+    return post({
+      url: axiosPath,
+      data: formData
+    });
+  }else {
+    return post({
+      url: axiosPath,
+      data: qs.stringify(formData),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+  }
+}
+
+// 新增组织
+export const ADDOG = (axiosPath, formData) => {
+  getToken();
   return post({
     url: axiosPath,
     data: qs.stringify(formData),
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
-    },
-  });
+    }
+  })
+}
+
+/////////////
+///用户信息///
+/////////////
+
+// 更新密码
+export const UPDATEPWD = formData => {
+  getToken();
+  return post({
+    url: config._updatePwd,
+    data: qs.stringify(formData),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }    
+  })
+}
+
+// 找回密码
+export const FINDPWD = formData => {
+  getToken();
+  return post({
+    url: config._findPwd,
+    data: qs.stringify(formData),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }    
+  })
+}
+
+///////////
+///API///
+///////////
+
+// 发送邮件
+export const SETEMAIL = email => {
+  getToken();
+  return get({
+    url: config._sendEmail+`?email=${email}`
+  })
+}
+
+// 重设密码
+export const RESETPWD = formData => {
+  getToken();
+  return post({
+    url: config._resetPwd,
+    data: qs.stringify(formData),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }    
+  })
 }

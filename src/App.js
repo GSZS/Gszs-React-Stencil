@@ -64,6 +64,7 @@ class App extends Component {
           <Layout style={{ flexDirection: 'column' }}>
             {/* 头部 */}
             <HeaderCustomContainer
+            
               toggle={this.toggle}
               collapsed={this.state.collapsed}
               // user={this.roles.title || '' }
@@ -77,7 +78,7 @@ class App extends Component {
             </Content>
             {/* 脚部 */}
             <Footer style={{ textAlign: 'center' }}>
-              我是脚部
+              <span>Gszs项目管理系统私人版-邮件xhg1945454120@gmail.com</span>
             </Footer>
           </Layout>
         </Layout>

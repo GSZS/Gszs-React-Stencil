@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-07-24 14:48:30
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-21 16:30:13
+ * @ Modified time: 2019-10-10 10:48:23
  * @ Description: 系统设置的Action(例如屏幕尺寸)
  */
 
@@ -32,16 +32,19 @@ export const isMobile = (_isMobile) => {
 /**
  * @description 退出 - 清除token
  */
-export const logout = callback => {
+export const logout = ( phonenumber, callback) => {
   return async dispatch => {
-    const res = await LOGOUT();
+    const res = await LOGOUT(phonenumber);
     if(res && res.status === 200){
-      // 因为localStoreage存的信息不多,所以直接处理
       if(window.localStorage.getItem('token') 
         && window.localStorage.getItem('roles')
+        && window.localStorage.getItem('phonenumber')
+        && window.localStorage.getItem('user_id')
       ){
         window.localStorage.removeItem('token');
         window.localStorage.removeItem('roles');
+        window.localStorage.removeItem('phonenumber');
+        window.localStorage.removeItem('user_id');
       }
       dispatch({
         type: settingConstants._isLogout
@@ -49,6 +52,7 @@ export const logout = callback => {
       message.success(res.message);
       callback();
     } else{
+      message.error(res.message);
       dispatch({
         type: settingConstants._noIsLogout
       })

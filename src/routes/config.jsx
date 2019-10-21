@@ -10,7 +10,7 @@ export default {
 			key: '/app/organization',
 			title: '组织',
 			icon: 'branches',
-			component: 'Dashboard'
+			component: 'OgListContainer'
 		},
 		{
 			key: '/app/project',
@@ -40,6 +40,29 @@ export default {
 	],
 	// 平行路由
 	others: [
-		{ key: '/app/project/add_project', component: 'AddProjectContainer' }
+		{ 
+			key: '/app/project/add_project', 
+			title: '新增项目',
+			component: 'AddProjectContainer' 
+		}
+	],
+	// 个人资料/个人设置
+	users: [
+		
+		{
+			key: '/app/users/user_info', 
+			title: '个人资料',
+			component: 'UserInfoContainer'
+		},
+		{
+			key: '/app/users/user_setting', 
+			title: '个人设置',
+			component: 'UserSettingContainer'
+		},
+		// 内部的忘记密码设置
+		{
+			key: '/private/users/forget_pwd', component: 'ForgetPwdContainer'			
+		}
 	]
+
 }

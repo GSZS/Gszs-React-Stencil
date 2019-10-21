@@ -2,31 +2,16 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-25 16:04:02
+ * @ Modified time: 2019-10-14 09:38:03
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-18 14:36:52
  */
 
-const baseip = 'http://192.168.43.228:3000'; // 线上地址1
-const apiBaseip1 = 'http://192.168.101.112:8001'; // 阿俊
-const apiBaseip2 = 'http://192.168.101.125:8001'; // 高升
+const baseip = 'http://192.168.0.108:5001'; // http是5001，https是5000
 
-/**
- * @description 基础接口
- */
-
- // 登录接口
-export const LOGIN_URL = baseip + '/signin';
-
- // 未登录获取用户信息
-export const GETLOGINAUTH = baseip + '/queryUserInfo'
-
- // 退出接口
-export const LOGOUT_URL = baseip + '/signout';
-
-/**
- * @description RBAC
- */
+//////////
+///RBAC///
+//////////
 
  // 删除权限
 export const _deleteAuth = baseip + '/web/admin/item/delItem';
@@ -88,16 +73,33 @@ export const _queryHasNotItem = baseip + '/web/admin/item/queryHasNotItem'
 // 角色添加权限接口
 export const _roleItemAdd = baseip + '/web/roleItem/add'
 
+/////////////
+//常规接口类//
+////////////
+
+ // 登录接口
+ export const LOGIN_URL = baseip + '/v1/signin';
+
+ // 未登录获取用户信息
+export const GETLOGINAUTH = baseip + '/queryUserInfo'
+
+ // 退出接口
+export const LOGOUT_URL = baseip + '/v1/signout';
+
+// 注册
+export const REGISTER_URL = baseip + '/v1/register';
+
+
 
 /////////////
 //项目接口类//
 ////////////
 
 // 查询所有项目类型接口
-export const _allProjectType = apiBaseip2 + '/proType/queryAllProType';
+export const _allProjectType = baseip + '';
 
 // 新增项目接口
-export const _addProject = apiBaseip2 + '/project/createProject';
+export const _addProject = baseip + '/project/createProject';
 
 
 /////////////
@@ -105,7 +107,33 @@ export const _addProject = apiBaseip2 + '/project/createProject';
 ////////////
 
 // 新增组织
-export const _addOrganization = apiBaseip2 + '/app/group/add';
+export const _addOrganization = baseip + '/v2/add_og';
 
 // 查询组织
-export const _findAllOrganization = apiBaseip2 + '/app/group';
+export const _findAllOrganization = baseip + '/app/group';
+
+/////////////
+///用户信息///
+/////////////
+
+// 修改密码
+export const _updatePwd = baseip + '/v1/update_pwd';
+
+// 修改资料
+export const _updateUserInfo = baseip + '/v1/update_userinfo';
+
+// 找回密码
+export const _findPwd = baseip + '/v1/find_pwd';
+
+// 重设密码
+export const _resetPwd = baseip + '/v1/reset_pwd';
+
+///////////
+///API///
+///////////
+
+// 邮件验证码
+export const _getEmailCode = baseip + '/api/send_emailCode';
+
+// 发送邮件
+export const _sendEmail = baseip + '/api/send_email';

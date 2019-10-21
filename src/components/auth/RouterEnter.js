@@ -8,9 +8,7 @@ import BreadcrumbCustom from '@/components/BreadcrumbCustom';
 import AuthWidget from '@/components/widget/AuthWidget';
 
 class RouterEnter extends Component {
-  componentDidMount () {
-    console.log ('RouterEnter');
-  }
+
   render () {
     return (
       <div>

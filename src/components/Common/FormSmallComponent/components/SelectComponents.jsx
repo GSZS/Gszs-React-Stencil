@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-23 23:31:39
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-25 20:06:44
+ * @ Modified time: 2019-09-29 17:00:52
  * @ 文件解释: 下拉框UI组件
  */
 
@@ -21,14 +21,14 @@ export const SelectComponent = props => {
   const FormItem = Form.Item;
   const [selectValue, setSelectValue] = useState(initialValue)
 
-  if (axiosPath) {
-    useEffect(() => {
+  useEffect(() => {
+    if (axiosPath) {
       props.GetAllOgAction(axiosPath);
-    }, [])
-  }
+    }
+  }, [])
+
 
   const handleChange = (_v) => {
-    console.log('_v=>>>', _v);
     setSelectValue(_v)
   }
 

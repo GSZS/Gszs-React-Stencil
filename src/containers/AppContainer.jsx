@@ -13,9 +13,7 @@ import {mobileSelector} from '../selector/settingSelector';
 import {loginDataSelector} from '../selector/commonSelector';
 import App from '../App';
 
-const AppContainer = props => {
-  return <App {...props} />
-}
+const AppContainer = props => <App {...props} />
 
 const mapStateToProps = state => {
   return {

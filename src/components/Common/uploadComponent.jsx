@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-04 22:08:25
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-25 20:24:58
+ * @ Modified time: 2019-10-11 14:32:40
  * @ 文件解释: 表单上传公共组件(涵盖富文本,markdown)
  */
 
@@ -24,9 +24,9 @@ import RichContainer from './FormSmallComponent/containers/RichContainer';
 import '../../style/components/common/uploadComponent.less';
 
 const BaseFormComponent = props => {
-  console.log('重渲染');
-  const [loading] = useState(false);
-
+  const [loading, setLoading] = useState(false);
+  const [imageUrl, setImgUrl] = useState('');
+  // console.log('打印', props);
   // 用来获取原始组件的push方法
   const history = props.routerPath;
 
@@ -49,6 +49,26 @@ const BaseFormComponent = props => {
     };
     if (props.formItemLayout) return formItemLayout
   }
+
+  // Base64
+  const getBase64 = (img, callback) => {
+    const reader = new FileReader();
+    reader.addEventListener('load', () => callback(reader.result));
+    reader.readAsDataURL(img);
+  }
+
+  const handleChange = info => {
+    if (info.file.status === 'uploading') {
+      setLoading(true);
+      return;
+    }
+    if (info.file.status === 'done') {
+      getBase64(info.file.originFileObj, imageUrl => {
+        setLoading(false);
+        setImgUrl(imageUrl);
+      })
+    }
+  };
 
   // 配置上传
   const uploadConfig = {
@@ -78,7 +98,7 @@ const BaseFormComponent = props => {
         }
       }
 
-      // 处理视频
+      // 处理视频 
       if (file.type.split('/')[0] === 'video') {
         const isLt300M = file.size / 1024 / 1024 < 300; // 限制视频不得大于300M
         if (!isLt300M) {
@@ -90,32 +110,32 @@ const BaseFormComponent = props => {
     },
 
     listType: 'picture-card',
-    fileList,
+    // showUploadList: false,
+    // fileList,
   };
 
-  // 显示上传的文件
-  const handleChange = ({ fileList }) => { setfileList(fileList) }
+  // uploadButton按钮
+  const uploadButton = (
+    <div>
+      <Icon type={loading ? 'loading' : 'plus'} />
+      <div className="ant-upload-text">添加文件</div>
+    </div>
+  );
 
   // 上传提交
   const handleSubmit = e => {
-    e.preventDefault();
     props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('=>>>', values);
-        let formData = {};
-        // 处理没有文件的情况
-        if (fileList.length === 0) {
-          Object.keys(values).map(cv => {
-            formData[cv] = values[cv]
-          })
-        } else {
-          let formData = new FormData();
-          fileList.forEach(file => {
-            formData.append('file', file);
-          });
-        }
+        const formData = new FormData();
+        // 上传操作都带上user_id
+        formData.append('user_id', window.localStorage.getItem('user_id'));
+        fileList.forEach(file => {
+          formData.append('file', file);
+        });
+        Object.keys(values).map((cv, index) => {
+          formData.append(cv, values[cv]);
+        });
         props.addFormAction(props.interfaceUrl, formData);
-        // history.push(props.skipUrl) // 跳转到制定页面
       } else {
         message.error(`表单格式有误`);
       }
@@ -154,8 +174,8 @@ const BaseFormComponent = props => {
                     message: '不允许输入特殊字符',
                   },
                 ],
-                initialValue: initialValue,
-              })(<Input type={item.text} />)}
+                // initialValue: initialValue
+              })(<Input type={item.text} placeholder={placeholder} />)}
             </FormItem>
           );
           formItemList.push(input_text);
@@ -178,38 +198,25 @@ const BaseFormComponent = props => {
         }
         // 下拉框
         else if (item.type === 'select') {
-          const input_text = <SelectContainer 
-            selectConfig={item} 
+          const input_text = <SelectContainer
+            selectConfig={item}
             getFieldDecorator={getFieldDecorator}
           />
           formItemList.push(input_text);
         }
         // 文本区域
         else if (item.type === 'textarea') {
-          const input_textarea = (
-            <FormItem key={field} label={label}>
-              {getFieldDecorator(field, {
-                rules: [
-                  {
-                    required: true,
-                    message: placeholder,
-                  },
-                  {
-                    pattern: new RegExp(RegExpStr, 'ig'),
-                    message: '不允许输入特殊字符',
-                  },
-                ],
-                initialValue: initialValue,
-              })(<TextareaContainer />)}
-            </FormItem>
-          );
+          const input_textarea = <TextareaContainer
+            textareaConfig={item}
+            getFieldDecorator={getFieldDecorator}
+          />
           formItemList.push(input_textarea);
         }
         // 单选框
         else if (item.type === 'radio') {
-          const radioInput = <RadioContainer 
+          const radioInput = <RadioContainer
             getFieldDecorator={getFieldDecorator}
-            radioConfig={ item } 
+            radioConfig={item}
           />
           formItemList.push(radioInput);
         }
@@ -225,13 +232,11 @@ const BaseFormComponent = props => {
           const input_file = (
             <FormItem key={field} label={label}>
               {getFieldDecorator(field)(
-                <Upload
-                  {...uploadConfig}
+                <Upload 
+                  {...uploadConfig}        
                   onChange={handleChange}
                 >
-                  <Button>
-                    <Icon type="upload">上传</Icon>
-                  </Button>
+                  {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
                 </Upload>
               )}
             </FormItem>
@@ -242,19 +247,23 @@ const BaseFormComponent = props => {
     }
     return formItemList;
   };
-
   return (
-    <Form onSubmit={handleSubmit} {...checkFormItemLayout()} >
+    <Form onSubmit={handleSubmit} ref={props._ref} {...checkFormItemLayout()} >
       {initForm()}
+      {/* 如果没有设置submitButtonName则表示嵌入到Modal里 */}
       <FormItem>
-        <Button
-          loading={loading}
-          type="primary"
-          htmlType="submit"
-          className="submitButton"
-        >
-          {loading ? `${props.submitButtonName}中` : `${props.submitButtonName}`}
-        </Button>
+        {
+          props.submitButtonName ?
+            <Button
+              loading={loading}
+              type="primary"
+              htmlType="submit"
+              className="submitButton"
+            >
+              {loading ? `${props.submitButtonName}中` : `${props.submitButtonName}`}
+            </Button> :
+            <></>
+        }
       </FormItem>
     </Form>
   );

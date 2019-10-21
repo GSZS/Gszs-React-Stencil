@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-07-23 10:22:18
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-25 09:51:56
+ * @ Modified time: 2019-10-02 21:55:59
  * @ Description: 公共Selector
  * @ Use: 设置一个input-selector , 改变input-selector后的函数 , 公共selector
  */
@@ -28,13 +28,24 @@ export const judgementGetRoleTotal = state => state.RoleReducer.RoleStateTotal;
 export const judgementGetAuthTotal = state => state.AuthReducer.AuthStateTotal;
 export const judgementGetMenuTotal = state => state.MenuReducer.MenuStateTotal;
 
-// 项目类
+///////////
+///项目类///
+///////////
 export const judgementGetaddProject = state => state.addProjectReducer.addProjectData;
 export const judgementGetPjTypes = state => state.getAllPjTypesReducer.allPjTypes;
 
+///////////
+///组织类///
+///////////
 
-// 组织类
+// 获取所有组织
 export const judgementGetAllOg = state => state.findAllOgReducer.allOgData;
+
+
+//////////////
+///用户操作类///
+//////////////
+export const judgementRegister = state => state.registerReducer.userData;
 
 /**
  * @description 登陆选择器

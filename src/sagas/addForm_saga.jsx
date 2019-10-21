@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-25 16:36:01
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-25 16:56:25
+ * @ Modified time: 2019-10-10 14:13:27
  * @ 文件解释: 新增表单Saga
  */
 
@@ -12,9 +12,9 @@ import { message } from 'antd';
 import { ADDFORM } from '../axios';
 
 /**
- * @description 获取所有项目类型Saga
+ * @description 上传表单Saga
  */
-export function* getAllPjTypes() {
+export function* uploadFormSaga() {
   while (true) {
     try {
       const { axiosPath, formData }  = yield take(addForm._start);

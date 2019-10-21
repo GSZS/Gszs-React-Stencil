@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-07-23 00:12:42
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-10 15:45:18
+ * @ Modified time: 2019-10-09 15:09:55
  * @ Description: 记住我
  */
 
@@ -45,14 +45,17 @@ export const rememberPwd = (_boolean, username, password) => {
 
 /**
  * @description localStore存储用户基础信息/token
- * @param {loginData} 用户登陆后的信息
+ * @param {loginData} 用户登陆后/注册后的信息(因为默认注册成功后跳转到首页)
  */
 
 export const saveUserInfo = (loginData) => {
  return async dispatch => {
    // 处理存储信息
-   const {roles} = loginData;
-   localStorage.setItem('roles', JSON.stringify(roles));
+   const {newUserData} = loginData;
+   
+   localStorage.setItem('roles', JSON.stringify(newUserData.roles));
+   localStorage.setItem('phonenumber', JSON.stringify(newUserData.phonenumber));
+   localStorage.setItem('user_id', JSON.stringify(newUserData.user_id));
    localStorage.setItem('token', loginData.token);
    dispatch({
      type: userConstants.saveUserInfo
