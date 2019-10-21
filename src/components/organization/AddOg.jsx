@@ -43,9 +43,10 @@ export const AddOg = props => {
 
   return (
     <UpoloadComponentContainer
-      FormConfig={addOj} 
-      formItemLayout = {true}
-      interfaceUrl = {_addOrganization}
+      FormConfig={addOj}
+      formItemLayout={true}
+      interfaceUrl={_addOrganization}
+      _startAction = { props.AddOgAction }
       {...props}
     />
   )

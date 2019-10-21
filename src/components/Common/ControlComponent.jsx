@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-17 10:06:31
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-28 18:24:34
+ * @ Modified time: 2019-10-19 23:33:38
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-01 17:02:56
  */
@@ -15,9 +15,8 @@ import {
   Form,
   Modal,
   Pagination,
-  Tooltip
+  message
 } from 'antd';
-import ModalFormContainer from '@/containers/ModalFormContainer';
 
 // 创建Context实例
 const EditableContext = React.createContext();
@@ -33,22 +32,6 @@ const EditableFormRow = Form.create()(EditableRow);
 
 // 表格细胞
 const EditableCell = props => {
-
-  // 使用Tooltip显示一些内容比较长的
-  const displaytooltipContent = (e, record, dataIndex) => {
-    e.preventDefault();
-    // introduction代表表格中的详细内容的字段
-    if (dataIndex === 'introduction') {
-      // setTooltip(record[dataIndex])
-      setTooltip(
-        <div
-          dangerouslySetInnerHTML={{ __html: record[dataIndex] }}
-        />
-      )
-    }
-  }
-  const [tooltip, setTooltip] = useState([]);
-
   const {
     dataIndex,
     title,
@@ -62,11 +45,9 @@ const EditableCell = props => {
     <EditableContext.Consumer>
       {form => {
         return (
-          <Tooltip placement="top" title={tooltip}>
-            <td {...restProps} onClick={e => displaytooltipContent(e, record, dataIndex)}>
-              {restProps.children}
-            </td>
-          </Tooltip>
+          <td {...restProps} >
+            {restProps.children}
+          </td>
         );
       }}
     </EditableContext.Consumer>
@@ -76,14 +57,16 @@ const EditableCell = props => {
 // EditableTable
 const EditableTable = props => {
 
-  // 接口地址
-  // const [GET_ALL_DATA, DELETE_ALL_DATA, GET_ALL_DATA_BYID] = props.interfaceUrl;
-
   // 设置初始值
-  const [data, setData] = useState(null),
+  const [data, setData] = useState([]),
     [total, setTotal] = useState(10),
     [visible, setVisible] = useState(false),
     [rowId, setRowId] = useState(undefined)
+
+  // 监控表格数据
+  useEffect(() => {
+    setData(props.data);
+  }, [props.data])
 
   // 分页
   const [page, setPage] = useState(1);
@@ -91,24 +74,16 @@ const EditableTable = props => {
   // 排序
   const [setSortedInfo] = useState(null);
 
-  // 发送请求
-  // useEffect(() => {
-  //   getData(page)
-  // }, [page, props._total, props._reload])
-
-  // 获取数据的核心函数
-  // const getData = page => {
-  //   props.getTableAction(GET_ALL_DATA, page)
-
-  //   // 设置数据
-  //   setData(props._tableData);
-  //   setTotal(props._total);
-  // };
-
-
   // 删除操作
   const HandleDelete = id => {
-    // props.delTableAction(DELETE_ALL_DATA, id);
+    props.delAxiosFunc(props.delAxiosPath, id).then(res => {
+      if (res && res.status === 200) {
+        message.success(res.message);
+        props._getAllOg();
+      } else {
+        message.error(res.message);
+      }
+    })
   };
 
   // 排序操作
@@ -165,14 +140,14 @@ const EditableTable = props => {
               <span>
                 <EditableContext.Consumer>
                   {form => (
-                    <Button type="primary" icon="edit" onClick={() => handleEdit(record.id)} >
+                    <Button type="primary" icon="edit" onClick={() => handleEdit(record.og_id)} >
                       修改
                     </Button>
                   )}
                 </EditableContext.Consumer>
                 <Popconfirm
                   title="确定要删除吗?"
-                  onConfirm={() => HandleDelete(record.id)}
+                  onConfirm={() => HandleDelete(record.og_id)}
                 >
                   <a href="javascript:;">
                     <Button icon="delete" type="danger" className="deleteButton">
@@ -203,7 +178,6 @@ const EditableTable = props => {
           dataSource={data}
           columns={columns}
           onChange={handleChange}
-          loading={props.loading}
           pagination={false}
         />
         {/* 分页 */}
@@ -231,4 +205,3 @@ const EditableTable = props => {
 };
 
 export default EditableTable;
-

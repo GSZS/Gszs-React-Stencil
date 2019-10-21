@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-21 09:23:38
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-25 14:25:06
+ * @ Modified time: 2019-10-19 13:08:14
  * @ 文件解释: 组织类Reducer
  */
 
@@ -10,7 +10,7 @@ import * as organizationConstants from '../../constants/organization/Organizatio
 
 let initialOgState = {
   allOgData: [], // 获取所有组织
-  ogDetail: [], // 组织详细信息
+  ogDetail: [],  // 组织详细信息
   loading: false
 }
 
@@ -40,9 +40,8 @@ const OgReducer = (state, action, publicStateData, constants) => {
 }
 
 /**
- * @description 查询所有组织
+ * @description 新增组织成功
  */
-export const findAllOgReducer = (state = initialOgState, action) => {
-  return OgReducer(state, action, 'allOgData', organizationConstants.findAllOg)
+export const addOgReducer = (state = initialOgState, action) => {
+  return OgReducer(state, action, 'allOgData', organizationConstants.addOj)
 }
-
