@@ -10,7 +10,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Input, Button, message, Tooltip } from 'antd';
 import { withRouter } from 'react-router-dom';
 import { RESETPWD } from '../../axios';
-import { user_id, phonenumber } from '@/constants/settingConstant'
+import {phonenumber } from '@/constants/settingConstant'
 
 const ResetPwd = props => {
 
@@ -60,7 +60,6 @@ const ResetPwd = props => {
     props.form.validateFieldsAndScroll((err, values) => {
       if(!err){
         const formData = {};
-        formData.user_id = user_id;
         formData.newPwd = values.newPwd;
         formData.phonenumber = phonenumber;
         RESETPWD(formData).then((res, err) => {

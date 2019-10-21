@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-02 21:36:36
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-12 15:19:58
+ * @ Modified time: 2019-10-21 21:04:36
  * @ 文件解释: 导航条头部使用者介绍
  */
 
@@ -14,7 +14,6 @@ import { Menu, Icon, Layout, Popover, Input, Tooltip } from 'antd';
 import { withRouter, Link } from 'react-router-dom';
 import { ModalComponents } from './Common/ModalComponents';
 import { SVGICON } from './svg/svgIcon';
-import { phonenumber } from '../constants/settingConstant'
 import '../style/components/headerCustom.less';
 
 const { Header } = Layout;
@@ -55,7 +54,7 @@ class HeaderCustom extends Component {
     this.setState({
       _Modalvisible: false,
     });
-    this.props.logout( phonenumber, (()=>{this.props.history.push('/login')}));
+    this.props.logout((()=>{this.props.history.push('/login')}));
   };
 
   // 新增项目跳转

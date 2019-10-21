@@ -126,8 +126,6 @@ const BaseFormComponent = props => {
     props.form.validateFields((err, values) => {
       if (!err) {
         const formData = new FormData();
-        // 上传操作都带上user_id
-        formData.append('user_id', window.localStorage.getItem('user_id'));
         fileList.forEach(file => {
           formData.append('file', file);
         });

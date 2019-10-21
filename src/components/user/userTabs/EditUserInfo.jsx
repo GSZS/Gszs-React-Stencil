@@ -10,7 +10,6 @@ import React from 'react';
 import UploadComponentContainer from '@/containers/uploadComponentContainer';
 import '@/style/components/project/addProject.less';
 import { _updateUserInfo } from '@/axios/config';
-import { user_id } from '@/constants/settingConstant'
 
 
 export const EditUserInfo = props => {
@@ -59,7 +58,7 @@ export const EditUserInfo = props => {
           FormConfig={updateUserInfo}
           formItemLayout = {true} // 是否开启横向表格布局
           submitButtonName = "保存"
-          interfaceUrl = {`${_updateUserInfo}/${user_id}`} 
+          interfaceUrl = {_updateUserInfo} 
         />
       </div>
     </>

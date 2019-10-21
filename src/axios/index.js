@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-19 21:50:09
+ * @ Modified time: 2019-10-21 20:57:52
  * @ 文件解释: 请求数据的接口函数
  */
 
@@ -13,7 +13,6 @@ import {
 } from './tools';
 import * as config from './config';
 import qs from 'qs';
-import { user_id } from '@/constants/settingConstant';
 
 // npm.json
 export const npmDependencies = () =>
@@ -66,10 +65,10 @@ export const handleLogin = (username, password) => {
 /**
  * @description 退出
  */
-export const LOGOUT = phonenumber => {
+export const LOGOUT = () => {
   getToken();
   return get({
-    url: config.LOGOUT_URL + `?phonenumber=${phonenumber}`
+    url: config.LOGOUT_URL
   });
 };
 
@@ -463,7 +462,7 @@ export const ADDOG = (axiosPath, formData) => {
 export const GETALLOG = (axiosPath, page, total) => {
   getToken();
   return get({
-    url: axiosPath+`?user_id=${user_id}&page=${page}&?total=${total}`
+    url: axiosPath+`?page=${page}&?total=${total}`
   })
 }
 

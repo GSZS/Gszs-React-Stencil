@@ -10,7 +10,7 @@ import React,{useState, useEffect} from 'react';
 import { Form, Input, Button, message, Tooltip } from 'antd';
 import {Link, withRouter} from 'react-router-dom';
 import { UPDATEPWD } from '@/axios';
-import { user_id, phonenumber } from '@/constants/settingConstant'
+import { phonenumber } from '@/constants/settingConstant'
 
 const UpdatePwd = props => {
   
@@ -60,13 +60,12 @@ const UpdatePwd = props => {
     props.form.validateFieldsAndScroll((err, values) => {
       if(!err){
         const formData = {}; 
-        formData.user_id = user_id;
         formData.oldpassword = values.oldPwd;
         formData.newpassword = values.newPwd;
         UPDATEPWD(formData).then((res, err) => {
           if(res && res.status === 200){
             const { history } = props;
-            props.logout( phonenumber, (()=>{history.push('/login')}));
+            props.logout((()=>{history.push('/login')}));
           } else if(res && res.status !== 200 ){
             message.error(res.message);
           }

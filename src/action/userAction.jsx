@@ -54,9 +54,8 @@ export const saveUserInfo = (loginData) => {
    const {newUserData} = loginData;
    
    localStorage.setItem('roles', JSON.stringify(newUserData.roles));
-   localStorage.setItem('phonenumber', JSON.stringify(newUserData.phonenumber));
-   localStorage.setItem('user_id', JSON.stringify(newUserData.user_id));
    localStorage.setItem('token', loginData.token);
+    localStorage.setItem('refreshToken', loginData.refreshToken);
    dispatch({
      type: userConstants.saveUserInfo
    })

@@ -32,19 +32,15 @@ export const isMobile = (_isMobile) => {
 /**
  * @description 退出 - 清除token
  */
-export const logout = ( phonenumber, callback) => {
+export const logout = (callback) => {
   return async dispatch => {
-    const res = await LOGOUT(phonenumber);
+    const res = await LOGOUT();
     if(res && res.status === 200){
       if(window.localStorage.getItem('token') 
         && window.localStorage.getItem('roles')
-        && window.localStorage.getItem('phonenumber')
-        && window.localStorage.getItem('user_id')
       ){
         window.localStorage.removeItem('token');
         window.localStorage.removeItem('roles');
-        window.localStorage.removeItem('phonenumber');
-        window.localStorage.removeItem('user_id');
       }
       dispatch({
         type: settingConstants._isLogout
