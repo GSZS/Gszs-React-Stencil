@@ -2,12 +2,12 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-21 20:38:17
+ * @ Modified time: 2019-10-23 08:31:16
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-18 14:36:52
  */
 
-const baseip = 'http://192.168.50.87:5001'; // http是5001，https是5000
+const baseip = 'http://192.168.0.106:5001'; // http是5001，https是5000
 
 //////////
 ///RBAC///
