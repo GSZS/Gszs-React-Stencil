@@ -7,10 +7,10 @@
  */
 
 import React from 'react';
-import {connect} from 'react-redux';
-import {mobileSelector} from '../selector/settingSelector';
+import { connect } from 'react-redux';
+import { mobileSelector } from '../selector/settingSelector';
 import HeaderCustom from '../components/HeaderCustom';
-import {logout} from '../action/settingAction';
+import { logout } from '../action/settingAction';
 
 
 const HeaderCustomContainer = props => <HeaderCustom {...props} />

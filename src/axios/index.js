@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-21 20:57:52
+ * @ Modified time: 2019-10-24 23:25:44
  * @ 文件解释: 请求数据的接口函数
  */
 
@@ -13,6 +13,7 @@ import {
 } from './tools';
 import * as config from './config';
 import qs from 'qs';
+import { getToken } from './tools';
 
 // npm.json
 export const npmDependencies = () =>
@@ -28,13 +29,6 @@ export const weibo = () =>
   .then(res => res.data)
   .catch(err => console.log(err));
 
-// 请求头带上token
-const getToken = () =>
-  (axios.defaults.headers.common[
-    'authorization'
-  ] = window.localStorage.getItem('token'));
-axios.defaults.withCredentials = true;
-
 /**
  * @description 获取权限
  * @method {GET}
@@ -45,7 +39,6 @@ export const getLoginAuth = (username) => {
     url: config.GETLOGINAUTH + `?username=${username}`
   })
 }
-
 
 /** 
  * @description 登录 
@@ -69,7 +62,7 @@ export const LOGOUT = () => {
   getToken();
   return get({
     url: config.LOGOUT_URL
-  });
+  })
 };
 
 /**
@@ -527,5 +520,21 @@ export const RESETPWD = formData => {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     }    
+  })
+}
+
+// 重新获取token
+// _getNewToken
+export const GETNEWTOKEN = refreshToken => {
+  return get({
+    url: config._getNewToken+`?refreshToken=${refreshToken}`
+  })
+}
+
+// 检查token是否有效
+export const CHECKTOKENEFFECTIVE = () => {
+  getToken();
+  return get({
+    url: config._checkTokenEffective
   })
 }
