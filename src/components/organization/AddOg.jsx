@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-28 15:09:10
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-29 16:13:31
+ * @ Modified time: 2019-10-28 15:43:08
  * @ 文件解释: 新增组织UI组件
  */
 
@@ -41,12 +41,19 @@ export const AddOg = props => {
     }
   ]
 
+  // 其余配置
+  const otherConfig = {
+    FormConfig: addOj,
+    formItemLayout : true,
+    interfaceUrl : _addOrganization,
+    _startAction : props.AddOgAction,
+    uploadFileName: '增加组织标图',
+    singleFile : true // 单文件上传
+  }
+
   return (
     <UpoloadComponentContainer
-      FormConfig={addOj}
-      formItemLayout={true}
-      interfaceUrl={_addOrganization}
-      _startAction = { props.AddOgAction }
+      {...otherConfig}
       {...props}
     />
   )

@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-04 22:08:25
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-15 11:05:09
+ * @ Modified time: 2019-10-28 11:57:40
  * @ 文件解释: 表单上传公共组件(涵盖富文本,markdown)
  */
 
@@ -117,7 +117,9 @@ const BaseFormComponent = props => {
   const uploadButton = (
     <div>
       <Icon type={loading ? 'loading' : 'plus'} />
-      <div className="ant-upload-text">添加文件</div>
+      <div className="ant-upload-text">
+        { props.uploadFileName }
+      </div>
     </div>
   );
 
@@ -230,11 +232,18 @@ const BaseFormComponent = props => {
           const input_file = (
             <FormItem key={field} label={label}>
               {getFieldDecorator(field)(
-                <Upload 
-                  {...uploadConfig}        
+                <Upload
+                  {...uploadConfig}
                   onChange={handleChange}
                 >
-                  {imageUrl ? <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton}
+                  {
+                    props.singleFile ?
+                      fileList.length >= 1 ? null : imageUrl ?
+                        <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton
+                      :
+                      imageUrl ?
+                        <img src={imageUrl} alt="avatar" style={{ width: '100%' }} /> : uploadButton
+                  }
                 </Upload>
               )}
             </FormItem>

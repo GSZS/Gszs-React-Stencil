@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-17 10:06:31
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-19 23:33:38
+ * @ Modified time: 2019-10-28 21:48:25
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-01 17:02:56
  */
@@ -17,6 +17,7 @@ import {
   Pagination,
   message
 } from 'antd';
+import ModalFormContainer from '@/containers/ModalFormContainer';
 
 // 创建Context实例
 const EditableContext = React.createContext();
@@ -167,18 +168,33 @@ const EditableTable = props => {
   // 用于设置面包屑导航
   let crumbsConfig = props.crumbsConfig;
 
+  // 表格配置
+  const TableConfig = {
+    components : components, // 用于覆盖默认的table配置
+    rowClassName: () => 'editable-row',
+    bordered: true,
+    dataSource : data,
+    columns : columns,
+    onChange : handleChange,
+    pagination : false
+  }
+
+  // 分页配置
+  const PaginationConfig = {
+    
+  }
+
+  // 模态框配置
+  const ModalConfig = {
+    
+  }
+
   // 渲染
   return (
     <>
       <EditableContext.Provider value={props.form}>
         <Table
-          components={components} // 用于覆盖默认的table配置
-          rowClassName={() => 'editable-row'}
-          bordered
-          dataSource={data}
-          columns={columns}
-          onChange={handleChange}
-          pagination={false}
+          {...TableConfig}
         />
         {/* 分页 */}
         <Pagination
@@ -197,7 +213,7 @@ const EditableTable = props => {
           onCancel={handleCancel}
           onOk={handleOk}
         >
-          {/* <ModalFormContainer rowId={rowId} getDataById={GET_ALL_DATA_BYID} /> */}
+          <ModalFormContainer rowId={rowId} />
         </Modal>
       </EditableContext.Provider>
     </>

@@ -1,110 +1,82 @@
 /**
  * @ Author: Gszs
- * @ Create Time: 2019-08-05 17:31:03
+ * @ Create Time: 2019-10-15 19:57:02
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-10 15:49:27
- * @ 文件解释: 此公共组件用于修改表单内容
+ * @ Modified time: 2019-10-28 14:41:13
+ * @ 文件解释: 修改表格数据模态框组件
  */
 
-import React, { Component } from 'react';
-import { Form, Icon, Input } from 'antd';
-import { EditorState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { stateFromHTML } from 'draft-js-import-html';
+import React, { useState, useEffect } from 'react';
+import UpoloadComponentContainer from '../../containers/uploadComponentContainer';
 
-const FormItem = Form.Item;
-class ModalForm extends Component {
+const WrappedUpdateFormData = props => {
 
-  constructor(props) {
-    super(props);
-    this.props.getTableByIdAction(this.props.getDataById, this.props.rowId);
-    this.state = {
-      _data: this.props._oldTableData,
-      editorState: EditorState.createEmpty(),
-      editorContent: undefined
+  const [getData, setGetData] = useState();
+  const { _record, _difficultId } = props;
+
+  useEffect(() => {
+    if (props.markName !== undefined) {
+      props.axiosFunc(props.markName, _record).then(res => {
+        if (res && res.status === 200) {
+          setGetData(res.data);
+        }
+      })
+    } else {
+      props.axiosFunc(_record).then(res => {
+        if (res && res.status === 200) {
+          setGetData(res.data);
+        }
+      })
     }
-  }
+  }, [_record, _difficultId]);
 
-  static getDerivedStateFromProps(props, state) {
-    if (props._oldTableData !== state._data) {
-      return {
-        _data: props._oldTableData,
-        // editorState: draftToHtml(EditorState.createWithContent(ContentState.createFromText(props._oldTableData.introduction)))
-        editorState: EditorState.createWithContent(stateFromHTML(props._oldTableData.introduction))
-      }
-    } return null;
-  }
+  // 提供给FormConfig健的值,配置参数
+  let Master = [];
+  // 修改表格配置
+  let filterResult = [];
+  const _columns = props.columns;
+  filterResult = _columns.filter(cv => 'type' in cv);
 
-  // 处理富文本事件
-  onEditorStateChange(editorState) {
-    this.setState({ editorState });
-  };
-  onEditorChange(editorContent) {
-    this.setState({ editorContent });
-  };
+  filterResult.map((cv, key) => {
+    const { title: label, dataIndex: field, type: type, promiseUpload: promiseUpload } = cv;
+    const newCv = { label, field, type, promiseUpload };
 
-  render() {
-    const { getFieldDecorator } = this.props.form;
-    const { _data, editorState } = this.state;
+    // 筛选需要的值,这段代码有点复杂，
+    // 主要是筛选请求得到的key与dataIndex对应然后把请求得到的value填充进对象initialValue
 
-    return (
-      <Form className="login-form">
-        <FormItem label="名称">
-          {getFieldDecorator('roleName', {
-            rules: [
-              {
-                required: true,
-                message: '名称不能为空'
-              },
-            ],
-            initialValue: _data.townName
-          })(
-            <Input
-              prefix={
-                <Icon type="user"
-                  style={{ color: 'rgba(0,0,0,.25)' }}
-                />
-              }
-              placeholder="名称"
-            />
-          )}
-        </FormItem>
-        <FormItem label="描述">
-          {getFieldDecorator('roleNameDesc', {
-            rules: [
-              {
-                required: true,
-                message: '描述不能为空'
-              },
-            ]
-          })(
-            <Editor
-              editorState={editorState}
-              toolbarClassName="home-toolbar"
-              wrapperClassName="home-wrapper"
-              editorClassName="home-editor"
-              localization={{ locale: 'zh', translations: { 'generic.add': '添加' } }}
-              wrapperClassName="wysiwyg-wrapper"
-              placeholder="请输入正文"
-              onEditorStateChange={this.onEditorStateChange} // 每次编辑器状态发生改变的时候调用这个函数,传递的参数是EditorState类型
-              onContentStateChange={this.onEditorChange} // 每次编辑器状态发生改变的时候调用这个函数,传递的参数是RawDraftContentState类型
-              toolbar={{
-                history: { inDropdown: true },
-                inline: { inDropdown: false },
-                list: { inDropdown: true },
-                textAlign: { inDropdown: true },
-                // image: { uploadCallback: this.imageUploadCallBack },
-              }}
-            />
-          )}
-        </FormItem>
-      </Form>
-    );
-  }
+    // 处理资助信息不用数组化getData
+    if (props.markName !== undefined) {
+      return getData ? getData.map((cv2, index) =>
+        Object.keys(cv2).map((cv3, index2) => {
+          if (cv3 === cv['dataIndex']) {
+            newCv.initialValue = cv2[cv3];
+            Master.push(newCv);
+          }
+        })
+      ) : []
+    } else {
+      return getData ? [getData].map((cv2, index) =>
+        Object.keys(cv2).map((cv3, index2) => {
+          if (cv3 === cv['dataIndex']) {
+            newCv.initialValue = cv2[cv3];
+            Master.push(newCv);
+          }
+
+        })
+      ) : []
+    }
+  })
+
+  return (
+    <UpoloadComponentContainer
+      {...props}
+      FormConfig={Master}
+      interfaceUrl={props.interfaceUrl[2]}
+      _mark='UPDATE' // UPDATE标记代表是修改调用了上传公共组件
+    />
+  )
+
 }
-
-const WrappedUpdateFormData = Form.create()(ModalForm);
 
 export default WrappedUpdateFormData;
 

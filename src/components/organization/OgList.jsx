@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-09-28 17:04:10
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-19 23:37:07
+ * @ Modified time: 2019-10-28 21:28:01
  * @ 文件解释: 组织列表容器组件
  */
 
@@ -120,7 +120,7 @@ export const OgList = props => {
       <div className="contentHeader">
         <span>组织</span>
         <Button
-          type="primary"
+          type="primary" 
           icon="plus"
           onClick={displayModal}
         >新增</Button>

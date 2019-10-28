@@ -10,10 +10,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import WrappedUpdateFormData from '../components/Common/ModalForm';
 
-const ModalFormContainer = props => {
-  return <WrappedUpdateFormData {...props} />
-}
-
+const ModalFormContainer = props => <WrappedUpdateFormData {...props} />
 
 export default connect(null, {
   // getTableByIdAction,
