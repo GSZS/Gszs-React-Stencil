@@ -22,7 +22,8 @@ const UserInfoContainer = lazy(() => import('@/containers/users/UserInfoContaine
 const UserSettingContainer = lazy(() => import('@/containers/users/UserSettingContainer'));
 const ForgetPwdContainer = lazy(() => import('@/containers/users/ForgetPwdContainer'));
 
-// 私人路线
+// 
+const Gdraft = lazy(() => import('@/components/draftJs/DraftJs'));
 
 
 export default {
@@ -38,5 +39,7 @@ export default {
 	OgListContainer,
 	UserInfoContainer,
 	UserSettingContainer,
-	ForgetPwdContainer
+	ForgetPwdContainer,
+
+	Gdraft
 }

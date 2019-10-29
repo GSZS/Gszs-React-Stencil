@@ -30,6 +30,12 @@ export default {
 			icon: 'usergroup-delete',
 			component: 'Dashboard'
 		},
+		{
+			key: '/app/ui', title: '缘之空', icon: 'safety',
+			subs: [
+				{ key: '/app/ui/draft', title: '富文本', component: 'Gdraft' },
+			],
+		}
 		// {
 		//     key: '/app/auth', title: '权限管理', icon: 'safety',
 		//     subs: [
@@ -40,28 +46,28 @@ export default {
 	],
 	// 平行路由
 	others: [
-		{ 
-			key: '/app/project/add_project', 
+		{
+			key: '/app/project/add_project',
 			title: '新增项目',
-			component: 'AddProjectContainer' 
+			component: 'AddProjectContainer'
 		}
 	],
 	// 个人资料/个人设置
 	users: [
-		
+
 		{
-			key: '/app/users/user_info', 
+			key: '/app/users/user_info',
 			title: '个人资料',
 			component: 'UserInfoContainer'
 		},
 		{
-			key: '/app/users/user_setting', 
+			key: '/app/users/user_setting',
 			title: '个人设置',
 			component: 'UserSettingContainer'
 		},
 		// 内部的忘记密码设置
 		{
-			key: '/private/users/forget_pwd', component: 'ForgetPwdContainer'			
+			key: '/private/users/forget_pwd', component: 'ForgetPwdContainer'
 		}
 	]
 
