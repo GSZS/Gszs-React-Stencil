@@ -16,27 +16,27 @@ export const AddOg = props => {
   const addOj = [
     {
       label: '组织关键字',
-      field: 'OjKey',
+      field: 'og_key',
       type: 'text',
       placeholder: '请组织关键字',
       initialValue: '请组织关键字'
     },
     {
       label: '组织名称',
-      field: 'OjName',
+      field: 'og_name',
       type: 'text',
       placeholder: '请组织名称',
       initialValue: '请组织名称'
     },
     {
       label: '组织描述',
-      field: 'OjDesc',
+      field: 'og_desc',
       type: 'textarea',
       placeholder: '请填入组织描述',
     },
     {
       label: '组织标图',
-      field: 'avatar',
+      field: 'og_pic',
       type: 'file'
     }
   ]
@@ -52,9 +52,6 @@ export const AddOg = props => {
   }
 
   return (
-    <UpoloadComponentContainer
-      {...otherConfig}
-      {...props}
-    />
+    <UpoloadComponentContainer {...otherConfig} {...props} />
   )
 }

@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-17 10:06:31
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-28 21:48:25
+ * @ Modified time: 2019-10-30 13:26:14
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-01 17:02:56
  */
@@ -18,6 +18,7 @@ import {
   message
 } from 'antd';
 import ModalFormContainer from '@/containers/ModalFormContainer';
+import '../../style/components/common/controlComponent.less';
 
 // 创建Context实例
 const EditableContext = React.createContext();
@@ -54,7 +55,7 @@ const EditableCell = props => {
     </EditableContext.Consumer>
   );
 };
-
+ 
 // EditableTable
 const EditableTable = props => {
 
@@ -62,15 +63,24 @@ const EditableTable = props => {
   const [data, setData] = useState([]),
     [total, setTotal] = useState(10),
     [visible, setVisible] = useState(false),
-    [rowId, setRowId] = useState(undefined)
-
-  // 监控表格数据
-  useEffect(() => {
-    setData(props.data);
-  }, [props.data])
+    [rowId, setRowId] = useState(undefined);
 
   // 分页
   const [page, setPage] = useState(1);
+
+  // 获取数据
+  useEffect(() => {
+    getAllData();
+  }, [page])
+
+  // 获取数据
+  const getAllData = () => {
+    props.getData(page).then(res => {
+      if(res && res.status === 200){
+        setData(res.data)
+      }
+    }) 
+  }
 
   // 排序
   const [setSortedInfo] = useState(null);
@@ -80,7 +90,7 @@ const EditableTable = props => {
     props.delAxiosFunc(props.delAxiosPath, id).then(res => {
       if (res && res.status === 200) {
         message.success(res.message);
-        props._getAllOg();
+        getAllData()
       } else {
         message.error(res.message);
       }
@@ -118,9 +128,6 @@ const EditableTable = props => {
 
   // columns表格头(动态导入)
   const columns = props.columns.map(col => {
-    // if (!col.editable) {
-    //   return col;
-    // }
     return {
       ...col,
       onCell: record => ({
@@ -135,84 +142,75 @@ const EditableTable = props => {
     const columnList = props.columns;
     columnList.forEach(item => {
       if (item.title === '操作') {
-        item.render = (text, record) => {
-          return (
-            <div>
-              <span>
-                <EditableContext.Consumer>
-                  {form => (
-                    <Button type="primary" icon="edit" onClick={() => handleEdit(record.og_id)} >
-                      修改
+        item.render = (text, record) =>
+          <div>
+            <span>
+              <EditableContext.Consumer>
+                {form => (
+                  <Button type="primary" icon="edit" onClick={() => handleEdit(record.og_id)} >
+                    修改
                     </Button>
-                  )}
-                </EditableContext.Consumer>
-                <Popconfirm
-                  title="确定要删除吗?"
-                  onConfirm={() => HandleDelete(record.og_id)}
-                >
-                  <a href="javascript:;">
-                    <Button icon="delete" type="danger" className="deleteButton">
-                      删除
+                )}
+              </EditableContext.Consumer>
+              <Popconfirm
+                title="确定要删除吗?"
+                onConfirm={() => HandleDelete(record.og_id)}
+              >
+                <a href="javascript:;">
+                  <Button icon="delete" type="danger" className="deleteButton">
+                    删除
                     </Button>
-                  </a>
-                </Popconfirm>
-              </span>
-            </div>
-          );
-        };
+                </a>
+              </Popconfirm>
+            </span>
+          </div>
       }
     });
   };
   dealOperateFn();
-
-  // 用于设置面包屑导航
-  let crumbsConfig = props.crumbsConfig;
-
+  
   // 表格配置
   const TableConfig = {
-    components : components, // 用于覆盖默认的table配置
+    components: components, // 用于覆盖默认的table配置
     rowClassName: () => 'editable-row',
     bordered: true,
-    dataSource : data,
-    columns : columns,
-    onChange : handleChange,
-    pagination : false
+    dataSource: data,
+    columns: columns,
+    onChange: handleChange,
+    pagination: false,
+    scroll : { y: 500 }
   }
 
   // 分页配置
   const PaginationConfig = {
-    
+    defaultCurrent: 1,
+    total: total,
+    onChange: e => setPage(Number(e)),
+    style: { marginTop: '20px', float: 'right' },
+    showSizeChanger: true
   }
 
-  // 模态框配置
+  // 修改数据模态框配置
   const ModalConfig = {
-    
+    width: 500,
+    title: props.componentName,
+    visible: visible,
+    okText: "确定修改",
+    cancelText: "取消更改",
+    onCancel: handleCancel,
+    onOk: handleOk,
   }
 
   // 渲染
   return (
     <>
       <EditableContext.Provider value={props.form}>
-        <Table
-          {...TableConfig}
-        />
+        <div className="tableStyle" >
+          <Table {...TableConfig} />
+        </div>
         {/* 分页 */}
-        <Pagination
-          defaultCurrent={1}
-          total={total}
-          onChange={e => setPage(Number(e))}
-          style={{ marginTop: '20px', float: 'right' }}
-          showSizeChanger
-        />
-        <Modal
-          width={500}
-          title={props.componentName}
-          visible={visible}
-          okText="确定修改"
-          cancelText="取消更改"
-          onCancel={handleCancel}
-          onOk={handleOk}
-        >
+        <Pagination {...PaginationConfig} />
+        <Modal {...ModalConfig}>
           <ModalFormContainer rowId={rowId} />
         </Modal>
       </EditableContext.Provider>

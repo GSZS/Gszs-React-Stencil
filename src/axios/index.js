@@ -452,10 +452,10 @@ export const ADDOG = (axiosPath, formData) => {
 }
 
 // 获取所有组织
-export const GETALLOG = (axiosPath, page, total) => {
+export const GETALLOG = (page, total) => {
   getToken();
   return get({
-    url: axiosPath+`?page=${page}&?total=${total}`
+    url: config._findAllOrganization+`?page=${page}&?total=${total}`
   })
 }
 

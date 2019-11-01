@@ -25,7 +25,7 @@ const WrappedUpdateFormData = props => {
       props.axiosFunc(_record).then(res => {
         if (res && res.status === 200) {
           setGetData(res.data);
-        }
+        } 
       })
     }
   }, [_record, _difficultId]);
