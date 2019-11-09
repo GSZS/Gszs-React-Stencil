@@ -14,7 +14,6 @@ class ThemePicker extends Component {
         })
     };
     _handleChangeComplete = color => {
-        console.log(color);
         this.setState({ background: color.hex });
         localStorage.setItem('@primary-color', color.hex);
         window.less.modifyVars({

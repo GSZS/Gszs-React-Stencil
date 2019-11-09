@@ -24,7 +24,6 @@ class FrontUserOperate extends Component {
 
     // 获取选择框选中的key
     this.getSelectRowsKey = selectKeysArr => {
-      console.log('selectKeysArr=>>>',selectKeysArr)
       this.setState ({
         rowKeysArr: selectKeysArr,
       });

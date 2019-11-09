@@ -23,7 +23,7 @@ export const stopLogin = 'stopLogin';
  * @param {String} 用户名
  * @param {String} 密码
  */
-export const loginAction = (_boolean, username, password) => {
+export const loginAction = (_boolean, username, password) => { 
   return async dispatch => {
     dispatch({
       type: startLogin

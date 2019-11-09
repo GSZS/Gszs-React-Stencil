@@ -38,7 +38,6 @@ export const PublicModal = props => {
   // onCancel
   const onCancel = () => {
     setmodalOpen (controlModal);
-    console.log (controlModal);
   };
 
   return (

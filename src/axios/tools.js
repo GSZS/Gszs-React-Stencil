@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-01 01:00:32
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-28 10:38:33
+ * @ Modified time: 2019-11-08 09:52:50
  * @ 文件解释: 对axios进行包装
  */
 
@@ -14,7 +14,7 @@ import { configureStore } from '@/store/configureStore'
 
 // 请求头带上token
 export const getToken = () => axios.defaults.headers.common['authorization'] = window.localStorage.getItem('token');
-
+ 
 // 带上cookie / 证书
 axios.defaults.withCredentials = true;
 
@@ -43,7 +43,6 @@ const setupAxiosInterceptors = onUnauthenticated => {
     
     // 如果状态码为5999则表示后端判断到refreshtoken已经过期了，需要跳回登录界面重新获取refreshToken
     if (res && (res.data.status === 5998 || res.data.status === 5999)) {
-      
       // 走正常退出流程
       if (!config.url.includes('signout')) {
         message.warning('refreshToken已失效,请点击退出重新登录');

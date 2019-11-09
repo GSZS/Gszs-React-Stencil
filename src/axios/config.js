@@ -2,12 +2,13 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-30 09:52:23
+ * @ Modified time: 2019-11-08 22:18:42
  * @ 修改人: Gszs
  * @ 最新修改时间: 2019-07-18 14:36:52
  */
 
-const baseip = 'http://192.168.101.116:5001'; // http是5001，https是5000
+// const baseip = 'http://192.168.101.111:5001'; // http是5001，https是5000
+const baseip = 'http://120.27.245.194:5001'; // 阿里云
 
 //////////
 ///RBAC///
