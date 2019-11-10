@@ -128,7 +128,7 @@ module.exports = {
 		'react': 'React',
 		'moment': 'moment',
 		'react-dom': 'ReactDOM',
-		'react-router-dom': 'ReactRouterDOM',
+		// 'react-router-dom': 'ReactRouterDOM',
 		'echarts': 'echarts'
 	},
 	optimization: {
