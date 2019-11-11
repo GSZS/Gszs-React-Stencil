@@ -2,11 +2,12 @@
  * @Author: Gszs 
  * @Date: 2019-05-10 09:21:39 
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-14 20:56:23
+ * @ Modified time: 2019-11-11 11:21:02
  */
 
 import React from 'react';
-import {HashRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+// import {HashRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 import NotFound from './components/pages/NotFound';
 import LoginContainer from './containers/loginContainer';
 import RegisterContainer from './containers/RegisterContainer';
