@@ -101,22 +101,19 @@ const getStyleLoaders = (cssOptions, preProcessor) => {
 // The development configuration is different and lives in a separate file.
 module.exports = {
 	mode: 'production',
-	// Don't attempt to continue if there are any errors.
+	// 如果发生错误，不继续向下走
 	bail: true,
-	// We generate sourcemaps in production. This is slow but gives good results.
-	// You can exclude the *.map files from the build during deployment.
+	// 设置打包模式
 	devtool: shouldUseSourceMap ? 'source-map' : false,
-	// In production, we only want to load the app code.
+	// 设置入口
 	entry: [paths.appIndexJs],
 	output: {
-		// The build folder.
+		// build文件夹
 		path: paths.appBuild,
-		// Generated JS file names (with nested folders).
-		// There will be one main bundle, and one file per asynchronous chunk.
-		// We don't currently advertise code splitting but Webpack supports it.
+
 		filename: 'static/js/[name].[chunkhash:8].js',
 		chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
-		// We inferred the "public path" (such as / or /my-project) from homepage.
+		// 从package.json中取公共路径
 		publicPath: publicPath,
 		// Point sourcemap entries to original disk location (format as URL on Windows)
 		devtoolModuleFilenameTemplate: info =>
@@ -124,6 +121,7 @@ module.exports = {
 				.relative(paths.appSrc, info.absoluteResourcePath)
 				.replace(/\\/g, '/'),
 	},
+	// 设置不需要打包的，采用CDN
 	externals: {
 		'react': 'React',
 		'moment': 'moment',
@@ -244,6 +242,7 @@ module.exports = {
 			PnpWebpackPlugin.moduleLoader(module),
 		],
 	},
+	// 处理模块
 	module: {
 		strictExportPresence: true,
 		rules: [
@@ -449,7 +448,7 @@ module.exports = {
 		],
 	},
 	plugins: [
-		// Generates an `index.html` file with the <script> injected.
+		// 生成HTML文件
 		new HtmlWebpackPlugin({
 			inject: true,
 			template: paths.appHtml,
@@ -470,6 +469,7 @@ module.exports = {
     // new BundleAnalyzerPlugin({ 
 		// 	analyzerPort: 8081 
 		// }),
+		
 		// Inlines the webpack runtime script. This script is too small to warrant
 		// a network request.
 		new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),

@@ -26,7 +26,7 @@ function ensureSlash(inputPath, needsSlash) {
     return `${inputPath}/`;
   } else {
     return inputPath;
-  }
+  } 
 }
 
 const getPublicUrl = appPackageJson =>
