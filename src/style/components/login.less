@@ -1,141 +1,133 @@
+@color1: #c0c0c0;
+
 .login {
-  .login-form {
-    .middleBox {
-      background-color: black;
-      position: fixed;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      font-size: 20px;
+  width: 100%;
+  height: 100%;
+  background: #1bbe9c;
+
+  .middleBox {
+    min-width: 550px;
+    min-height: 400px;
+    margin-top: 15%;
+    background-color: #f4eaf3;
+    font-size: 20px;
+    color: @color1;
+    border-radius: 5%;
+    border: 6px solid @color1;
+
+    // 登陆logo
+    .login-logo {
+      padding: 10px 0;
+      border-bottom: 1px solid #c0c0c0;
       text-align: center;
-      text-align: center;
 
-      .formBox {
-        padding-top: 5%;
-        text-align: center;
+      span {
+        text-transform: uppercase;
+        display: inline-block;
 
-        >div {
-          width: 30%;
-          margin: 0 auto;
-          border-radius: 5%;
-          box-shadow: 0 0 4px 2px #ccc;
-          background: rgba(210, 201, 201, 0.44);
+        img {
+          width: 50px;
+          height: 50px;
         }
-
-        .ant-tabs-tab {
-          font-size: 23px;
-          font-weight: bold;
-          color: antiquewhite;
-          letter-spacing: 1px;
-        }
-
-        .formStyle {
-
-          width: 60%;
-          margin: 0 auto;
-          label{
-            color: white;
-            font-weight: 500;
-          }
-
-          .inputCode {
-            float: left;
-            width: 40%;
-          }
-
-          .forget-pwd-style{
-            font-weight: 500;
-            color: white;
-          }
-
-          // 验证码
-          .vcode {
-            float: right;
-          }
-
-        }
-
-        // 第三方登录
-        .third-login{
-
-          width: 30%;
-          margin: 0 auto;
-          margin-top: 20px;
-          color: #8590a6;
-          border-radius: 4px;
-          -webkit-box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
-          box-shadow: 0 1px 3px 0 rgba(0,0,0,.1);
-          
-          padding: 0 24px;
-
-          .third-login-name{
-            text-align: center;
-            font-size: 17px;
-            color: white;
-          }
-
-          .third-login-content{
-            height: 60px;
-            line-height: 60px;
-            display: flex;
-            -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
-            justify-content: space-between;
-
-            // github
-            .githubAddress {
-              font-size: 16px;
-              color: white;
-              font-weight: 500;
-            }            
-          }
-
-        }
-
-      }
-
-      .login-logo {
-        position: relative;
-        text-align: center;
-        height: 40px;
-        line-height: 40px;
-        cursor: pointer;
-        padding-top: 5%;
-        margin-bottom: 24px;
 
         span {
-          text-transform: uppercase;
-          display: inline-block;
-
-          img {
-            width: 50px;
-            height: 50px;
-          }
-
-          span {
-            vertical-align: middle;
-            font-size: 20px;
-            color: white;
-            font-weight: bolder;
-          }
+          vertical-align: middle;
+          font-size: 20px;
+          color: white;
+          font-weight: bolder;
         }
+      }
 
-        .projectName {
-          letter-spacing: 1px;
-          font-size: 25px;
-        }
+      .projectName {
+        letter-spacing: 1px;
+        font-size: 25px;
+        color: @color1;
       }
     }
 
-    .canvasBox {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
+    .formBox {
+      :global {
+        .ant-tabs-bar {
+          text-align: center;
+          padding-bottom: 10px;
+        }
+
+        .ant-tabs-nav {
+          color: @color1;
+          font-size: 20px;
+        }
+
+      }
+      
+      // 表单样式
+      .formStyle {
+        text-align: center;
+
+        :global {
+          .ant-tabs-tab {
+            font-size: 19px;
+            font-weight: bold;
+            color: @color1;
+            letter-spacing: 1px;
+          }
+        }
+
+        .userStyle,
+        .passwordStyle,
+        .formBottomStyle {
+          width: 60%;
+          display: inline-block;
+        }
+
+        // 验证码
+        .validCode {
+          width: 100%;
+
+          .inputCode {
+            width: 27%;
+            margin-right: 5%;
+          }
+
+          .vcode {
+            width: 40%;
+            display: inline-block;
+          }
+        }
+
+        // 记住我/忘记密码
+        .formBottomStyle{
+          .rememberStyle{
+            float: left;
+          }
+          .forgetPwdStyle{
+            float: right;
+          }
+        }
+
+
+      }
+
+      // 第三方登陆
+      .third-login{
+        text-align: center;
+        padding-bottom: 10px;
+        a {
+          font-size: 17px;
+          padding: 0 15px;
+        }
+      }
+
     }
+
+  }
+
+  .canvasBox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
   }
 }
 

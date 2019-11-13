@@ -2,12 +2,12 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-07-01 15:49:46
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-17 09:03:04
+ * @ Modified time: 2019-11-13 17:22:13
  * @ 文件解释: 登录页面
  */
 
 import React from 'react';
-import { Form, Icon, Input, Button, Checkbox, Tabs, Tooltip } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, Tabs, Col, Row } from 'antd';
 import { aes_128_cbc_key, aes_128_cbc_iv } from '@/constants';
 import { cryptoTools } from '@/utils/utils';
 import LogoImg from '@/assets/image/logo.png';
@@ -18,7 +18,6 @@ import RegisterContainer from '@/containers/RegisterContainer';
 import { SVGICON } from '@/components/svg/svgIcon';
 import { Link } from 'react-router-dom';
 import '@/style/components/login.less';
-
 
 const FormItem = Form.Item;
 const { TabPane } = Tabs;
@@ -78,16 +77,21 @@ class Login extends React.Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
+      // 登陆/注册页面(默认登陆页面)
       <div className="login">
-        <div className="login-form">
-          {/* canvas效果-1 */}
-          {/* <canvas id="sakura" /> */}
+        {/* canvas效果-1 */}
+        {/* <canvas id="sakura" /> */}
 
-          {/* canvas效果-2 */}
-          {/* <div className="canvasBox">
+        {/* canvas效果-2 */}
+        {/* <div className="canvasBox">
             <CanvasBox row={12} col={8} />
           </div> */}
-          {/* 核心内容盒子 */}
+        {/* 核心内容盒子 */}
+        <Row
+          type="flex"
+          justify="center"
+          align="center"
+        >
           <div className="middleBox">
             <div className="login-logo">
               <span className="login-name">
@@ -96,11 +100,13 @@ class Login extends React.Component {
               </span>
               {/* <PwaInstaller /> */}
             </div>
+
             <div className="formBox">
+              {/* 登陆注册 */}
               <Tabs defaultActiveKey={this.state.key} onChange={this.handleChange} >
                 <TabPane tab="欢迎登录" key={1}>
                   <Form onSubmit={this.handleSubmit} className="formStyle" >
-                    <FormItem className="userStyle" label="用户名 / 邮箱地址">
+                    <FormItem className="userStyle">
                       {getFieldDecorator('username', {
                         initialValue: cookies.load('authCookie') ? cryptoTools.deSign_aes_128_cbc(cookies.load('authCookie').username, aes_128_cbc_key, aes_128_cbc_iv) : '',
                         rules: [{ required: true, message: '请输入用户名!' }]
@@ -111,7 +117,7 @@ class Login extends React.Component {
                         />
                       )}
                     </FormItem>
-                    <FormItem className="passwordStyle" label="密码">
+                    <FormItem className="passwordStyle">
                       {getFieldDecorator('password', {
                         initialValue: cookies.load('authCookie') ? cryptoTools.deSign_aes_128_cbc(cookies.load('authCookie').password, aes_128_cbc_key, aes_128_cbc_iv) : '',
                         rules: [{ required: true, message: '请输入密码!' }]
@@ -123,7 +129,7 @@ class Login extends React.Component {
                         />
                       )}
                     </FormItem>
-                    <FormItem label="验证码">
+                    <FormItem className="validCode">
                       {getFieldDecorator("vcode", {
                         rules: [
                           {
@@ -165,12 +171,12 @@ class Login extends React.Component {
                         }}
                       />
                     </FormItem>
-                    <FormItem>
+                    <FormItem className="formBottomStyle">
                       {getFieldDecorator('remember', {
                         valuePropName: 'checked',
                         initialValue: true,
-                      })(<Checkbox>记住我</Checkbox>)}
-                      <Link to="/forgetpwd" className="forget-pwd-style" >忘记密码 ? </Link>
+                      })(<Checkbox className="rememberStyle" >记住我</Checkbox>)}
+                      <Link to="/forgetpwd" className="forgetPwdStyle" >忘记密码 ? </Link>
                       <Button
                         type="primary"
                         htmlType="submit"
@@ -188,7 +194,6 @@ class Login extends React.Component {
               </Tabs>
               {/* 第三方登录 */}
               <div className="third-login">
-                
                 <div className="third-login-name">
                   <span>社交账号登录</span>
                 </div>
@@ -197,28 +202,27 @@ class Login extends React.Component {
                   {/* Github */}
                   <a href="javascript:;" className="githubAddress" onClick={this.handleOAuth}>
                     <SVGICON type="icon-github" /> Github
-                  </a>
+                    </a>
 
                   {/* QQ */}
                   <a href="javascript:;" className="githubAddress" onClick={this.handleOAuth}>
                     <SVGICON type="icon-qq" /> QQ
-                  </a>
+                    </a>
 
                   {/* 微信 */}
                   <a href="javascript:;" className="githubAddress" onClick={this.handleOAuth}>
                     <SVGICON type="icon-weixin" /> 微信
-                  </a>
+                    </a>
 
                   {/* 微博 */}
                   <a href="javascript:;" className="githubAddress" onClick={this.handleOAuth}>
                     <SVGICON type="icon-weibo" /> 微博
-                  </a>  
+                    </a>
                 </div>
-
               </div>
             </div>
           </div>
-        </div>
+        </Row>
       </div>
     );
   }
