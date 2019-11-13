@@ -18,7 +18,7 @@ const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const getCacheIdentifier = require('react-dev-utils/getCacheIdentifier');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -466,9 +466,9 @@ module.exports = {
 			},
 		}),
 		//指定端口可视化查看打包的体积
-    // new BundleAnalyzerPlugin({ 
-		// 	analyzerPort: 8081 
-		// }),
+    new BundleAnalyzerPlugin({ 
+			analyzerPort: 8081 
+		}),
 		
 		// Inlines the webpack runtime script. This script is too small to warrant
 		// a network request.
