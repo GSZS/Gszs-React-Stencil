@@ -7,9 +7,9 @@ import {connectAlita} from 'redux-alita';
 class AuthWidget extends Component {
   render () {
     const {auth = {}} = this.props;
-    console.log (this.props);
     return this.props.children (auth.data || {});
   }
 }
 
 export default connectAlita (['auth']) (AuthWidget);
+ 

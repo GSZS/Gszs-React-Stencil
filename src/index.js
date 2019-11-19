@@ -12,12 +12,18 @@ import './style/antdGlobal.less' // 选择性覆盖Antd的样式
 import {ConfigProvider} from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import {configureStore} from './store/configureStore';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/es/integration/react';
+
+const persistor = persistStore(configureStore());
 
 ReactDOM.render (
   <AppContainer>
     <Provider store={configureStore()}>
         <ConfigProvider locale={zhCN}>
-          <Page />
+          <PersistGate persistor={persistor} >
+            <Page /> 
+          </PersistGate>
         </ConfigProvider>
     </Provider>
   </AppContainer>,
