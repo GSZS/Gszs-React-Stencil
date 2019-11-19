@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-28 11:19:50
  * @ Modified by: Gszs
- * @ Modified time: 2019-09-24 01:01:33
+ * @ Modified time: 2019-11-19 15:49:06
  * @ 文件解释: 控制路由系统
  */
 
@@ -70,7 +70,7 @@ export default class CRouter extends Component {
                     const queryParams = window.location.hash.match (reg);
                     // 去除?的参数
                     const {params} = props.match;
-                    Object.keys (params).forEach (key => {
+                    Object.keys (params).forEach (key => { 
                       params[key] =
                         params[key] && params[key].replace (reg, '');
                     });
