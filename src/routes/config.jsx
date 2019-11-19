@@ -11,7 +11,7 @@ export default {
 			title: '组织',
 			icon: 'branches',
 			component: 'OgListContainer'
-		},
+		}, 
 		{
 			key: '/app/project',
 			title: '项目',

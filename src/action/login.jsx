@@ -10,7 +10,7 @@ import { message } from 'antd';
 import { handleLogin } from '../axios';
 import cookies from 'react-cookies';
 import { cryptoTools } from '../utils/utils';
-import {aes_128_cbc_key, aes_128_cbc_iv} from '../constants'
+import {aes_128_cbc_key, aes_128_cbc_iv} from '../constants';
 
 export const startLogin = 'startLogin';
 export const failedLogin = 'failedLogin';

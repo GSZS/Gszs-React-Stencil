@@ -9,19 +9,18 @@ import './style/lib/animate.css';
 import './style/antd/index.less';
 import './style/index.less';
 import './style/antdGlobal.less' // 选择性覆盖Antd的样式
-import {ConfigProvider} from 'antd';
+import {ConfigProvider, Spin} from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import {configureStore} from './store/configureStore';
-import { persistStore } from 'redux-persist';
-import { PersistGate } from 'redux-persist/es/integration/react';
+import { PersistGate } from 'redux-persist/integration/react'
 
-const persistor = persistStore(configureStore());
+const { store, persistor } = configureStore();
 
 ReactDOM.render (
   <AppContainer>
-    <Provider store={configureStore()}>
+    <Provider store={store}>
         <ConfigProvider locale={zhCN}>
-          <PersistGate persistor={persistor} >
+          <PersistGate loading={<Spin size="large" />} persistor={persistor} >
             <Page /> 
           </PersistGate>
         </ConfigProvider>

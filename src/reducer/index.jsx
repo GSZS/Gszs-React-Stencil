@@ -2,7 +2,7 @@
  * @Author: Gszs 
  * @Date: 2019-04-22 09:46:20 
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-19 13:12:26
+ * @ Modified time: 2019-11-19 23:00:04
  */
 
 import { combineReducers } from 'redux';
@@ -13,7 +13,6 @@ import { RoleReducer, MenuReducer, AuthReducer } from './authReducer';
 import { addOgReducer } from './organization/organizationReducer';
 import { getAllPjTypesReducer } from './project/ProjectReducer';
 import { registerReducer } from './user/userReducer';
-
 
 const appReducer = combineReducers({
 	LoginReducer,
