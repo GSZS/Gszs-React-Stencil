@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-07-22 16:04:49
  * @ Modified by: Gszs
- * @ Modified time: 2019-10-28 09:44:07
+ * @ Modified time: 2019-11-20 14:13:26
  * @ Description: 登陆Action
  */
 
@@ -24,7 +24,7 @@ export const stopLogin = 'stopLogin';
  * @param {String} 密码
  */
 export const loginAction = (_boolean, username, password) => { 
-  return async dispatch => {
+  return async (dispatch) => {
     dispatch({
       type: startLogin
     });

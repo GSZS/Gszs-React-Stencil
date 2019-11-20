@@ -1,18 +1,20 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
 import { Link } from 'react-router-dom';
+import { SVGICON } from '@/components/svg/svgIcon';
 
 const renderMenuItem = item => ( // item.route 菜单单独跳转的路由
-	<Menu.Item
-		key={item.key}
-	>
+	<Menu.Item key={item.key}>
 		<Link to={(item.route || item.key) + (item.query || '')}>
-			{item.icon && <Icon type={item.icon} />}
+			{
+				item.GIcon ? <SVGICON type={item.GIcon} /> : <Icon type={item.icon} />
+			}
 			<span className="nav-text">{item.title}</span>
 		</Link>
 	</Menu.Item>
 );
 
+// 渲染多级Menu
 const renderSubMenu = item => (
 	<Menu.SubMenu
 		style={{
@@ -21,7 +23,9 @@ const renderSubMenu = item => (
 		key={item.key}
 		title={
 			<span>
-				{item.icon && <Icon type={item.icon} />}
+				{
+					item.GIcon ? <SVGICON type={item.GIcon} /> : <Icon type={item.icon} />
+				}
 				<span className="nav-text">{item.title}</span>
 			</span>
 		}
@@ -32,8 +36,8 @@ const renderSubMenu = item => (
 
 export default ({ menus, ...props }) => (
 	<Menu {...props}>
-		{menus && menus.map(item =>
-			item.subs ? renderSubMenu(item) : renderMenuItem(item)
-		)}
+		{
+			menus && menus.map(item => item.subs ? renderSubMenu(item) : renderMenuItem(item))
+		}
 	</Menu>
 );

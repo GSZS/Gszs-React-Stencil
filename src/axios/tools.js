@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-05-01 01:00:32
  * @ Modified by: Gszs
- * @ Modified time: 2019-11-20 12:05:37
+ * @ Modified time: 2019-11-20 20:16:24
  * @ 文件解释: 对axios进行包装
  */
 
@@ -12,14 +12,12 @@ import { GETNEWTOKEN } from './index';
 import { logoutNoRequest } from '@/action/settingAction';
 import { configureStore } from '@/store/configureStore';
 
-
-// 请求头带上token
 export const getToken = () => {
-  // axios.defaults.headers.common['authorization'] = window.localStorage.getItem('persist:root');
+  const allState = JSON.parse(window.localStorage.getItem('persist:root'));
+  const { loginData: { token } } = JSON.parse(allState.LoginReducer);
+  axios.defaults.headers.common['authorization'] = token;
 }
 
-// const aa = JSON.parse(window.localStorage.getItem('persist:root'));
-// console.log('=>>>>', JSON.parse(aa.LoginReducer))
 
 // 带上cookie / 证书
 axios.defaults.withCredentials = true;
@@ -35,14 +33,13 @@ let isRefreshing = false;
 // 重试队列，用于将token正在刷新时将下面的接口先放入队列中
 let requestsArr = [];
 
-// 请求拦截器 处理token失效
-// axios.interceptors.request.use(req => {  
-//   CHECKTOKENEFFECTIVE
-// })
 
 // 封装响应拦截
 // 响应拦截器 - 处理token失效（因为服务器时间与本地时间有间隙） TODO: axios响应拦截器有独立的作用域
 const setupAxiosInterceptors = onUnauthenticated => {
+
+  const allState = JSON.parse(window.localStorage.getItem('persist:root'));
+  const { loginData: { refreshToken } } = JSON.parse(allState.LoginReducer);
 
   axios.interceptors.response.use(res => {
     const config = res.config;
@@ -65,8 +62,7 @@ const setupAxiosInterceptors = onUnauthenticated => {
       }
     }
 
-    if (res && res.data.status === 401 && localStorage.getItem('refreshToken')) {
-      const refreshToken = localStorage.getItem('refreshToken');
+    if (res && res.data.status === 401 && refreshToken) {
 
       if (!isRefreshing) {
         isRefreshing = true;
@@ -96,9 +92,9 @@ const setupAxiosInterceptors = onUnauthenticated => {
   })
 }
 
-const { dispatch } = configureStore();
+const { store } = configureStore();
 setupAxiosInterceptors(jumpUrl => {
-  dispatch(logoutNoRequest(jumpUrl));
+  store.dispatch(logoutNoRequest(jumpUrl));
 })
 
 /**

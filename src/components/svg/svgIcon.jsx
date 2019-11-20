@@ -21,13 +21,18 @@
  * @param { icon-github } github
  * @param { icon-qq } qq
  * @param { icon-weibo } 微博 
+ * @param { icon-panel } 仪表盘
+ * @param { icon-renwu } 任务
+ * @param { icon-tongzhi } 通知
+ * @param { icon-tongyongleisiyoushitu } 私有项目
+ * @param { icon-iconzhengli_xiangmu } 项目
  */
 
  import {Icon} from 'antd'
 
  
  // 图标代码地址
- const iconUrl = '//at.alicdn.com/t/font_1423056_ezv1es1sb.js';
+ const iconUrl = '//at.alicdn.com/t/font_1423056_24b0xkmyy15.js';
  
 // 创建icon-SVG图标
 export const SVGICON = Icon.createFromIconfontCN({

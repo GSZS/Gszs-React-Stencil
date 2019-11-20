@@ -2,7 +2,7 @@
  * @ 作者: Gszs
  * @ 创建时间: 2019-06-07 21:26:41
  * @ Modified by: Gszs
- * @ Modified time: 2019-11-20 12:06:44
+ * @ Modified time: 2019-11-20 14:06:57
  * @ 文件解释: 请求数据的接口函数
  */
 
@@ -45,7 +45,6 @@ export const getLoginAuth = (username) => {
  * @method {POST}
  */
 export const handleLogin = (username, password) => {
-  getToken();
   return post({
     url: config.LOGIN_URL,
     data: qs.stringify({
