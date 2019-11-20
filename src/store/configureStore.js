@@ -2,7 +2,7 @@
  * @ Author: Gszs
  * @ Create Time: 2019-07-23 18:02:04
  * @ Modified by: Gszs
- * @ Modified time: 2019-11-19 21:29:58
+ * @ Modified time: 2019-11-20 11:47:47
  * @ Description: configureStore
  */
 
@@ -38,7 +38,7 @@ export const configureStore = (initialState = {}) => {
     sagaMiddleware
   ];
 
-  // store
+  // store 
   const store = createStore(
     persistedReducer,
     composeWithDevTools(

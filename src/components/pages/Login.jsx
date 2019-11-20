@@ -31,7 +31,7 @@ class Login extends React.Component {
   componentDidUpdate() {
     const { loginData, history } = this.props;
     if (loginData.newUserData) {
-      this.props.saveUserInfo(loginData); // 存localStore
+      // this.props.saveUserInfo(loginData); // 存localStore
       history.push('/');
     }
   }

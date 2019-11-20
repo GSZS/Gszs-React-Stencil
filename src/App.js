@@ -15,7 +15,7 @@ class App extends Component {
       collapsed: false,
       title: '',
     };
-    this.roles = JSON.parse(localStorage.getItem('roles'));
+    this.roles = JSON.parse(localStorage.getItem('persist:root'));
     // 响应屏幕尺寸
     this.getClientWidth();
     window.onresize = () => {

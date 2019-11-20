@@ -2,7 +2,7 @@
  * @Author: Gszs 
  * @Date: 2019-04-22 09:46:20 
  * @ Modified by: Gszs
- * @ Modified time: 2019-11-19 23:00:04
+ * @ Modified time: 2019-11-20 11:23:59
  */
 
 import { combineReducers } from 'redux';
@@ -32,6 +32,9 @@ const rootReducer = (state, action) => {
 	if(action.type === '_isLogout'){
 		state = undefined	
 	}
+	// if( action.type === REHYDRATE ){
+	// 	return { ...state, ...action.payload, rehidrate: true };
+	// }
 	return appReducer(state, action)
 }
 
