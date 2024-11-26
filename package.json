@@ -5,7 +5,7 @@
   "homepage": "120.27.245.194",
   "dependencies": {
     "antd": "^3.23.2",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "core-js": "^3.1.4",
     "eslint-plugin-react-hooks": "^2.1.1",
